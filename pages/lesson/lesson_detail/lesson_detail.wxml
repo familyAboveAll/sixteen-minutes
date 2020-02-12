@@ -165,6 +165,75 @@
       </view>
     </view>
   </view>
+  <view class="all-reply" wx:if="{{allReplyShow}}">
+    <view class="top">
+      <view class="common-title">留言详情</view>
+      <view class="close" bindtap="closeAllReply">
+        <image src="/static/images/icon/close.png"/>
+      </view>
+    </view>
+    <view class="parent-comment">
+      <view class="comment-item">
+        <view class="comment-top">
+          <view class="user-info">
+            <view class="avatar">
+              <image src='/static/images/icon/kefu@2x.png'></image>
+            </view>
+            <view>
+              <view class="nickname">{{currentItem.nickname}}</view>
+              <view class="time">{{currentItem.time}}</view>
+            </view>
+          </view>
+          <view class="reply-btn" wx:if="{{isMine}}" bindtap="handleReply">回复</view>
+        </view>
+        <view class="comment-center">
+          <view class="p show-all">鱼子老师讲的很不错呀，我想问一个问题，视频里有个地方听不懂解决初期单体问题开始，随着项目不断演变，到最终解决“高可用、高听不懂解决初期单体问题开始，随着项目不断演变，到最终解决“高可用、高。</view>
+          <view class="zan-num" data-index="{{currentItemIndex}}" data-from="current" bindtap="handleLike">
+            <view class="img-wrap">
+              <image src='/static/images/icon/zan@2x.png' data-like='1' wx:if="{{!currentItem.islike}}"></image>
+              <image src='/static/images/icon/zan_gaoliang@2x.png' data-like='0' wx:else></image>
+            </view>
+            <view class="num">{{currentItem.likeNum}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="all-comments">
+      <view class="top">
+        <view class="common-title">全部留言（{{currentItem.reply.length}}）</view>
+      </view>
+      <view class="comment-item" wx:for="{{currentItem.reply}}" wx:key="index">
+        <view class="comment-top">
+          <view class="user-info">
+            <view class="avatar">
+              <image src='/static/images/icon/kefu@2x.png'></image>
+            </view>
+            <view>
+              <view class="nickname">{{item.nickname}}</view>
+              <view class="time">{{item.time}}</view>
+            </view>
+          </view>
+          <view class="operate-wrap" wx:if="{{!isAllReply}}">
+            <view class="reply" data-index="{{index}}" bindtap="handleWrite">
+              <image src="/static/images/icon/huifu@2x.png"></image>
+              {{item.reply.length?item.reply.length:'回复'}}
+            </view>
+            <view class="thumb-num" data-index="{{index}}" data-reply='1' bindtap="handleLike">
+              <image src='/static/images/icon/zan@2x.png' data-like='1' wx:if="{{!item.islike}}"></image>
+              <image src='/static/images/icon/zan_gaoliang@2x.png' data-like='0' wx:else></image>
+              {{item.likeNum?item.likeNum:'赞'}}
+            </view>
+          </view>
+        </view>
+        <view class="comment-center">
+          <view class="p show-all">{{item.comment}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="reply-bottom">
+      <view class="input" bindtap="handleWrite">我想说...</view>
+    </view>
+  </view>
   <view class="{{!isFullScreen?'comment-textarea-wrap':'comment-textarea-wrap fullScreen'}}" wx:if="{{writeShow}}" >
     <view class="bg" bindtap="closeWrite"></view>
     <view class="comment-textarea">

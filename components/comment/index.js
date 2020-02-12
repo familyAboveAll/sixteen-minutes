@@ -18,6 +18,10 @@ Component({
     },
     handleReply () {
       this.triggerEvent('handleReply')
+    },
+    showAllReply (e) {
+      let index = e.currentTarget.dataset.index
+      this.triggerEvent('showAllReply', index)
     }
   },
   pageLifetimes: {

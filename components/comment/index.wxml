@@ -10,12 +10,7 @@
           <view class="time">{{item.time}}</view>
         </view>
       </view>
-      <view class="thumb-num" data-index="{{index}}" bindtap="handleLike" wx:if="{{!isMine}}">
-        {{item.likeNum}}
-        <image src='/static/images/icon/zan@2x.png' data-like='1' wx:if="{{!item.islike}}"></image>
-        <image src='/static/images/icon/zan_gaoliang@2x.png' data-like='0' wx:else></image>
-      </view>
-      <view class="reply-btn" wx:else bindtap="handleReply">回复</view>
+      <view class="reply-btn" wx:if="{{isMine}}" bindtap="handleReply">回复</view>
     </view>
     <view class="comment-center">
       <view class="{{(item.showComment||isAllReply)?'p show-all':'p'}}">{{item.comment}}</view>
@@ -28,7 +23,7 @@
           <view class="span">{{replyItem.nickname}}：</view>{{replyItem.comment}}
         </view>
       </view>
-      <navigator url="/pages/allReply/allReply" open-type="navigate" class="check-all" wx:if="{{!isAllReply}}">
+      <navigator url="/pages/allReply/allReply" class="check-all" wx:if="{{!isAllReply}}">
         全部{{item.reply.length}}条回复 >
       </navigator>
     </view>
@@ -40,6 +35,17 @@
         <view class="lesson-title">Hadoop大数据实战</view>
         <view class="lesson-des">带你开启智能时代大门</view>
         <view class="lesson-index">第10讲</view>
+      </view>
+    </view>
+    <view class="operate-wrap" wx:if="{{!isAllReply}}">
+      <view class="reply" data-index="{{index}}" bindtap="showAllReply">
+        <image src="/static/images/icon/huifu@2x.png"></image>
+        {{item.reply.length?item.reply.length:'回复'}}
+      </view>
+      <view class="thumb-num" data-index="{{index}}" bindtap="handleLike">
+        <image src='/static/images/icon/zan@2x.png' data-like='1' wx:if="{{!item.islike}}"></image>
+        <image src='/static/images/icon/zan_gaoliang@2x.png' data-like='0' wx:else></image>
+        {{item.likeNum?item.likeNum:'赞'}}
       </view>
     </view>
   </view>

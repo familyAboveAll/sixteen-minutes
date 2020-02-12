@@ -12,6 +12,7 @@ Page({
     indexShow: true,
     detailShow: false,
     listShow: false,
+    allReplyShow: false,
     wifiToastShow: false,
     unWiFiPlay: false,
     lessonVideo: null,
@@ -33,6 +34,8 @@ Page({
     userInfo: {},
     isFocus: false,
     lessonData: []
+    currentItem: {},
+    currentItemIndex: 0
   },
   handleChangeTab(e) {
     const index = e.currentTarget.dataset.index
@@ -51,6 +54,21 @@ Page({
       })
     }
   },
+  showAllReply (e) {
+    let index = e.detail
+    let currentItem = this.data.commentsData[index]
+    wx.pageScrollTo({
+      scrollTop: 0,
+      duration: 0
+    })
+    this.setData({
+      allReplyShow: true,
+      indexShow: false,
+      detailShow: false,
+      currentItem: currentItem,
+      currentItemIndex: index
+    })
+  },
   showDetail () {
     wx.pageScrollTo({
       scrollTop: 0,
@@ -58,11 +76,15 @@ Page({
     })
     this.setData({
       indexShow: false,
-      detailShow: true
+      detailShow: true,
+      allReplyShow: false
     })
   },
   closeDetail () {
-    console.log(2323)
+    wx.pageScrollTo({
+      scrollTop: 0,
+      duration: 100
+    })
     this.setData({
       indexShow: true,
       detailShow: false
@@ -75,13 +97,29 @@ Page({
     })
     this.setData({
       indexShow: false,
-      listShow: true
+      listShow: true,
+      allReplyShow: false
     })
   },
   closeList () {
+    wx.pageScrollTo({
+      scrollTop: 0,
+      duration: 100
+    })
     this.setData({
       indexShow: true,
       listShow: false
+    })
+  },
+  closeAllReply () {
+    wx.pageScrollTo({
+      scrollTop: 0,
+      duration: 100
+    })
+    this.setData({
+      allReplyShow: false,
+      currentItem: null,
+      indexShow: true
     })
   },
   handleAgree () {
@@ -284,14 +322,35 @@ Page({
     }
   },
   handleLike (param) { // 点赞功能
-    let commentsData = this.data.commentsData
-    let data = commentsData[param.detail]
-    data.islike = !data.islike
-    data.likeNum = data.islike ? ++data.likeNum : --data.likeNum
-    commentsData.splice(param.detail, 1, data)
-    this.setData({
-      commentsData: commentsData
-    })
+    let index = param.detail
+    if (param.currentTarget.dataset.reply) {
+      index = param.currentTarget.dataset.index
+      let currentItem = this.data.currentItem
+      currentItem.reply[index].islike = !currentItem.reply[index].islike
+      currentItem.reply[index].likeNum = currentItem.reply[index].islike ? ++currentItem.reply[index].likeNum : --currentItem.reply[index].likeNum
+      this.setData({
+        currentItem: currentItem
+      })
+      return
+    }
+    if (param.currentTarget.dataset.from == "current") {
+      index = param.currentTarget.dataset.index
+      let currentItem = this.data.currentItem
+      currentItem.islike = !currentItem.islike
+      currentItem.likeNum = currentItem.islike ? ++currentItem.likeNum : --currentItem.likeNum
+      this.setData({
+        currentItem: currentItem
+      })
+    } else {
+      let commentsData = this.data.commentsData
+      let data = commentsData[index]
+      data.islike = !data.islike
+      data.likeNum = data.islike ? ++data.likeNum : --data.likeNum
+      commentsData.splice(index, 1, data)
+      this.setData({
+        commentsData: commentsData
+      })
+    }
   },
   showComment (param) {
     let commentsData = this.data.commentsData
@@ -389,6 +448,7 @@ Page({
   },
   onPageScroll: function(e) {
     let self = this
+    if (!this.data.indexShow) return
     const query = wx.createSelectorQuery()
     query.select('#commentTarget').boundingClientRect()
     query.exec(function(res){

@@ -62,7 +62,7 @@
 .thumb-num image {
   width: 36rpx;
   height: 36rpx;
-  margin-left: 7rpx;
+  margin-right: 7rpx;
 }
 .comment-center {
   margin: 18rpx 75.6rpx 0 113.4rpx;
@@ -147,4 +147,24 @@
 .check-all {
   font-size: 24rpx;
   color: #028AFF;
+}
+.operate-wrap {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 77rpx;
+  margin-top: 34rpx;
+}
+.operate-wrap .reply {
+  display: flex;
+  align-items: center;
+  font-size: 24rpx;
+  color: #9E9E9E;
+  margin-right: 46rpx;
+}
+.operate-wrap .reply image {
+  width: 36rpx;
+  height: 36rpx;
+  margin-right: 8rpx;
+  position: relative;
+  top: 4rpx;
 }

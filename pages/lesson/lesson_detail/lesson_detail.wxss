@@ -270,7 +270,7 @@
   height: 28rpx;
 }
 /* lesson-profile start */
-.lesson-info .top {
+.top {
   height: 80rpx;
   display: flex;
   justify-content: space-between;
@@ -474,4 +474,84 @@
 }
 .get-userinfo-box .common-btn {
   padding: 0;
+}
+.all-reply .reply-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 120rpx;
+  border-top: 2rpx solid #F3F4F3;
+  background: #fff;
+}
+.all-reply .reply-bottom .input {
+  width: 676rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: rgba(0,0,0,0.05);
+  border-radius: 40rpx;
+  padding-left: 37rpx;
+  margin: 18rpx auto 0;
+  font-size: 28rpx;
+  color: #030303;
+}
+.parent-comment .comment-center {
+  border-bottom: 2rpx solid #F2F2F2;
+}
+.parent-comment {
+  margin-top: 31rpx;
+}
+.parent-comment .comment-item {
+  margin-bottom: 0;
+}
+.parent-comment .zan-num {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 100%;
+  border: 2rpx solid #F2F2F2;
+  text-align: center;
+  margin: 42rpx auto 50rpx;
+}
+.parent-comment .zan-num .img-wrap {
+  width: 36rpx;
+  height: 36rpx;
+  margin: 28rpx auto 0;
+}
+.parent-comment .zan-num .num {
+  font-size: 24rpx;
+  color: #9E9E9E;
+}
+.all-comments .top {
+  border: none;
+  font-size: 28rpx;
+  color: #151515;
+}
+.operate-wrap {
+  display: flex;
+  justify-content: flex-end;
+}
+.operate-wrap .reply {
+  display: flex;
+  align-items: center;
+  font-size: 24rpx;
+  color: #9E9E9E;
+  margin-right: 46rpx;
+}
+.operate-wrap .reply image {
+  width: 36rpx;
+  height: 36rpx;
+  margin-right: 8rpx;
+  position: relative;
+  top: 4rpx;
+}
+.thumb-num {
+  font-size: 24rpx;
+  color: #9E9E9E;
+  display: flex;
+  align-items: center;
+}
+.thumb-num image {
+  width: 36rpx;
+  height: 36rpx;
+  margin-right: 7rpx;
 }
