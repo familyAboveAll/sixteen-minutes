@@ -526,6 +526,10 @@
   font-size: 28rpx;
   color: #151515;
 }
+.all-comments .p {
+  max-height: auto!important;
+  height: auto!important;
+}
 .operate-wrap {
   display: flex;
   justify-content: flex-end;

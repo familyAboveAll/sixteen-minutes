@@ -1,26 +1,17 @@
 // pages/mine/message.js
+const app = getApp()
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
     tabIndex: 0,
-    commentsData: [{
-      id: 1,
-      nickname: '超强大你',
-      time: '1小时前',
-      islike: 1,
-      likeNum: 65
-    }, {
-      id: 1,
-      nickname: '超强大你',
-      time: '1小时前',
-      islike: 1,
-      likeNum: 65
-    }],
+    commentsData: [],
     isFullScreen: false,
-    writeShow: false
+    writeShow: false,
+    sendInfo: [],
+    replyInfo: [],
+    currentItem: {}
   },
   handleScreen (e) {
     const index = e.currentTarget.dataset.index
@@ -36,41 +27,55 @@ Page({
     })
   },
   handlePublish () {
+    let userRs = wx.getStorageSync('userInfoCache')
+    let uid = userRs.userInfo.id
+    let that = this
+    let url = app.globalData.sixBaseUrl + "/api/comment/reply"
+    wx.request({
+      url: url,
+      data: {
+        msgId: this.data.currentItem.id,
+        content: this.data.content,
+        toUid:  this.data.currentItem.userId,
+        fromUid: uid
+      },
+      method: 'GET',
+      success(res) {
+        if (res.data.code == 200) {
+          wx.showToast({
+            title: '评论成功',
+            icon: 'success',
+            duration: 2000
+          })
+          that.setData({
+            writeShow: false
+          })
+        }
+      }
+    })
   },
-  handleReply () {
+  bindinputs(e) {
+    let content = e.detail.value
+    console.log(content)
+
     this.setData({
-      writeShow: true
+      content:content
+    })
+  },
+  handleReply (e) {
+    let index = e.detail
+    this.setData({
+      writeShow: true,
+      currentItem: this.data.commentsData[index]
     })
   },
   changeTab(e) {
     const index = e.currentTarget.dataset.index
     let commentsData = null
     if (index == 0) {
-      commentsData = [{
-        id: 1,
-        nickname: 'ymy',
-        time: '1小时前',
-        islike: 0,
-        likeNum: 20
-      }, {
-        id: 1,
-        nickname: '超强大你',
-        time: '1小时前',
-        islike: 1,
-        likeNum: 65
-      }]
+      commentsData = this.data.sendInfo
     } else {
-      commentsData = [{
-        id: 1,
-        nickname: '超强大你',
-        time: '1小时前',
-        islike: 1,
-        likeNum: 65,
-        reply: [{
-          nickname: '小妞略路',
-          comment: ' 鱼子老师讲的很不错呀，我想问一个问题，视频里有个地方我哦听鱼子老师讲的很不错呀，我想问一个问题，视频里有个地方我哦听'
-        }]
-      }]
+      commentsData = this.data.replyInfo
     }
     this.setData({
       tabIndex: index,
@@ -85,6 +90,32 @@ Page({
     commentsData.splice(param.detail, 1, data)
     this.setData({
       commentsData: commentsData
+    })
+  },
+  onLoad () {
+    let userRs = wx.getStorageSync('userInfoCache')
+    let uid = userRs.userInfo.id
+    var url = app.globalData.sixBaseUrl + "/api/comment/myMsg/uid/" + uid
+    let self = this
+    wx.request({
+      url: url,
+      method: 'GET',
+      data: {},
+      success(res) {
+        if (res.data.code === 200) {
+          wx.request({
+            url: url,
+            method: 'POST',
+            success(res) {
+              self.setData({
+                replyInfo: res.data.data.replyInfo,
+                sendInfo: res.data.data.sendInfo,
+                commentsData: res.data.data.sendInfo
+              })
+            }
+          })
+        }
+      }
     })
   }
 })

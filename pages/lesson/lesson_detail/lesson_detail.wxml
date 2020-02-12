@@ -1,7 +1,7 @@
 <view class="lesson-detail">
   <view class="video-wrap" id="videoWrap">
 <!--    <video id="lessonVideo" src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400"></video>-->
-    <video autoplay="false" id="lessonVideo" src="{{videoUrl}}"></video>
+    <video autoplay="{{false}}" id="lessonVideo" src="{{videoUrl}}"></video>
     <view class="un-wifi" wx:if="{{wifiToastShow}}">
       <view class="tip">继续播放将消耗26M流量</view>
       <view class="checkbox-operate" bindtap="handleAgree">
@@ -59,9 +59,6 @@
           </view>
         </scroll-view>
       </view>
-
-
-
     </view>
     <view class="summary">
       <view class="common-title">本讲小结</view>
@@ -79,7 +76,7 @@
         <view class="common-title">本讲精选留言<view class="span"></view></view>
         <view class="write-btn" bindtap="handleTapWrite">我想说</view>
       </view>
-      <comment-item prop-comments="{{commentsData}}" bind:handleLike="handleLike" bind:showComment="showComment"></comment-item>
+      <comment-item prop-comments="{{commentsData}}" bind:handleLike="handleLike" bind:showComment="showComment" bind:showAllReply="showAllReply"></comment-item>
     </view>
     <view class="pay-footer">
       <view class="custom-service">
@@ -177,7 +174,7 @@
         <view class="comment-top">
           <view class="user-info">
             <view class="avatar">
-              <image src='/static/images/icon/kefu@2x.png'></image>
+              <image src='{{currentItem.avatar}}'></image>
             </view>
             <view>
               <view class="nickname">{{currentItem.nickname}}</view>
@@ -198,15 +195,15 @@
         </view>
       </view>
     </view>
-    <view class="all-comments">
+    <view class="all-comments" wx:if="{{allReplys.length}}">
       <view class="top">
-        <view class="common-title">全部留言（{{currentItem.reply.length}}）</view>
+        <view class="common-title">全部留言（{{allReplys.length}}）</view>
       </view>
-      <view class="comment-item" wx:for="{{currentItem.reply}}" wx:key="index">
+      <view class="comment-item" wx:for="{{allReplys}}" wx:key="index">
         <view class="comment-top">
           <view class="user-info">
             <view class="avatar">
-              <image src='/static/images/icon/kefu@2x.png'></image>
+              <image src='{{item.avatar}}'></image>
             </view>
             <view>
               <view class="nickname">{{item.nickname}}</view>
@@ -214,7 +211,7 @@
             </view>
           </view>
           <view class="operate-wrap" wx:if="{{!isAllReply}}">
-            <view class="reply" data-index="{{index}}" bindtap="handleWrite">
+            <view class="reply" data-from='reply' data-index="{{index}}" bindtap="handleWrite">
               <image src="/static/images/icon/huifu@2x.png"></image>
               {{item.reply.length?item.reply.length:'回复'}}
             </view>
@@ -227,6 +224,16 @@
         </view>
         <view class="comment-center">
           <view class="p show-all">{{item.comment}}</view>
+        </view>
+        <view class="comment-reply" wx:if="{{item.reply.length}}">
+          <view class="ul">
+            <view class="{{isAllReply?'li li-all':'li'}}" wx:for="{{item.reply}}" wx:for-index="replyIndex" wx:for-item="replyItem" wx:key='id' wx:if="{{(replyIndex<2&&!isAllReply)||isAllReply}}">
+              <view class="span">{{replyItem.nickname}}：</view>{{replyItem.comment}}
+            </view>
+          </view>
+          <navigator url="{{'/pages/allReply/allReply?id='+item.id}}" class="check-all" wx:if="{{!isAllReply}}">
+            全部{{item.replyNum}}条回复 >
+          </navigator>
         </view>
       </view>
     </view>

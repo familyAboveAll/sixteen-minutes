@@ -1,24 +1,8 @@
 // pages/allReply/allReply.js
+const app = getApp()
 Page({
   data: {
-    commentsData: [{
-      id: 1,
-      nickname: '超强大你', // 用户昵称
-      time: '1小时前',
-      islike: 1, // 用户是否点过赞
-      likeNum: 65, // 点赞数
-      comment: '鱼子老师讲的很不错呀，我想问一个问题，视频里有个地方听不懂解决初期单体问题开始，随着项目不断演变，到最终解决“高可用、高鱼子老师讲的很不错呀，我想问一个问题，视频里有个地方听不懂解决初期单体问题开始，随着项目不断演变，到最终解决“高可用、高',
-      reply: [{
-        nickname: '小妞略路',
-        comment: ' 鱼子老师讲的很不错呀，我想问一个问题，视频里有个地方我哦听鱼子老师讲的很不错呀，我想问一个问题，视频里有个地方我哦听'
-      }, {
-        nickname: '学霸001',
-        comment: ' 还有点没学会的有空得回来重新看一下，老师讲得挺好的'
-      }, {
-        nickname: '学霸001',
-        comment: ' 还有点没学会的有空得回来重新看一下，老师讲得挺好的'
-      }]
-    }]
+    commentsData: []
   },
   handleLike (param) { // 点赞功能
     let commentsData = this.data.commentsData
@@ -39,4 +23,26 @@ Page({
       commentsData: commentsData
     })
   },
+  onLoad (e) {
+    let id = e.id
+    let url = app.globalData.sixBaseUrl + "/api/comment/replyList/msgId/" + id
+    let self = this
+    wx.request({
+      url: url,
+      data: {
+      },
+      method: 'GET',
+      success(res) {
+        if (res.data.code == 200) {
+          let data = {
+            ...res.data.data.commentInfo,
+            reply: res.data.data.replyList
+          }
+          self.setData({
+            commentsData: [data]
+          })
+        }
+      }
+    })
+  }
 })

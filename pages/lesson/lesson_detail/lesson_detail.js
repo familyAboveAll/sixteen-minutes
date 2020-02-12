@@ -33,9 +33,11 @@ Page({
     commentsData: [],
     userInfo: {},
     isFocus: false,
-    lessonData: []
+    lessonData: [],
     currentItem: {},
-    currentItemIndex: 0
+    currentItemIndex: 0,
+    allReplys: [],
+    replyItem: {}
   },
   handleChangeTab(e) {
     const index = e.currentTarget.dataset.index
@@ -61,12 +63,31 @@ Page({
       scrollTop: 0,
       duration: 0
     })
+    this.getReplys(currentItem.id)
     this.setData({
       allReplyShow: true,
       indexShow: false,
       detailShow: false,
       currentItem: currentItem,
       currentItemIndex: index
+    })
+  },
+  getReplys (id) {
+    let url = app.globalData.sixBaseUrl + "/api/comment/replyList/msgId/" + id
+    let self = this
+    wx.request({
+      url: url,
+      data: {
+      },
+      method: 'GET',
+      success(res) {
+        console.log(res)
+        if (res.data.code == 200) {
+          self.setData({
+            allReplys: res.data.data.replyList
+          })
+        }
+      }
     })
   },
   showDetail () {
@@ -119,7 +140,8 @@ Page({
     this.setData({
       allReplyShow: false,
       currentItem: null,
-      indexShow: true
+      indexShow: true,
+      commentBoxShow: false
     })
   },
   handleAgree () {
@@ -144,6 +166,9 @@ Page({
     let sectionId = e.currentTarget.dataset.sid
     let userRs = wx.getStorageSync('userInfoCache')
     let uid = userRs.userInfo.id
+    if (this.data.allReplyShow) {
+      return this.handleReply(uid)
+    }
     let url = app.globalData.sixBaseUrl + "api/user/commentAct";
     if (content.length > 0) {
       wx.request({
@@ -176,6 +201,35 @@ Page({
       })
     }
   },
+  handleReply (uid) {
+    let that = this
+    let url = app.globalData.sixBaseUrl + "/api/comment/reply"
+    let replyItem = this.data.replyItem
+    wx.request({
+      url: url,
+      data: {
+        msgId: replyItem.id ? replyItem.id : this.data.currentItem.id,
+        content: this.data.content,
+        toUid: replyItem.userId ? replyItem.userId : this.data.currentItem.userId,
+        fromUid: uid
+      },
+      method: 'GET',
+      success(res) {
+        if (res.data.code == 200) {
+          wx.showToast({
+            title: '评论成功',
+            icon: 'success',
+            duration: 2000
+          })
+          console.log(that.data.currentItem)
+          that.getReplys(that.data.currentItem.id)
+          that.setData({
+            writeShow: false
+          })
+        }
+      }
+    })
+  },
   bindinputs(e) {
     let content = e.detail.value
     console.log(content)
@@ -192,6 +246,7 @@ Page({
 
     let self = this
     let lessonVideo = wx.createVideoContext('lessonVideo', this)
+    lessonVideo.stop()
     let isMonday = new Date().getDay() === 1
     let isDataPlay = wx.getStorageSync('isDataPlay')
     if (isMonday) {
@@ -220,11 +275,12 @@ Page({
     })
     // 获取留言距离顶部的距离
     const query = wx.createSelectorQuery()
+    if (!this.data.allReplyShow) return
     query.select('#commentTarget').boundingClientRect()
     query.select('#tabWrap').boundingClientRect()
     query.exec(function(res){
       self.setData({
-        commentTop: res[0].top - res[1].height,
+        commentTop: res[0].top + res[1].height * 1.8,
         tabHeight: res[1].height
       })
     })
@@ -261,14 +317,25 @@ Page({
       })
     }
   },
-  handleWrite () {
+  handleWrite (e) {
     this.setData({
       writeShow: true
     })
+    if (!e) return
+    let index = e.currentTarget.dataset.index
+    let from = e.currentTarget.dataset.from
+    if (from == 'reply') {
+      let replyItem = this.data.allReplys[index]
+      this.setData({
+        replyItem: replyItem
+      })
+    }
   },
   closeWrite () {
     this.setData({
-      writeShow: false
+      writeShow: false,
+      replyItem: {},
+      currentItem: {}
     })
   },
   handleFocus () {
@@ -322,35 +389,65 @@ Page({
     }
   },
   handleLike (param) { // 点赞功能
-    let index = param.detail
+    let index = param.currentTarget.dataset.index
+    let changeData = {}
+    let commentsData = this.data.commentsData
+    let userRs = wx.getStorageSync('userInfoCache')
+    let uid = userRs.userInfo.id
     if (param.currentTarget.dataset.reply) {
-      index = param.currentTarget.dataset.index
-      let currentItem = this.data.currentItem
-      currentItem.reply[index].islike = !currentItem.reply[index].islike
-      currentItem.reply[index].likeNum = currentItem.reply[index].islike ? ++currentItem.reply[index].likeNum : --currentItem.reply[index].likeNum
-      this.setData({
-        currentItem: currentItem
-      })
-      return
+      changeData = this.data.allReplys[index]
+    } else if (param.currentTarget.dataset.from == "current") {
+      changeData = this.data.currentItem
+    } else {
+      index = param.detail
+      changeData = commentsData[index]
     }
-    if (param.currentTarget.dataset.from == "current") {
-      index = param.currentTarget.dataset.index
-      let currentItem = this.data.currentItem
-      currentItem.islike = !currentItem.islike
-      currentItem.likeNum = currentItem.islike ? ++currentItem.likeNum : --currentItem.likeNum
+    changeData.islike = !changeData.islike
+    changeData.likeNum = changeData.islike ? ++changeData.likeNum : --changeData.likeNum
+    if (param.currentTarget.dataset.reply) {
+      let allReplys = this.data.allReplys
+      allReplys.splice(index, 1, changeData)
+      this.setData({
+        allReplys: allReplys
+      })
+    } else if (param.currentTarget.dataset.from == "current") {
       this.setData({
         currentItem: currentItem
       })
     } else {
-      let commentsData = this.data.commentsData
-      let data = commentsData[index]
-      data.islike = !data.islike
-      data.likeNum = data.islike ? ++data.likeNum : --data.likeNum
-      commentsData.splice(index, 1, data)
+      commentsData.splice(index, 1, changeData)
       this.setData({
         commentsData: commentsData
       })
     }
+    var url = app.globalData.sixBaseUrl + "api/comment/likeMsg/uid/" + uid + "/MsgId/" + changeData.id;
+    wx.request({
+      url: url,
+      method: 'GET',
+      success(res) {
+        if (res.data.code === 200) {
+          wx.request({
+            url: url,
+            method: 'POST',
+            success(rs) {
+              if (rs.data.code === 200) {
+                wx.showToast({
+                  title: '点赞成功',
+                  icon: 'success',
+                  duration: 2000
+                })
+              } else {
+                wx.showToast({
+                  title: '点赞失败',
+                  icon: 'fail',
+                  duration: 2000
+                })
+              }
+            }
+          })
+        }
+      }
+    })
   },
   showComment (param) {
     let commentsData = this.data.commentsData
@@ -507,7 +604,7 @@ Page({
    */
   getCommentList(sid) {
     let that = this;
-    var url = app.globalData.sixBaseUrl + "api/user/commentList/sid/" + sid;
+    var url = app.globalData.sixBaseUrl + "/api/comment/commentList/sid/" + 7;
     wx.request({
       url: url,
       data: {},

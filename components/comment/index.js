@@ -16,8 +16,9 @@ Component({
       let index = e.currentTarget.dataset.index
       this.triggerEvent('showComment', index)
     },
-    handleReply () {
-      this.triggerEvent('handleReply')
+    handleReply (e) {
+      let index = e.currentTarget.dataset.index
+      this.triggerEvent('handleReply', index)
     },
     showAllReply (e) {
       let index = e.currentTarget.dataset.index

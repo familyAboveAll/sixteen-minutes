@@ -52,6 +52,7 @@
   margin-right: 13rpx;
   border-radius: 50%;
   overflow: hidden;
+  background: #9999A7;
 }
 .thumb-num {
   font-size: 24rpx;
@@ -71,7 +72,6 @@
   font-size: 28rpx;
   color: #030303;
   line-height: 44rpx;
-  height: 132rpx;
   overflow: hidden;
 }
 .comment-center .show-all {

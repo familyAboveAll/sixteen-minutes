@@ -14,7 +14,7 @@
           <image src="/static/images/icon/shouqi@2x.png" wx:else data-index='0' bindtap="handleScreen"/>
         </view>
       </view>
-      <textarea placeholder="由小编筛选后的优质留言将会公开显示" placeholder-style="font-size: 28rpx;color: #9C9CA9;" focus="true" fixed="true" cursor-spacing="120rpx" bindblur="handleBlur" bindfocus="handleFocus"></textarea>
+      <textarea placeholder="由小编筛选后的优质留言将会公开显示" placeholder-style="font-size: 28rpx;color: #9C9CA9;" focus="true" fixed="true" cursor-spacing="120rpx" bindblur="handleBlur" bindfocus="handleFocus" bindInput="bindinputs"></textarea>
       <view class="{{isFocus?'btn focus':'btn'}}" bindtap="handlePublish">发布</view>
     </view>
   </view>

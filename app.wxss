@@ -77,7 +77,7 @@ image {
   line-height: 40rpx;
   padding:0 20rpx;
   font-size: 28rpx;
-  flex: 1;
+  height: 80rpx;
 }
 .comment-textarea .title {
   display: flex;
@@ -90,7 +90,7 @@ image {
   color: #9C9CA9;
 }
 .comment-textarea .right {
-  width: 32rpx;
+  width: 32rpx; 
   height: 32rpx;
 }
 .comment-textarea .btn {
@@ -99,7 +99,7 @@ image {
   text-align: right;
   position: absolute;
   right: 50rpx;
-  bottom: 30rpx;
+  bottom: 25rpx;
 }
 .fullScreen .comment-textarea {
   height: 100vh;
@@ -113,4 +113,55 @@ image {
 }
 .fullScreen .btn {
   bottom: 300rpx;
+}
+.comment-item {
+  margin-bottom: 43rpx;
+  padding-bottom: 34rpx;
+  position: relative;
+}
+.comment-item::after {
+  content: '';
+  position: absolute;
+  width: 636.6px;
+  border-bottom: 2rpx solid #F2F2F2;
+  left: 113.4rpx;
+  bottom: 0;
+}
+.comment-item:last-child::after {
+  display: none;
+}
+.comment-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 22.4rpx;
+  padding-right: 45.6rpx;
+}
+.comment-top .nickname {
+  color: #6D6D6D;
+}
+.comment-top .time {
+  font-size: 22rpx;
+  color: #9E9E9E;
+}
+.comment-item .user-info {
+  display: flex;
+  align-items: center;
+}
+.comment-item .avatar {
+  width: 76rpx;
+  height: 76rpx;
+  margin-right: 13rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.comment-item .comment-center {
+  margin: 18rpx 75.6rpx 0 113.4rpx;
+}
+.comment-item .comment-center .p {
+  font-size: 28rpx;
+  color: #030303;
+  line-height: 44rpx;
+  height: 132rpx;
+  overflow: hidden;
 }

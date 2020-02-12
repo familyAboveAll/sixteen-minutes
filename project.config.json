@@ -71,10 +71,17 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 2,
 					"name": "pages/lesson/lesson_detail/lesson_detail",
 					"pathName": "pages/lesson/lesson_detail/lesson_detail",
-					"query": "",
+					"query": "id=2",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/mine/message/message",
+					"pathName": "pages/mine/message/message",
+					"query": "id=2",
 					"scene": null
 				}
 			]
