@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "comment-item": "/components/comment/index"
+  },
+  "navigationBarTitleText": "消息中心"
+}

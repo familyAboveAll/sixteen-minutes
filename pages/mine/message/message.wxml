@@ -1,0 +1,21 @@
+<view class="mine-message">
+  <view class="tab-wrap">
+    <view class="{{tabIndex==0?'selected':''}}" data-index='0' bindtap="changeTab">我发出的</view>
+    <view class="{{tabIndex==1?'selected':''}}" data-index='1' bindtap="changeTab">回复我的</view>
+  </view>
+  <comment-item prop-comments="{{commentsData}}" prop-tabindex="{{tabIndex}}" bind:myevent="handleLike" bind:handleReply="handleReply"></comment-item>
+  <view class="{{!isFullScreen?'comment-textarea-wrap':'comment-textarea-wrap fullScreen'}}" wx:if="{{writeShow}}" >
+    <view class="bg" bindtap="closeWrite"></view>
+    <view class="comment-textarea">
+      <view class="title">
+        <view class="left">给本讲留言</view>
+        <view class="right">
+          <image src="/static/images/icon/kuozhan@2x.png" wx:if="{{!isFullScreen}}" data-index='1' bindtap="handleScreen"/>
+          <image src="/static/images/icon/shouqi@2x.png" wx:else data-index='0' bindtap="handleScreen"/>
+        </view>
+      </view>
+      <textarea placeholder="由小编筛选后的优质留言将会公开显示" placeholder-style="font-size: 28rpx;color: #9C9CA9;" focus="true" fixed="true" cursor-spacing="120rpx" bindblur="handleBlur" bindfocus="handleFocus"></textarea>
+      <view class="{{isFocus?'btn focus':'btn'}}" bindtap="handlePublish">发布</view>
+    </view>
+  </view>
+</view>

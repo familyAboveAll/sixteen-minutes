@@ -1,0 +1,92 @@
+<view class="mine-wrap">
+  <view class="bg">
+    <image src="/static/images/mine/mine_bg@2x.png" wx:if="{{userInfo}}"/>
+  </view>
+  <view class="user-card">
+    <view class="card-top">
+      <view class="unlogin-title" wx:if="{{!userInfo}}">
+        <navigator url="/pages/login/index" hover-class="none">登录/注册 ></navigator>
+      </view>
+      <view class="logined" wx:else>
+        <view class="title">{{userInfo.userInfo.user_name}}</view>
+        <view class="phone">{{userInfo.userInfo.phone_number}}</view>
+      </view>
+      <view class="avatar" bindtap="handleEdit">
+        <image src="/static/images/icon/touxiang_moren@2x.png" wx:if="{{!userInfo}}"/>
+        <image src="{{userInfo.userInfo.avatar}}" wx:else/>
+        <image class="edit" src="/static/images/icon/bianji@2x.png" wx:if="{{userInfo}}"></image>
+      </view>
+    </view>
+    <view class="card-bottom">
+      <view class="li" data-path='orders' bindtap="handleLink">
+        <view class="img-wrap">
+          <image src='/static/images/mine/dingdan@2x.png'></image>
+        </view>
+        <view class="num" wx:if="{{userInfo}}">{{orderNUm}}</view>
+        <view class="p">订单</view>
+      </view>
+<!--      <view class="li" data-path='message' bindtap="handleLink">-->
+      <view class="li" data-path='message'>
+      <view class="img-wrap">
+          <image src='/static/images/mine/imessege@2x.png'></image>
+        </view>
+        <view class="num" wx:if="{{userInfo}}"></view>
+        <view class="p">消息</view>
+      </view>
+      <view class="li" data-path='coupon' bindtap="handleLink">
+        <view class="img-wrap">
+          <image src='/static/images/mine/youhuiquan@2x.png'></image>
+        </view>
+        <view class="num" wx:if="{{userInfo}}"> {{couponNum}}</view>
+        <view class="p">优惠卷</view>
+      </view>
+    </view>
+  </view>
+  <view class="lesson-card" wx:if="{{userInfo}}">
+    <navigator url="/pages/lesson/my_lesson/my_lesson" hover-class="none">
+      <view class="card-top">
+        <view class="title">我的课程</view>
+        <view class="right-arrow">
+          <image src='/static/images/icon/right-arrow.png'></image>
+        </view>
+      </view>
+    </navigator>
+    <view class="lessons-wrap">
+      <scroll-view scroll-x="true" style=" white-space: nowrap; display: flex;width: 100%">
+        <view class="lesson" wx:for="{{history}}" wx:key="index">
+          <image src='{{item.course_image}}'></image>
+          <view class="progress-wrap">
+<!--            <view class="tip">已学30%</view>-->
+            <view class="progress">
+              <progress percent="30" stroke-width="2rpx" color="#FF6F3A"></progress>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+  <view class="feedback-card" wx:if="{{userInfo}}">
+    <navigator url="/pages/mine/advice/advice">
+      <view class="item">
+        <p>意见反馈</p>
+        <view class="right-arrow">
+          <image src='/static/images/icon/right-arrow.png'></image>
+        </view>
+      </view>
+    </navigator>
+    <view class="item">
+      <p>客服中心</p>
+      <view class="right-arrow">
+        <image src='/static/images/icon/right-arrow.png'></image>
+      </view>
+    </view>
+    <navigator url="/pages/mine/setting/setting">
+      <view class="item" style="border:none">
+        <p>设置</p>
+        <view class="right-arrow">
+          <image src='/static/images/icon/right-arrow.png'></image>
+        </view>
+      </view>
+    </navigator>
+  </view>
+</view>

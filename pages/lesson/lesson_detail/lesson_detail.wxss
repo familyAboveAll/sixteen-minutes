@@ -1,0 +1,477 @@
+.lesson-detail {
+  padding-bottom: 120rpx;
+  width: 100vw;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+.video-wrap {
+  width: 100vw;
+  height: 420rpx;
+  position: relative;
+}
+.video-wrap video {
+  width: 100%;
+  height: 100%;
+}
+.un-wifi {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, .8);
+  padding-top: 128rpx;
+  text-align: center;
+}
+.un-wifi .tip {
+  font-size: 16px;
+  color: #FFFFFF;
+}
+.un-wifi .checkbox-operate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #949494;
+  margin: 19rpx 0 37rpx;
+  font-size: 24rpx;
+}
+.un-wifi .checkbox {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 12rpx;
+}
+.un-wifi .common-btn {
+  width: 220rpx!important;
+}
+.tab-wrap {
+  height: 80rpx;
+  border-bottom: 2rpx solid #F2F2F2;
+  display: flex;
+  justify-content: space-between;
+  font-size: 32rpx;
+  padding: 0 255rpx 0;
+  z-index: 10;
+  background: #fff;
+}
+.tab-wrap .relative {
+  height: 100%;
+  position: relative;
+}
+.tab-wrap>view {
+  color: #9C9CA9;
+  padding-top: 10rpx;
+}
+.tab-wrap > view:last-child {
+  display: flex;
+  align-items: center;
+}
+.tab-wrap .span {
+  height: 80rpx;
+  padding-top: 16rpx;
+  font-size: 22rpx;
+  color: #F8746E;
+  padding-left: 5rpx;
+}
+.tab-wrap .selected {
+  color: #151515;
+}
+.tab-wrap .selected:after {
+  content: '';
+  width: 20rpx;
+  border: 4rpx solid #FF6F3A;
+  position: absolute;
+  left: 50%;
+  margin-left: -10rpx;
+  bottom: 16rpx;
+}
+.lesson-index .fixed {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  top: 0;
+}
+.lesson-info .lesson-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 23rpx 33rpx 0;
+}
+.lesson-info .right-arrow {
+  font-size: 24rpx;
+  color: #9999A7;
+  right: 0rpx;
+  margin-left: 8rpx;
+}
+.lesson-info .lesson-tip {
+  display: flex;
+  padding: 10rpx 33rpx 0;
+}
+.lesson-info .lesson-tip .span {
+  font-size: 24rpx;
+  color: #9999A7;
+  margin-right: 38rpx;
+  display: flex;
+  align-items: center;
+}
+.lesson-info .lesson-tip image {
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 10rpx;
+}
+.lesson-video {
+  margin: 64rpx 0 62rpx;
+}
+.lesson-video .title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 33rpx 20rpx;
+}
+.lesson-video .lesson-card {
+  padding: 0 20rpx;
+  display: flex;
+}
+.lesson-video .lesson-card .scroll {
+  display: flex;
+  width: max-content;
+}
+.lesson-video .lesson-card .item {
+  width: 320rpx;
+  height: 152rpx;
+  background: #F8F8F8;
+  border-radius: 10rpx;
+  padding-top: 8rpx;
+  padding-left: 23rpx;
+  font-size: 26px;
+  margin-right: 20rpx;
+  position: relative;
+  display: inline-block;
+}
+.lesson-card .item .div {
+  color: #3B3B3B;
+}
+.lesson-card .playing view {
+  color: #FF6F3A;
+}
+.lesson-card .item .free {
+  width: 70rpx;
+  height: 36rpx;
+  line-height: 36rpx;
+  background: #FFE4DA;
+  border-radius: 30rpx;
+  position: absolute;
+  right: 9rpx;
+  top: 9rpx;
+  font-size: 20rpx;
+  color: #FE7847;
+  text-align: center;
+}
+.lesson-video .lesson-card .index {
+  font-size: 26rpx;
+  margin-bottom: 9rpx;
+}
+.lesson-video .lesson-card .name {
+  width: 218rpx;
+  padding-left: 17rpx;
+  font-size: 26rpx;
+  white-space: normal;
+}
+.lesson-video .play-icon image {
+  position: absolute;
+  left: 23rpx;
+  bottom: 10rpx;
+  width: 20rpx;
+  height: 20rpx;
+}
+.summary {
+  padding: 0 23rpx 32rpx;
+  border-bottom: 20rpx solid #F5F5F5;
+}
+.summary .p {
+  text-align: justify;
+  font-size: 26rpx;
+  color: #3B3B3B;
+  margin-top: 12rpx;
+  line-height: 42rpx;
+}
+#commentTarget {
+  min-height: 100vh;
+}
+#commentTarget .title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 33rpx;
+  padding-right: 40rpx;
+  padding-top: 34rpx;
+  padding-bottom: 20rpx;
+}
+#commentTarget .common-title .span {
+  font-size: 24rpx;
+  color: #3B3B3B;
+}
+#commentTarget .write-btn {
+  width: 160rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  background: #FF6F3A;
+  border-radius: 40rpx;
+  font-size: 24rpx;
+  color: #FFFFFF;
+  text-align: center;
+  margin: 0!important;
+  padding: 0!important;
+  min-height: auto;
+}
+.pay-footer {
+  width: 100vw;
+  position: fixed;
+  bottom: 0;
+  height: 120rpx;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-top: 2rpx solid #F3F4F3;
+}
+.custom-service {
+  margin-left: 42rpx;
+  margin-right: 43rpx;
+}
+.custom-service .img-wrap {
+  width: 52rpx;
+  height: 52rpx;
+  margin: 0 auto;
+}
+.custom-service .p {
+  font-size: 24rpx;
+  color: #8C8C8C;
+}
+.pay-btn {
+  width: 528rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #FF6F3A;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  color: #FFFFFF;
+  text-align: center;
+}
+.pay-btn .span {
+  text-decoration: line-through;
+  font-size: 24rpx;
+  margin-left: 19rpx;
+  color: #FFFFFF;
+}
+.common-right view {
+  color: #9999A7;
+}
+.right-arrow {
+  width: 28rpx;
+  height: 28rpx;
+}
+/* lesson-profile start */
+.lesson-info .top {
+  height: 80rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30rpx;
+  border-bottom: 2rpx solid #F2F2F2;
+}
+.teacher-wrap {
+  border-top: 20rpx solid #F5F5F5;
+  border-bottom: 20rpx solid #F5F5F5;
+  margin-top: 16rpx;
+  padding: 0 30rpx 60rpx;
+}
+.teacher-wrap .common-title {
+  padding: 16rpx 0 28rpx;
+}
+.teacher-wrap .avatar {
+  width: 106rpx;
+  height: 106rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 28rpx;
+}
+.teacher-info {
+  display: flex;
+  align-items: center;
+}
+.teacher-info .right {
+  flex: 1;
+}
+.teacher-info .name {
+  color: #3B3B3B;
+  font-size: 32rpx;
+}
+.teacher-info .position {
+  color: #3B3B3B;
+  font-size: 26rpx;
+  margin-top: 6rpx;
+}
+.more-detail {
+  padding: 0 36rpx;
+}
+.more-detail .p {
+  color: #3B3B3B;
+  font-size: 26rpx;
+  line-height: 42rpx;
+}
+.more-detail .common-title {
+  padding: 48rpx 0 12rpx;
+}
+/* lesson-profile end */
+
+/* lesson-list start */
+.lesson-list .title {
+  height: 84rpx;
+  line-height: 84rpx;
+  display: flex;
+  justify-content: space-between;
+  background: #F7F7F7;
+  padding: 0 70rpx 0 34rpx;
+  position: relative;
+}
+.lesson-list .title::after {
+  content: '';
+  position: absolute;
+  width: 7rpx;
+  height: 23rpx;
+  background: #FF6F3A;
+  left: 0;
+  top: 50%;
+  margin-top: -11.5rpx;
+}
+.lesson-list .name {
+  font-size: 28rpx;
+  color: #4C4C4C;
+}
+.lesson-list .title .icon {
+  width: 32rpx;
+  height: 32rpx;
+}
+.lesson-list .video-item-wrap {
+  transition: all 1s;
+  overflow: visible;
+  height: 200rpx;
+  overflow: hidden;
+}
+.lesson-list .video-animate {
+  height: 0!important;
+}
+.lesson-list .video-item {
+  height: 120rpx;
+  padding: 0 26rpx 0 46rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2rpx solid #F2F2F2;
+}
+.lesson-list .video-item:last-child {
+  border-bottom: none;
+}
+.lesson-list .video-item .left {
+  display: flex;
+  align-items: center;
+}
+.lesson-list .video-item .play-icon {
+  width: 38rpx;
+  height: 34rpx;
+  margin-right: 14rpx;
+}
+.lesson-list .video-item .video-name {
+  color: #4C4C4C;
+  font-size: 28rpx;
+}
+.lesson-list .video-item .free {
+  width: 120rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  background: #FFE4DA;
+  border-radius: 30rpx;
+  text-align: center;
+  color: #FE7847;
+  font-size: 24rpx;
+}
+.lesson-list .video-item .playing {
+  display: flex;
+  align-items: center;
+  color: #FE7847;
+  font-size: 28rpx;
+}
+.lesson-list .playing image {
+  width: 24rpx;
+  height: 22rpx;
+  margin-right: 3rpx;
+}
+.lesson-list .current .video-name {
+  color: #FE7847;
+}
+.lesson-list .lock {
+  width: 38rpx;
+  height: 42rpx;
+  margin-right: 30rpx;
+}
+.commentBox {
+  padding-top: 80rpx;
+}
+
+.get-userinfo-box {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 50;
+}
+.get-userinfo-box .bg {
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, .4);
+}
+.get-userinfo-box .container {
+  width: 100%;
+  height: 710rpx;
+  background: #fff;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.get-userinfo-box .box-top {
+  height: 84rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2rpx solid #F2F2F2;
+  padding: 0 30rpx;
+}
+.get-userinfo-box .title {
+  font-size: 32rpx;
+  color: #151515;
+}
+.get-userinfo-box .icon {
+  width: 24rpx;
+  height: 24rpx;
+  position: relative;
+  top: -4rpx;
+}
+.get-userinfo-box .logo {
+  width: 160rpx;
+  height: 160rpx;
+  margin: 55rpx auto 8rpx;
+}
+.get-userinfo-box .name {
+  font-size: 40rpx;
+  color: #343937;
+  text-align: center;
+}
+.get-userinfo-box .tip {
+  text-align: center;
+  font-size: 28rpx;
+  color: #9999A7;
+  margin-bottom: 91rpx;
+}
+.get-userinfo-box .common-btn {
+  padding: 0;
+}

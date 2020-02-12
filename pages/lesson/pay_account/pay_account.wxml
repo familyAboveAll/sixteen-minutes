@@ -1,0 +1,33 @@
+<view class="account-wrap">
+  <view class="order-card">
+    <view class="lesson-info">
+      <view class="img-wrap"><image src="{{baseImgUrl}}"/>
+      </view>
+      <view class="right">
+        <view class="name">{{courseInfo.course_name}}</view>
+        <view class="price">¥{{courseInfo.course_favorable_Price}}</view>
+      </view>
+    </view>
+    <view class="pay-option yhj" data-option="yhj" data-cpid="{{selectCoupon.id}}" bindtap="handleSelect" wx:if="{{coupShow}}">
+      <view class="left">
+        优惠券
+        <view class="tip">已选推荐优惠券</view>
+      </view>
+      <view class="right">
+      -{{couponMoney}} <image src="/static/images/icon/right-arrow2.png" />
+      </view>
+    </view>
+    <view class="pay-option" data-option="wx" bindtap="handleSelect">
+      <view class="left">支付方式</view>
+      <view class="right">微信支付</view>
+    </view>
+  </view>
+  <view class="tip-wrap">
+    <view>你购买的商品为虚拟内容，购买后不支持退订、转让、退换，请斟酌确认。</view>
+    <view>购买后可在“我的-我的课程”区查看和使用</view>
+  </view>
+  <view class="pay-footer">
+    <view class="price">应付：¥{{course_favorable_Price}}</view>
+    <view class="pay-btn"  data-cid="{{courseInfo.id}}"  bindtap="goBuy" >立即购买</view>
+  </view>
+</view>

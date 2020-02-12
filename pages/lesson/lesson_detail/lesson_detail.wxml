@@ -1,0 +1,195 @@
+<view class="lesson-detail">
+  <view class="video-wrap" id="videoWrap">
+<!--    <video id="lessonVideo" src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400"></video>-->
+    <video autoplay="false" id="lessonVideo" src="{{videoUrl}}"></video>
+    <view class="un-wifi" wx:if="{{wifiToastShow}}">
+      <view class="tip">继续播放将消耗26M流量</view>
+      <view class="checkbox-operate" bindtap="handleAgree">
+        <view class="checkbox">
+          <image src="/static/images/icon/jiantou_h@2x.png" wx:if="{{!unWiFiPlay}}"/>
+          <image src="/static/images/icon/jiantou_q@2x.png" wx:else/>
+        </view>
+        本周非WIFI下自动播放
+      </view>
+      <view class="common-btn" bindtap='handlePlay'>继续播放</view>
+    </view>
+  </view>
+  <view class="lesson-index" wx:if="{{indexShow}}">
+    <view class="tab-wrap" id="tabWrap">
+      <view class="{{tabIndex==0?'selected relative':'relative'}}" data-index='0' bindtap="handleChangeTab">视频</view>
+      <view data-index='1' bindtap="handleChangeTab">
+        <view class="{{tabIndex==1?'selected relative':'relative'}}">留言</view>
+        <view class="span"></view>
+      </view>
+    </view>
+    <view class="lesson-info" bindtap="showDetail">
+      <view class="lesson-title">
+        <view class="title">{{courseDetail.rsCourse.course_name}}</view>
+        <view class="common-right">
+          <view>简介</view>
+          <view class="right-arrow">
+            <image src='/static/images/icon/right-arrow2.png'></image>
+          </view>
+        </view>
+      </view>
+      <view class="lesson-tip">
+        <view class="span">共{{courseDetail.rsCourse.course_section_num}}讲 · 更新至第{{sectionNumber}}讲</view>
+        <view class="span"><image src='/static/images/icon/user.png'></image>{{courseDetail.rsCourse.study_num}}</view>
+      </view>
+    </view>
+    <view class="lesson-video">
+      <view class="title" bindtap="showList">
+        <view class="common-title">课程视频</view>
+        <view class="common-right">
+          <view>{{courseDetail.rsCourse.update_desc}}</view>
+          <view class="right-arrow">
+            <image src='/static/images/icon/right-arrow2.png'></image>
+          </view>
+        </view>
+      </view>
+      <view class="lesson-card">
+        <scroll-view scroll-x="true" style="white-space: nowrap; display: flex;width: 100%">
+          <view wx:for="{{courseDetail.rsSection[0].children}}" wx:key="index" class="{{playVideoId==item.id?'item playing':'item'}}" data-url="{{item.video_url}}" data-desc="{{item.section_desc}}" data-cname="{{courseDetail.rsCourse.course_name}}" data-index="{{item.id}}" data-cid="{{item.cid}}" data-number="{{item.section_number}}" data-name="{{item.section_name}}" data-sid="{{item.id}}" data-img="{{courseDetail.rsCourse.course_image}}"  bindtap="handleChangeVieo">
+            <view class="index">第{{index+1}}讲</view>
+            <view class="name">{{item.section_name}}</view>
+            <view class="play-icon" wx:if="{{playVideoId==item.id}}">
+              <image src='/static/images/icon/bofangzhong@2x.png'></image>
+            </view>
+            <view class="free" wx:if="{{item.is_try_see==1}}">免费</view>
+          </view>
+        </scroll-view>
+      </view>
+
+
+
+    </view>
+    <view class="summary">
+      <view class="common-title">本讲小结</view>
+      <view class="p">{{sectionDesc}}</view>
+    </view>
+    <view id="commentTarget">
+      <view wx:if="{{commentBoxShow}}" class="fixed tab-wrap">
+        <view class="{{tabIndex==0?'selected relative':'relative'}}" data-index='0' bindtap="handleChangeTab">视频</view>
+        <view data-index='1' bindtap="handleChangeTab">
+          <view class="{{tabIndex==1?'selected relative':'relative'}}">留言</view>
+          <view class="span"></view>
+        </view>
+      </view>
+      <view class="title">
+        <view class="common-title">本讲精选留言<view class="span"></view></view>
+        <view class="write-btn" bindtap="handleTapWrite">我想说</view>
+      </view>
+      <comment-item prop-comments="{{commentsData}}" bind:handleLike="handleLike" bind:showComment="showComment"></comment-item>
+    </view>
+    <view class="pay-footer">
+      <view class="custom-service">
+        <view class="img-wrap">
+          <image src='/static/images/icon/kefu@2x.png'></image>
+        </view>
+        <view class='p'>联系客服</view>
+      </view>
+      <view class="pay-btn" bindtap="handlePay" data-cid="{{courseId}}">优惠购买 ¥{{price_two}} <view class="span">¥{{price_one}}</view></view>
+    </view>
+  </view>
+  <view class="lesson-profile" wx:if="{{detailShow}}" >
+    <view class="lesson-info">
+      <view class="top">
+        <view class="common-title">课程简介</view>
+        <view class="close" bindtap="closeDetail">
+          <image src="/static/images/icon/close.png"/>
+        </view>
+      </view>
+      <view class="lesson-title">
+        <view class="title">{{courseDetail.rsCourse.course_name}}</view>
+      </view>
+      <view class="lesson-tip">
+        <view class="span">共{{courseDetail.rsCourse.course_section_num}}讲 ·  更新至第{{sectionNumber}}讲</view>
+        <view class="span"><image src='/static/images/icon/user.png'></image>{{courseDetail.rsCourse.study_num}}</view>
+      </view>
+    </view>
+    <view class="teacher-wrap">
+      <view class="common-title">课程讲师</view>
+      <view class="teacher-info">
+        <view class="avatar">
+          <image src="{{courseDetail.rsCourse.teacher_img}}"/>
+        </view>
+        <view class="right">
+          <view class="name">{{courseDetail.rsCourse.teacher_name}}</view>
+          <view class="position">{{courseDetail.rsCourse.teacher_level}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="more-detail">
+      <view class="common-title">课程概要</view>
+      <view class="p">{{courseDetail.rsCourse.course_desc}}</view>
+      <view class="common-title">讲师简介</view>
+      <view class="p">{{courseDetail.rsCourse.teacher_desc}}</view>
+      <view class="common-title">你能学到什么？</view>
+      <view class="p">{{courseDetail.rsCourse.course_harvest}}</view>
+      <view class="common-title">课程目录</view>
+      <view class="p"> <image src="{{courseDetail.rsCourse.course_catalog}}"></image></view>
+      <view class="common-title">购买须知</view>
+      <view class="p">{{courseDetail.rsCourse.buy_known}}</view>
+    </view>
+  </view>
+  <view class="lesson-list" wx:if="{{listShow}}">
+    <view class="lesson-info">
+      <view class="top">
+        <view class="common-title">课程目录</view>
+        <view class="close" bindtap="closeList">
+          <image src="/static/images/icon/close.png"/>
+        </view>
+      </view>
+      <view class="items-wrap" wx:for="{{lessonData}}" wx:key="id">
+        <view class="title">
+          <view class="name">第{{item.number}}章  {{item.section_name}}</view>
+          <view class="icon" data-index="{{index}}" bindtap="handleShow">
+            <image src="/static/images/icon/jiantou-shang@2x.png" wx:if="{{!item.showVideo}}" />
+            <image src="/static/images/icon/jiantou-xia@2x.png" wx:else />
+          </view>
+        </view>
+        <view class="{{item.showVideo?'video-item-wrap video-animate':'video-item-wrap'}}" style="height:{{(item.children.length*120)+'rpx'}}">
+            <view wx:for="{{item.children}}" wx:for-item='childrenItem' wx:key="id" class="{{playVideoId==childrenItem.id?'video-item current':'video-item'}}" data-url="{{childrenItem.video_url}}" data-desc="{{childrenItem.section_desc}}" data-cname="{{courseDetail.rsCourse.course_name}}"  data-index="{{childrenItem.id}}" data-cid="{{childrenItem.cid}}" data-number="{{childrenItem.section_number}}" data-name="{{childrenItem.section_name}}" data-sid="{{childrenItem.id}}" data-img="{{courseDetail.rsCourse.course_image}}" bindtap="handleChangeVieo">
+
+            <view class="left">
+              <view class="play-icon"><image src="/static/images/icon/shipin@2x.png"/></view>
+              <view class="video-name">{{childrenItem.section_number}} | {{childrenItem.section_name}}</view>
+            </view>
+            <view class="right">
+              <view class="playing" wx:if="{{playVideoId==childrenItem.id}}"><image src="/static/images/icon/bofangzhong@2x.png" />正在播放</view>
+              <view class="free" wx:elif='{{childrenItem.is_try_see==1}}'>免费</view>
+              <view class="lock" wx:else><image src="/static/images/icon/suoding@2x.png" /></view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="{{!isFullScreen?'comment-textarea-wrap':'comment-textarea-wrap fullScreen'}}" wx:if="{{writeShow}}" >
+    <view class="bg" bindtap="closeWrite"></view>
+    <view class="comment-textarea">
+      <view class="title">
+        <view class="left">给本讲留言</view>
+        <view class="right">
+          <image src="/static/images/icon/kuozhan@2x.png" wx:if="{{!isFullScreen}}" data-index='1' bindtap="handleScreen"/>
+          <image src="/static/images/icon/shouqi@2x.png" wx:else data-index='0' bindtap="handleScreen"/>
+        </view>
+      </view>
+      <textarea placeholder="由小编筛选后的优质留言将会公开显示" placeholder-style="font-size: 28rpx;color: #9C9CA9;" focus="true" fixed="true" cursor-spacing="120rpx" bindblur="handleBlur" bindfocus="handleFocus" bindinput="bindinputs"></textarea>
+      <view class="{{isFocus?'btn focus':'btn'}}" bindtap="handlePublish" data-cid="{{courseId}}" data-sid="{{sectionId}}">发布</view>
+    </view>
+  </view>
+  <view class="get-userinfo-box" wx:if="{{loginBoxShow}}">
+    <view class="bg"></view>
+    <view class="container">
+      <view class="box-top">
+        <view class="title">授权微信昵称头像后才能发布</view>
+        <view class="icon" bindtap="handleCloseLogin"><image src="/static/images/icon/close.png" /></view>
+      </view>
+      <view class="logo"><image src="/static/images/logo.png" /></view>
+      <view class="name">16分钟</view>
+      <view class="tip">申请获取你的公开信息（昵称、头像等）</view>
+      <button class="common-btn" open-type="getUserInfo" bindgetuserinfo="bindgetuserinfo">微信授权</button>
+    </view>
+  </view>
+</view>

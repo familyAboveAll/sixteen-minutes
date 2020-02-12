@@ -1,0 +1,116 @@
+view, textarea {
+  color: #111;
+  box-sizing: border-box;
+}
+image {
+  width: 100%;
+  height: 100%;
+}
+.span {
+  display: inline;
+}
+.close {
+  width: 24rpx;
+  height: 24rpx;
+}
+.right-arrow {
+  width: 36rpx;
+  height: 36rpx;
+}
+.right-arrow image {
+  position: relative;
+}
+.common-right {
+  display: flex;
+  align-items: center;
+  font-size: 24rpx;
+}
+.common-right div {
+  color: #9999A7;
+}
+.common-title {
+  font-size: 32rpx;
+  color: #151515;
+}
+.common-btn {
+  width: 680rpx!important;
+  height: 92rpx;
+  line-height: 92rpx;
+  background: #FF6F3A;
+  border-radius: 46rpx;
+  font-size: 32rpx;
+  color: #fff;
+  text-align: center;
+  margin: 0 auto;
+}
+.comment-textarea-wrap {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 50;
+}
+.comment-textarea-wrap .bg {
+  background: rgba(0, 0, 0, .4);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.comment-textarea {
+  width: 100%;
+  height: 219rpx;
+  background: #fff;
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+}
+.comment-textarea textarea {
+  width: 100%;
+  line-height: 40rpx;
+  padding:0 20rpx;
+  font-size: 28rpx;
+  flex: 1;
+}
+.comment-textarea .title {
+  display: flex;
+  justify-content: space-between;
+  padding: 20rpx 20rpx 10rpx;
+  width: 100%;
+}
+.comment-textarea .left {
+  font-size: 28rpx;
+  color: #9C9CA9;
+}
+.comment-textarea .right {
+  width: 32rpx;
+  height: 32rpx;
+}
+.comment-textarea .btn {
+  font-size: 38rpx;
+  color: #FF6F3A;
+  text-align: right;
+  position: absolute;
+  right: 50rpx;
+  bottom: 30rpx;
+}
+.fullScreen .comment-textarea {
+  height: 100vh;
+}
+.fullScreen .focus {
+  bottom: 50vh;
+}
+.fullScreen textarea {
+  height: 50vh;
+  flex: none;
+}
+.fullScreen .btn {
+  bottom: 300rpx;
+}

@@ -1,0 +1,83 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"coverView": true,
+		"autoAudits": false,
+		"showShadowRootInWxmlPanel": true,
+		"scopeDataCheck": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.10.0",
+	"appid": "wx23c396c3649ba5b5",
+	"projectname": "sixteen-minutes5",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": 0,
+					"name": "pages/lesson/pay_account/pay_account",
+					"pathName": "pages/lesson/pay_account/pay_account",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 1,
+					"name": "pages/mine/coupon/coupon",
+					"pathName": "pages/mine/coupon/coupon",
+					"query": "from=payAccount",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/lesson/lesson_detail/lesson_detail",
+					"pathName": "pages/lesson/lesson_detail/lesson_detail",
+					"query": "",
+					"scene": null
+				}
+			]
+		}
+	}
+}

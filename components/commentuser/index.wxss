@@ -1,0 +1,150 @@
+
+.comment-wrap {
+  padding-top: 21rpx;
+}
+.comment-item {
+  margin-bottom: 43rpx;
+  padding-bottom: 34rpx;
+  position: relative;
+}
+.comment-item::after {
+  content: '';
+  position: absolute;
+  width: 636.6px;
+  border-bottom: 2rpx solid #F2F2F2;
+  left: 113.4rpx;
+  bottom: 0;
+}
+.comment-item:last-child::after {
+  display: none;
+}
+.comment-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 22.4rpx;
+  padding-right: 45.6rpx;
+}
+.reply-btn {
+  width: 120rpx;
+  height: 60rpx;
+  border: 2rpx solid #E1E1E1;
+  border-radius: 40rpx;
+  text-align: center;
+  line-height: 60rpx;
+  font-size: 28rpx;
+  color: #030303;
+}
+.comment-top .nickname {
+  color: #6D6D6D;
+}
+.comment-top .time {
+  font-size: 22rpx;
+  color: #9E9E9E;
+}
+.user-info {
+  display: flex;
+  align-items: center;
+}
+.avatar {
+  width: 76rpx;
+  height: 76rpx;
+  margin-right: 13rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.thumb-num {
+  font-size: 24rpx;
+  color: #9E9E9E;
+  display: flex;
+  align-items: center;
+}
+.thumb-num image {
+  width: 36rpx;
+  height: 36rpx;
+  margin-left: 7rpx;
+}
+.comment-center {
+  margin: 18rpx 75.6rpx 0 113.4rpx;
+}
+.comment-center .p {
+  font-size: 28rpx;
+  color: #030303;
+  line-height: 44rpx;
+  height: 132rpx;
+  overflow: hidden;
+}
+.comment-center .show-all {
+  height: auto;
+  overflow: visible;
+}
+.all {
+  font-size: 28rpx;
+  color: #028AFF;
+  margin-top: 6rpx;
+}
+.comment-reply {
+  margin: 17.2rpx 0 0 113.4rpx;
+  width: 560rpx;
+  background: #F8F8F8;
+  border-radius: 10rpx;
+  padding: 28rpx 26.6rpx 14rpx 23.4rpx;
+}
+.comment-reply .li {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  font-size: 28rpx;
+  color: #030303;
+  line-height: 44rpx;
+  margin-bottom: 10rpx;
+}
+.comment-reply .li-all {
+  display: block;
+}
+.comment-reply .li .span {
+  font-size: 26rpx;
+  color: #6D6D6D;
+  display: inline;
+}
+.comment-reply .all {
+  font-size: 24rpx;
+}
+.lesson {
+  width: 560rpx;
+  background: #F8F8F8;
+  padding: 24rpx 28rpx 49.2rpx;
+  display: flex;
+  align-items: center;
+  margin-left: 113.4rpx;
+  margin-top: 17.2rpx;
+  border-radius: 10rpx;
+}
+.lesson .cover-pic {
+  width: 200rpx;
+  height: 126.8rpx;
+  border-radius: 10rpx;
+  margin-right: 17rpx;
+}
+.lesson .lesson-info {
+  flex: 1;
+}
+.lesson .lesson-title {
+  font-size: 28rpx;
+  color: #151515;
+}
+.lesson .lesson-des {
+  font-size: 24rpx;
+  color: #9999A7;
+  margin-bottom: 6rpx;
+}
+.lesson .lesson-index {
+  font-size: 24rpx;
+  color: #9999A7;
+}
+.check-all {
+  font-size: 24rpx;
+  color: #028AFF;
+}

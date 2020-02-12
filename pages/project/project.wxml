@@ -1,0 +1,11 @@
+<view class="project-wrap">
+  <view class="img-wrap"><image src="{{courseImage}}" /></view>
+  <view class="pay-footer">
+    <navigator url="/pages/lesson/lesson_detail/lesson_detail?id={{courseId}}">
+    <view class="free-btn">免费试学</view>
+    </navigator>
+    <view bindtap="buyDetail">
+      <view  class="pay-btn">优惠购买 ¥{{price_two}}  <text>¥{{price_one}}</text></view>
+    </view>
+  </view>
+</view>

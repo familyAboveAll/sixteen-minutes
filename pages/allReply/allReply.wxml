@@ -1,0 +1,3 @@
+<view class="all-reply">
+  <comment-item prop-comments="{{commentsData}}" bind:handleLike="handleLike" bind:showComment="showComment"></comment-item>
+</view>

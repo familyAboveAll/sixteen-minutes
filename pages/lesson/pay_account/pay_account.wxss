@@ -1,0 +1,138 @@
+.account-wrap {
+  padding: 40rpx 19rpx 0;
+  min-height: 100vh;
+  background: #F3F3F3;
+}
+.order-card {
+  background: #fff;
+  box-shadow: 0 4rpx 8rpx 2rpx rgba(240,240,240,0.50);
+  padding: 27rpx 23rpx 0 19rpx;
+}
+.lesson-info {
+  display: flex; 
+}
+.lesson-info .img-wrap {
+  width: 200rpx;
+  height: 126.8rpx;
+  margin-right: 17rpx;
+}
+.lesson-info .right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.lesson-info .name {
+  font-size: 28rpx;
+  color: #151515;
+}
+.lesson-info .price {
+  font-size: 32rpx;
+  color: #FF6F3A;
+}
+.pay-option {
+  height: 114rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.pay-option .left {
+  font-size: 28rpx;
+  color: #151515;
+  display: flex;
+  align-items: center;
+}
+.pay-option .tip {
+  width: 188rpx;
+  height: 48rpx;
+  line-height: 48rpx;
+  text-align: center;
+  border: 2rpx solid #FF6F3A;
+  font-size: 22rpx;
+  color: #FF6F3A;
+  border-radius: 30rpx;
+  margin-left: 22rpx;
+}
+.pay-option .right {
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  color: #8C8C8C;
+  margin-right: 17rpx;
+}
+.pay-option image {
+  width: 28rpx;
+  height: 28rpx;
+  margin-left: 15.2rpx;
+}
+.yhj {
+  border-top: 2rpx solid #F2F2F2;
+  border-bottom: 2rpx solid #F2F2F2;
+  margin-top: 54rpx;
+}
+.yhj .right {
+  color: #FF6F3A;
+  font-size: 32rpx;
+  margin-right: 0;
+}
+.tip-wrap {
+  font-size: 24rpx;
+  padding-left: 62rpx;
+  padding-right: 26rpx;
+  margin-top: 35rpx;
+  line-height: 40rpx;
+}
+.tip-wrap view {
+  color: #8C8C8C;
+  position: relative;
+}
+.tip-wrap view::after {
+  content: "";
+  width: 10rpx;
+  height: 10rpx;
+  background: #8C8C8C;
+  border-radius: 50%;
+  position: absolute;
+  left: -28rpx;
+  top: 15rpx;
+}
+.pay-footer {
+  width: 100%;
+  height: 120rpx;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 32rpx;
+  padding-right: 26rpx;
+  border-top: 2rpx solid #F3F4F3;
+}
+.pay-footer .free-btn {
+  width: 220rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  border: 2rpx solid #979797;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  color: #151515;
+  text-align: center;
+}
+.pay-footer .pay-btn {
+  width: 280rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #FF6F3A;
+  border-radius: 40rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #FFFFFF;
+}
+.pay-footer text {
+  text-decoration: line-through;
+  font-size: 24rpx;
+}
+.pay-footer .price {
+  color: #FF6F3A;
+}

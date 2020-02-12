@@ -1,0 +1,30 @@
+<view class="index-wrap">
+  <view class="title">
+    <view>零基础也可</view>
+    <view>以轻松学习</view>
+  </view>
+  <view bindtap="redirectTo" data-uid="{{item.user_id}}" data-id="{{item.id}}" data-status="{{item.order_status}}"   wx:for="{{courseList}}" wx:key="index">
+      <view class="banner">
+        <image src="{{item.course_image}}"></image>
+        <view class="bg"><image src="/static/images/index/bg.jpg"></image></view>
+        <view class="text">{{item.course_lable}}</view>
+      </view>
+   </view>
+  <view class="index-toast-wrap" wx:if="{{toastShow}}">
+    <view class="index-toast">
+      <view class="bg"><image src="/static/images/index/bg_yhq@2x.png" /></view>
+      <image src="/static/images/index/youhuiquandi@2x.png" class="coupon-bg" />
+      <view class="coupon">
+        <view class="left">{{coupon.coupon_name}}</view>
+        <view class="right">
+          <view class="price">{{coupon.coupon_money}}</view>元
+        </view>
+      </view>
+        <view class="use-btn" bindtap="goToUse">
+          <image src="/static/images/index/icon_bg@2x.png" />
+          <view class="text">{{receive}}</view>
+        </view>
+      <view class="close" bindtap='handleCloseToast'><image src="/static/images/icon/close_yhj.png" /></view>
+    </view>
+  </view>
+</view>

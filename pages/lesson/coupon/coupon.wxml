@@ -1,0 +1,29 @@
+<view class="mine-coupon">
+<!--  <view class="not-use-account">-->
+<!--    <view class="left">不使用优惠券</view>-->
+<!--    <view class="choose-icon">-->
+<!--      <image src="/static/images/icon/xuanze_r@2x.png" bindtap="handleChoose" wx:if="{{useCoupon}}"/>-->
+<!--      <image src="/static/images/icon/xuanze_h@2x.png" bindtap="handleChoose" wx:else/>-->
+<!--    </view>-->
+<!--  </view>-->
+  <view class="{{isPayAccount?'coupons-wrap pay-account':'coupons-wrap'}}">
+    <view class="coupon-item" wx:for="{{couponData}}" wx:key="index">
+      <view class="bg"><image src="/static/images/bg_youhuiquan@2x.png" /></view>
+      <view class="price-detail">
+        <view class="price">
+          <view class='coupon-price'>{{item.coupon_money}}</view>元
+        </view>
+        <view class="limits">满{{item.condition}}可用</view>
+      </view>
+      <view class="use-detail">
+        <view class="des">{{item.coupon_name}}</view>
+        <view class="time-limt">有效期至：{{item.invalid_time}}</view>
+        <view class="limits">适用：{{item.course_range}}</view>
+      </view>
+      <view class="choose-icon">
+        <image src="/static/images/icon/xuanze_r@2x.png" data-cpid="0" data-index='{{index}}' data-money='0' bindtap="handleCouponChoose" wx:if="{{item.select}}"/>
+        <image src="/static/images/icon/xuanze_h@2x.png" data-cpid="{{item.id}}" data-money="{{item.coupon_money}}"  data-index='{{index}}' bindtap="handleCouponChoose" wx:else/>
+      </view>
+  </view>
+  </view>
+</view>

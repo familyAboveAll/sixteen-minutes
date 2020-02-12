@@ -1,0 +1,128 @@
+
+.order-detail {
+  min-height: 100vh;
+  background: #F3F3F3;
+}
+view {
+  position: relative;
+  z-index: 10;
+}
+.status {
+  font-size: 37rpx;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  padding-top: 57rpx;
+  position: relative;
+  padding-left: 33rpx;
+}
+.status image {
+  width: 44rpx;
+  height: 44rpx;
+  margin-right: 16rpx;
+}
+.bg {
+  width: 100%;
+  height: 360rpx;
+  position: absolute;
+  z-index: 1;
+}
+.card {
+  width: 712rpx;
+  background: #FFFFFF;
+  box-shadow: 0 2px 4px 1px rgba(240,240,240,0.50);
+  margin: 53rpx 19rpx 0;
+  padding: 27rpx 19rpx 0;
+}
+.lesson-card {
+  height: 468rpx;
+}
+.lesson-card .lesson-info {
+  display: flex;
+  align-items: center;
+  border-bottom: 2rpx solid #F2F2F2;
+  padding-bottom: 53.2rpx;
+}
+.lesson-card .cover-pic {
+  width: 200rpx;
+  height: 126.8rpx;
+  margin-right: 19rpx;
+}
+.lesson-card .info-wrap {
+  flex: 1;
+}
+.lesson-card .top, .lesson-card .center {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.lesson-card .name, .lesson-card .origin-price {
+  font-size: 28rpx;
+  color: #151515;
+}
+.lesson-card .des, .lesson-card .num, .lesson-card .bottom {
+  font-size: 24rpx;
+  color: #9999A7;
+}
+.lesson-card .center {
+  margin-bottom: 6rpx;
+}
+.lesson-card .ul {
+  padding: 23rpx 0 28rpx;
+  border-bottom: 2rpx solid #F2F2F2;
+}
+.lesson-card .ul .li {
+  display: flex;
+  justify-content: space-between;
+
+  margin-bottom: 21rpx;
+}
+.lesson-card .ul .span {
+  font-size: 24rpx;
+  color: #9999A7;
+}
+.lesson-card .total-price {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 33rpx;
+}
+.lesson-card .total-price .span {
+  font-size: 28rpx;
+  color: #151515;
+}
+.lesson-card .total-price .price {
+  font-size: 32rpx;
+  color: #FF6F3A;
+}
+.order-card {
+  height: 334rpx;
+  margin-top: 22rpx;
+  padding-top: 22rpx;
+}
+.order-card .ul {
+  padding-top: 24rpx;
+  border-bottom: 2rpx solid #F2F2F2;
+}
+.order-card .ul:last-child {
+  border: none;
+}
+.order-card .li {
+  display: flex;
+  color: #282828;
+  font-size: 24rpx;
+  margin-bottom: 28rpx;
+}
+.order-card .li .span {
+  color: #9999A7;
+}
+.order-card .li .copy {
+  width: 80rpx;
+  height: 36rpx;
+  display: inline-block;
+  background: #F2F2F2;
+  border-radius: 18rpx;
+  margin-left: 20rpx;
+  text-align: center;
+  color: #282828;
+}

@@ -1,0 +1,21 @@
+<view class="setting">
+  <view class="card">
+    <view class="item version">
+      <view class="left">版本信息</view>
+      <view class="right">1.0.0</view>
+    </view>
+    <view class="item">
+      <button open-type="share">
+        <view class="left">推荐给好友</view>
+        <view class="right"><image src="/static/images/icon/right-arrow2.png"/></view>
+      </button>
+    </view>
+    <navigator url="/pages/mine/conditions/conditions">
+      <view class="item">
+        <view class="left">服务条款</view>
+        <view class="right"><image src="/static/images/icon/right-arrow2.png"/></view>
+      </view>
+    </navigator>
+  </view>
+  <view class="common-btn" bindtap="loginout">退出登录</view>
+</view>

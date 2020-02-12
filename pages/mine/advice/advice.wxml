@@ -1,0 +1,26 @@
+<view class="mine-advice">
+    <form bindsubmit="back_houtai">
+    <view class="container">
+      <textarea name="content" placeholder="请您描述您的问题或建议（必填）" placeholder-style='font-size: 24rpx;color: #7F7F7F;'></textarea>
+      <view class="input-wrap">
+        <input type="text" name="phones" placeholder="您的联系方式（必填）" placeholder-style='font-size: 24rpx;color: #7F7F7F;'/>
+      </view>
+      <view class="input-wrap">
+        <input type="text" name="userName" placeholder="您的称呼（选填）" placeholder-style='font-size: 24rpx;color: #7F7F7F;'/>
+      </view>
+      <view class="concat">
+        <view class="info">
+          <view>或通过以下方式联系我们</view>
+          <view>公众号：16分钟</view>
+          <view>联系电话：1800000000</view>
+        </view>
+        <view class="code">
+          <image src="/static/images/erweima@2x.png"/>
+        </view>
+      </view>
+    </view>
+      <button class="common-btn" formType="submit">提交</button>
+
+    </form>
+
+</view>

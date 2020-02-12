@@ -1,0 +1,49 @@
+
+.my-lesson {
+  min-height: 100vh;
+  background: #F7F7FB;
+  padding-bottom: 40rpx;
+}
+.lesson-item  .date {
+  font-size: 32rpx;
+  color: #151515;
+  padding: 28rpx 19rpx 20rpx;
+}
+.lesson-wrap {
+  margin: 0 19rpx;
+}
+.lesson-wrap .item {
+  display: flex;
+  align-items: center;
+  padding: 52rpx 34rpx 44rpx;
+  margin-bottom: 20rpx;
+  background: #fff;
+}
+.lesson-wrap .item:last-child {
+  margin-bottom: 0;
+}
+.lesson-wrap .cover-pic {
+  width: 200rpx;
+  height: 126.8rpx;
+  margin-right: 17rpx;
+}
+.lesson-wrap .lesson-info {
+  flex: 1;
+}
+.lesson-wrap .lesson-info .lesson-title {
+  font-size: 28rpx;
+  color: #151515;
+}
+.lesson-wrap .lesson-info .watched-time {
+  font-size: 24rpx;
+  color: #9999A7;
+  margin-top: 13rpx;
+  display: flex;
+  align-items: center;
+}
+.lesson-wrap .watched-time image {
+  width: 36rpx;
+  height: 36rpx;
+  transform: rotate(-90deg);
+  margin-right: 13rpx;
+}

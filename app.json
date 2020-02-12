@@ -1,0 +1,50 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/mine/index/index",
+    "pages/mine/orders/orders",
+    "pages/mine/order_detail/order_detail",
+    "pages/mine/message/message",
+    "pages/mine/coupon/coupon",
+    "pages/mine/advice/advice",
+    "pages/mine/edit/edit",
+    "pages/mine/setting/setting",
+    "pages/mine/conditions/conditions",
+    "pages/login/index",
+    "pages/lesson/my_lesson/my_lesson",
+    "pages/lesson/coupon/coupon",
+    "pages/lesson/lesson_detail/lesson_detail",
+    "pages/lesson/pay_account/pay_account",
+    "pages/project/project",
+    "pages/allReply/allReply"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#C8C8C8",
+    "backgroundColor": "#fff",
+    "selectedColor": "#333",
+    "borderStyle": "white",
+    "list": [
+      {
+        "text": "首页",
+        "pagePath": "pages/index/index",
+        "iconPath": "static/tabs/home.png",
+        "selectedIconPath": "static/tabs/home-active.png"
+      },
+      {
+        "text": "我的",
+        "pagePath": "pages/mine/index/index",
+        "iconPath": "static/tabs/mine.png",
+        "selectedIconPath": "static/tabs/mine-active.png"
+      }
+    ],
+    "position": "bottom"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

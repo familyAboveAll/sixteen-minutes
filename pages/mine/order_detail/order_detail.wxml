@@ -1,0 +1,65 @@
+<view class="order-detail">
+  <image src="/static/images/dingdan_bg@2x.png" class="bg"/>
+  <view class="status" wx:if="{{orderInfo.order_status == '1'}}">
+    <image src='/static/images/icon/success@2x.png'></image>
+    交易成功
+  </view>
+  <view class="status" wx:else>
+    <image src='{{orderInfo.course_image}}'></image>
+    未付款
+  </view>
+  <view class="lesson-card card">
+    <navigator url="/pages/lesson/lesson_detail/lesson_detail?id={{orderInfo.course_id}}" class="lesson-info">
+      <view class="cover-pic">
+        <image src='{{orderInfo.course_image}}'></image>
+      </view>
+      <view class="info-wrap">
+        <view class="top">
+          <view class="name">{{orderInfo.course_name}}</view>
+          <view class="origin-price">¥{{orderInfo.deal_price}}</view>
+        </view>
+<!--        <view class="center">-->
+<!--          <view class="des">带你开启智能时代大门</view>-->
+<!--        </view>-->
+<!--        <view class="bottom">34讲</view>-->
+      </view>
+    </navigator>
+    <view class="ul">
+      <view class="li">
+        <view class="span">商品总价</view>
+        <view class="span">¥{{orderInfo.old_price}}</view>
+      </view>
+      <view class="li">
+        <view class="span">优惠券</view>
+        <view class="span">- ¥{{orderInfo.discount_money}}</view>
+      </view>
+    </view>
+    <view class="total-price">
+      <span>实付款</span>
+      <span class="price">¥{{orderInfo.deal_price}}</span>
+    </view>
+  </view>
+  <view class="order-card card">
+    <view class="ul">
+      <view class="li">
+        <view class="span">订单编号：</view>
+        {{orderInfo.order_id}}
+        <span class="copy" bindtap="copyText">复制</span>
+      </view>
+      <view class="li">
+        <view class="span">下单时间：</view>
+        {{orderInfo.addtime}}
+      </view>
+    </view>
+    <view class="ul">
+      <view class="li">
+        <view class="span">支付方式：</view>
+        微信支付
+      </view>
+      <view class="li" wx:if="{{orderInfo.order_status == '1'}}">
+        <view class="span" >支付时间：</view>
+        {{orderInfo.pay_time}}
+      </view>
+    </view>
+  </view>
+</view>

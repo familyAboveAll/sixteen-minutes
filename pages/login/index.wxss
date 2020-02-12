@@ -1,0 +1,24 @@
+
+.login-wrap {
+  text-align: center;
+  padding-top: 124rpx;
+}
+.logo {
+  width: 160rpx;
+  height: 160rpx;
+  margin: 0 auto;
+}
+.name {
+  font-size: 40rpx;
+  color: #343937;
+  line-height: 80rpx;
+  margin: 8rpx 0;
+}
+.tip {
+  font-size: 28rpx;
+  color: #9999A7;
+}
+.login-btn {
+  margin: 192rpx auto 0;
+  padding: 0;
+}

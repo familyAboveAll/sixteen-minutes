@@ -1,0 +1,196 @@
+.mine-coupon {
+  min-height: 100vh;
+  background: #F3F3F3;
+  padding-bottom: 120rpx;
+  overflow: hidden;
+}
+.coupons-wrap {
+  margin-top: 20rpx;
+}
+.coupon-item {
+  display: flex;
+  width: 712rpx;
+  height: 220rpx;
+  margin: 0 auto 20rpx;
+  box-shadow: 0 4rpx 8rpx 2px rgba(240,240,240,0.50);
+  position: relative;
+}
+.coupon-item view {
+  position: relative;
+  z-index: 10;
+}
+.coupon-item .bg {
+  position: absolute;
+  width: 712rpx;
+  height: 220rpx;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+.coupon-item .choose-icon {
+  position: absolute;
+  right: 35rpx;
+  top: 88rpx;
+}
+.pay-account .coupon-item {
+  margin-bottom: 6rpx;
+}
+.price-detail {
+  width: 229rpx;
+  padding-left: 30rpx;
+  padding-top: 22rpx;
+}
+.price-detail .price {
+  display: flex;
+  align-items: baseline;
+  font-size: 28rpx;
+  color: #F1503A;
+}
+.price-detail .coupon-price {
+  font-size: 96rpx;
+  color: #F1503A;
+  width: 108rpx;
+  text-align: center;
+}
+.price-detail .limits {
+  font-size: 24rpx;
+  color: #9999A7;
+}
+.use-detail {
+  flex: 1;
+  padding-left: 44rpx;
+  padding-top: 45rpx;
+}
+.use-detail .des {
+  font-size: 36rpx;
+  color: #151515;
+}
+.use-detail .time-limt {
+  font-size: 24rpx;
+  color: #9999A7;
+  margin: 11rpx 0 4rpx;
+}
+.use-detail .limits {
+  font-size: 24rpx;
+  color: #666666;
+}
+.tip {
+  font-size: 28rpx;
+  color: #9999A7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 66rpx;
+}
+.tip .check {
+  font-size: 28rpx;
+  color: #F1503A;
+}
+.exchange {
+  position: fixed;
+  z-index: 10;
+  height: 120rpx;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFFFFF;
+}
+.exchange .exchange-btn {
+  width: 528rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  border: 2rpx solid #E6E6E6;
+  border-radius: 40rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #F1503A;
+}
+.un-use view {
+  color: #999999!important;
+  z-index: 2;
+  position: relative;
+}
+.un-use .coupon-item {
+  position: relative;
+}
+.un-use .icon {
+  width: 188rpx;
+  height: 146rpx;
+  position: absolute;
+  right: 11rpx;
+  bottom: 12rpx;
+  z-index: 1;
+}
+.exchange-toast-wrap {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  background: rgba(0,0,0,0.86);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.exchange-toast {
+  width: 580rpx;
+  height: 660rpx;
+  background: #FFFFFF;
+  border-radius: 26rpx;
+  padding: 0 60rpx;
+}
+.exchange-toast .title {
+  text-align: center;
+  margin: 60rpx 0 48rpx;
+  font-size: 42rpx;
+  color: #151515;
+}
+.exchange-toast .input-wrap {
+  height: 96rpx;
+  background: #FFFFFF;
+  border: 2rpx solid #EAEAEA;
+  border-radius: 10rpx;
+  margin-bottom: 76rpx;
+}
+.exchange-toast input {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+.exchange-toast .btn {
+  height: 96rpx;
+  line-height: 96rpx;
+  background: #FF6F3A;
+  border-radius: 10rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 32rpx;
+  margin-bottom: 20rpx;
+}
+.exchange-toast .cancel {
+  background: #FFFFFF;
+  border: 2rpx solid #DEDEDE;
+  color: #888888;
+}
+.not-use-account {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 114rpx;
+  background: #fff;
+  padding-left: 27rpx;
+  padding-right: 35rpx;
+  margin: 40rpx 29rpx 0;
+}
+.not-use-account .left {
+  font-size: 28rpx;
+  color: #151515;
+}
+.choose-icon {
+  width: 44rpx;
+  height: 44rpx;
+}

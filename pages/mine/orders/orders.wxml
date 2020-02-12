@@ -1,0 +1,24 @@
+<view class="orders-wrap">
+  <view class="order-item" wx:for="{{orderList}}" wx:key="index" data-cid="{{item.id}}" bindtap="handleLink">
+    <view class="order-top">
+      <p>{{item.addtime}}</p>
+      <p wx:if="{{item.order_status == '1'}}">交易成功</p>
+      <p class="fail" wx:else>未付款</p>
+    </view>
+    <view class="order-info">
+      <view class="cover-pic">
+        <image src='{{item.course_image}}'></image>
+      </view>
+      <view class="right">
+        <view class="name">{{item.course_name}}</view>
+        <view class="price" wx:if="{{item.order_status == '1'}}">
+          实付金额：<span>¥{{item.deal_price}}</span>
+        </view>
+        <view class="price" wx:else>
+          应付金额：<span>¥{{item.deal_price}}</span>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</view>

@@ -1,0 +1,39 @@
+.mine-edit > view:nth-child(3) {
+  border-top: 20rpx solid #F5F5F5;
+}
+.avatar-wrap {
+  border-bottom: 20rpx solid #F5F5F5;
+  padding-bottom: 40rpx;
+  padding-top: 38rpx;
+}
+.avatar-wrap .avatar {
+  width: 180rpx;
+  height: 180rpx;
+  margin: 40rpx auto 0;
+  border-radius: 100%;
+  overflow: hidden;
+}
+.input-card:first-child {
+  border-bottom: 20rpx solid #F5F5F5;
+}
+.input-card .input-item {
+  display: flex;
+  align-items: center;
+  height: 109rpx;
+  margin-left: 36rpx;
+  border-bottom: 2rpx solid #EDEDED;
+}
+.input-card .label {
+  width: 160rpx;
+}
+.input-card .input-wrap {
+  flex: 1;
+}
+.input-card input {
+  width: 100%;
+  color: #9999A7;
+  font-size: 32rpx;
+}
+.common-btn {
+  margin-top: 106rpx;
+}

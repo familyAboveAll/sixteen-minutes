@@ -1,0 +1,45 @@
+.project-wrap {
+  padding-bottom: 120rpx;
+}
+.img-wrap {
+  width: 100%;
+  height: 1333rpx;
+}
+.pay-footer {
+  width: 100%;
+  height: 120rpx;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 32rpx;
+  padding-right: 26rpx;
+  border-top: 2rpx solid #F3F4F3;
+}
+.pay-footer .free-btn {
+  width: 220rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  border: 2rpx solid #979797;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  color: #151515;
+  text-align: center;
+}
+.pay-footer .pay-btn {
+  width: 440rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #FF6F3A;
+  border-radius: 40rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #FFFFFF;
+}
+.pay-footer text {
+  text-decoration: line-through;
+  font-size: 24rpx;
+}

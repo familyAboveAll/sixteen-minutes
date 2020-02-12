@@ -1,0 +1,45 @@
+<view class="mine-edit">
+  <view class="avatar-wrap">
+    <view class="avatar"></view>
+  </view>
+  <view class="input-card">
+    <view class="input-item">
+      <view class="label">昵称：</view>
+      <view class="input-wrap">
+        <input type="text" value="{{userInfos.user_name}}" bindinput='changeInput' data-prop='userName'/>
+      </view>
+    </view>
+    <view class="input-item">
+      <view class="label">性别：</view>
+      <view class="input-wrap">
+        <input type="text" value="{{userInfos.sex==2?'女':(userInfos.sex==1?'男':'未知')}}" bindinput='changeInput' data-prop="sex"/>
+      </view>
+    </view>
+    <view class="input-item">
+      <view class="label">出生年份：</view>
+      <view class="input-wrap">
+        <input type="text" value="{{userInfos.birthday}}" bindinput='changeInput' data-prop='birthday'/>
+      </view>
+    </view>
+  </view>
+  <view class="input-card">
+    <view class="input-item">
+      <view class="label">邮箱：</view>
+      <view class="input-wrap">
+        <input type="text" value="{{userInfos.email}}" bindinput='changeInput' data-prop="email"/>
+      </view>
+    </view>
+    <view class="input-item">
+      <view class="label">学校：</view>
+      <view class="input-wrap">
+        <input type="text" value="{{userInfos.school}}" bindinput='changeInput' data-prop="school"/>
+      </view>
+    </view>
+    <view class="input-item">
+      <view class="label">职业：</view>
+      <view class="input-wrap">
+        <input type="text" value="{{userInfos.occupation}}" bindinput='changeInput' data-prop="occupation"/>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,172 @@
+
+.mine-wrap {
+  background: #F7F7FB;
+  min-height: 100vh;
+}
+.bg {
+  height: 442rpx;
+  background: #252525;
+}
+.user-card {
+  width: 660rpx;
+  height: 446rpx;
+  background: #fff;
+  margin: 0 auto;
+  box-shadow: 0 2rpx 4rpx 1rpx rgba(240,240,240,0.50);
+  position: relative;
+  top: -110rpx;
+  display: flex;
+  flex-direction: column;
+}
+.card-top {
+  width: 610rpx;
+  height: 160rpx;
+  margin: 0 auto 65rpx;
+  position: relative;
+  border-bottom: 2rpx solid #EDEDED;
+}
+.card-top .unlogin-title {
+  font-size: 48rpx;
+  color: #343937;
+  padding-left: 36rpx;
+  line-height: 160rpx;
+}
+.card-top .logined {
+  padding: 23rpx 0 0 24rpx;
+}
+.card-top .title {
+  font-size: 36rpx;
+  color: #343937;
+  line-height: 80rpx;
+}
+.card-top .phone {
+  font-size: 24rpx;
+  color: #AFAFAF;
+}
+.card-top .avatar {
+  width: 140rpx;
+  height: 140rpx;
+  background: #B3B3B3;
+  position: absolute;
+  right: 39rpx;
+  top: -45rpx;
+  border-radius: 50%;
+}
+.card-top .avatar image {
+  border-radius: 50%;
+}
+.card-top .avatar .edit {
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  left: 50%;
+  margin-left: -25rpx;
+  bottom: -20rpx;
+}
+.card-bottom {
+  flex: 1;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+.card-bottom .li {
+  height: 100%;
+  position: relative;
+}
+.card-bottom .img-wrap {
+  width: 98rpx;
+  height: 60rpx;
+}
+.card-bottom .num {
+  margin: 15rpx 0 14rpx;
+  font-size: 36rpx;
+  color: #412A21;
+}
+.card-bottom .p {
+  color: #343434;
+  font-size: 24rpx;
+  position: absolute;
+  bottom: 54rpx;
+  width: 100%;
+  left: 0;
+}
+.lesson-card {
+  width: 660rpx;
+  margin: 0 auto;
+  background: #fff;
+  position: relative;
+  top: -83rpx;
+  box-shadow: 0 2rpx 4rpx 1rpx rgba(240,240,240,0.50);
+}
+.lesson-card .card-top {
+  height: 100rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  line-height: 100rpx;
+  margin: 0 33rpx;
+  border: none;
+}
+.lessons-wrap {
+  padding-bottom: 40rpx;
+}
+.lessons-wrap .scroll {
+  width: max-content;
+}
+.lessons-wrap .lesson {
+  width: 360rpx;
+  height: 230rpx;
+  border-radius: 18rpx;
+  margin-right: 29rpx;
+  display: inline-block;
+  position: relative;
+}
+.lessons-wrap .lesson:first-child {
+  margin-left: 30rpx;
+}
+.lessons-wrap .progress-wrap {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  border-radius: 18rpx;
+  background: rgba(0,0,0,0.3);
+  padding-left: 19rpx;
+}
+.lessons-wrap .progress-wrap .progress {
+  width: 316rpx;
+}
+.lessons-wrap .progress-wrap .tip {
+  width: 99rpx;
+  height: 36rpx;
+  line-height: 36rpx;
+  background: #FF6F3A;
+  border-radius: 18rpx;
+  font-size: 18rpx;
+  color: #FFFFFF;
+  text-align: center;
+  margin-bottom: 6rpx;
+  margin-top: 159rpx;
+}
+.feedback-card {
+  width: 660rpx;
+  margin: 0 auto;
+  background: #fff;
+  position: relative;
+  top: -57rpx;
+}
+.feedback-card .item {
+  width: 608rpx;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 109rpx;
+  line-height: 109rpx;
+  border-bottom: 2rpx solid #EDEDED;
+}
+.right-arrow {
+  top: -28rpx;
+  position: relative;
+}

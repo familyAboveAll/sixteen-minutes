@@ -1,0 +1,12 @@
+.conditions-wrap {
+  padding: 20rpx 36rpx;
+  text-align: justify;
+}
+.title {
+  margin: 10rpx 0;
+}
+.content {
+  font-size: 26rpx;
+  text-indent: 2em;
+  line-height: 40rpx;
+}

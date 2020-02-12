@@ -1,0 +1,22 @@
+.tab-wrap {
+  height: 86rpx;
+  border-bottom: 16rpx solid #F3F3F3;
+  display: flex;
+  padding-top: 8rpx;
+  font-size: 33rpx;
+  color: #9C9CA9;
+  padding-left: 48rpx;
+}
+.tab-wrap view {
+  margin-right: 80rpx;
+  position: relative;
+}
+.selected::after {
+  content: '';
+  position: absolute;
+  width: 20rpx;
+  border-bottom: 4rpx solid #FF6F3A;
+  left: 50%;
+  margin-left: -10rpx;
+  bottom: 10rpx;
+}

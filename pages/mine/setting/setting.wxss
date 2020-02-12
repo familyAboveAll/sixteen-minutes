@@ -1,0 +1,47 @@
+.setting {
+  min-height: 100vh;
+  background: #F7F7FB;
+  padding-top: 40rpx;
+}
+.card {
+  width: 660rpx;
+  background: #fff;
+  box-shadow: 0 4rpx 8rpx 2rpx rgba(240,240,240,0.50);
+  margin: 0 auto 403rpx;
+}
+.item {
+  height: 109rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2rpx solid #EDEDED;
+  margin: 0 25rpx;
+}
+.item .left {
+  font-size: 32rpx;
+  color: #343434;
+}
+.item .right {
+  width: 28rpx;
+  height: 28rpx;
+  color: #8C8C8C;
+  font-size: 32rpx;
+}
+.version .right {
+  width: auto;
+}
+.item:last-child {
+  border: none;
+}
+button {
+  width: 660rpx!important;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 32rpx;
+  color: #343434;
+  margin: 0!important;
+  padding: 0!important;
+  font-weight: normal;
+}
