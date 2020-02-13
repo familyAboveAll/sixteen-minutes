@@ -1,6 +1,8 @@
 <view class="mine-edit">
   <view class="avatar-wrap">
-    <view class="avatar"></view>
+    <view class="avatar">
+      <image src="{{userInfos.avatar}}"></image>
+    </view>
   </view>
   <view class="input-card">
     <view class="input-item">

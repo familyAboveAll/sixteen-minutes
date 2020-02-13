@@ -8,6 +8,7 @@ Page({
   data: {
     courseId:'',
     courseImage:'',
+    courseImage_two:'',
     price_one:'',
     price_two:''
   },
@@ -88,6 +89,7 @@ Page({
           wx.setStorageSync('courseDetail', res.data.data.rsCourse)
           that.setData({
             courseImage: res.data.data.rsCourse.course_special,
+            courseImage_two: res.data.data.rsCourse.course_special_two,
             price_one: res.data.data.rsCourse.course_price,
             price_two: res.data.data.rsCourse.course_favorable_Price
           })

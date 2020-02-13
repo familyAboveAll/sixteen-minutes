@@ -362,12 +362,7 @@ Page({
     let sectionName = e.currentTarget.dataset.name
     let sectionId = e.currentTarget.dataset.sid
     let courseImage = e.currentTarget.dataset.img
-    this.setData({
-      sectionId:sectionId,
-      videoUrl:url,
-      playVideoId: index,
-      sectionDesc: desc
-    })
+
     //留言
     this.getCommentList(sectionId)
     if (uid > 0) {
@@ -384,9 +379,30 @@ Page({
           sectionId:sectionId,
           courseImage:courseImage
         },
-        method: 'GET'
+        method: 'GET',
+        success(rs) {
+          console.log(rs.data)
+          if (rs.data.code === 300) {
+            wx.showToast({
+              title: '请购买',
+              icon: 'fail',
+              duration: 2000
+            })
+          } else {
+            console.log(2222222222222)
+            that.setData({
+              sectionId:sectionId,
+              videoUrl:url,
+              playVideoId: index,
+              sectionDesc: desc
+            })
+          }
+        }
       })
     }
+  },
+  handleLikeDetail() {
+    this.data.currentItem.islike = true
   },
   handleLike (param) { // 点赞功能
     let index = param.currentTarget.dataset.index
@@ -604,14 +620,13 @@ Page({
    */
   getCommentList(sid) {
     let that = this;
-    var url = app.globalData.sixBaseUrl + "/api/comment/commentList/sid/" + 7;
+    var url = app.globalData.sixBaseUrl + "/api/comment/commentList/sid/" + sid;
     wx.request({
       url: url,
       data: {},
       method: 'GET',
       success(res) {
         if (res.data.code === 200) {
-          console.log(res.data.data.list)
           that.setData({
             commentsData: res.data.data.list,
           })

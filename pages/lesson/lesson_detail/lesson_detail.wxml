@@ -184,7 +184,7 @@
           <view class="reply-btn" wx:if="{{isMine}}" bindtap="handleReply">回复</view>
         </view>
         <view class="comment-center">
-          <view class="p show-all">鱼子老师讲的很不错呀，我想问一个问题，视频里有个地方听不懂解决初期单体问题开始，随着项目不断演变，到最终解决“高可用、高听不懂解决初期单体问题开始，随着项目不断演变，到最终解决“高可用、高。</view>
+          <view class="p show-all">{{currentItem.comment}}</view>
           <view class="zan-num" data-index="{{currentItemIndex}}" data-from="current" bindtap="handleLike">
             <view class="img-wrap">
               <image src='/static/images/icon/zan@2x.png' data-like='1' wx:if="{{!currentItem.islike}}"></image>
