@@ -559,3 +559,36 @@
   height: 36rpx;
   margin-right: 7rpx;
 }
+.comment-reply {
+  margin: 17.2rpx 0 0 113.4rpx;
+  width: 560rpx;
+  background: #F8F8F8;
+  border-radius: 10rpx;
+  padding: 28rpx 26.6rpx 14rpx 23.4rpx;
+}
+.comment-reply .li {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  font-size: 28rpx;
+  color: #030303;
+  line-height: 44rpx;
+  margin-bottom: 10rpx;
+}
+.comment-reply .li-all {
+  display: block;
+}
+.comment-reply .li .span {
+  font-size: 26rpx;
+  color: #6D6D6D;
+  display: inline;
+}
+.comment-reply .all {
+  font-size: 24rpx;
+}
+.check-all {
+  font-size: 24rpx;
+  color: #028AFF;
+}

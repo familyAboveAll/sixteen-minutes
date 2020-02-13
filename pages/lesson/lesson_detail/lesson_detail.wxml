@@ -227,11 +227,11 @@
         </view>
         <view class="comment-reply" wx:if="{{item.reply.length}}">
           <view class="ul">
-            <view class="{{isAllReply?'li li-all':'li'}}" wx:for="{{item.reply}}" wx:for-index="replyIndex" wx:for-item="replyItem" wx:key='id' wx:if="{{(replyIndex<2&&!isAllReply)||isAllReply}}">
+            <view class="li" wx:for="{{item.reply}}" wx:for-index="replyIndex" wx:for-item="replyItem" wx:key='id' wx:if="{{(replyIndex<2&&!isAllReply)||isAllReply}}">
               <view class="span">{{replyItem.nickname}}：</view>{{replyItem.comment}}
             </view>
           </view>
-          <navigator url="{{'/pages/allReply/allReply?id='+item.id}}" class="check-all" wx:if="{{!isAllReply}}">
+          <navigator url="{{'/pages/allReply/allReply?id='+item.id}}" class="check-all" wx:if="{{item.replyNum>2}}">
             全部{{item.replyNum}}条回复 >
           </navigator>
         </view>

@@ -1,5 +1,5 @@
 <view class="project-wrap">
-  <view class="img-wrap"><image src="{{courseImage}}" /></view>
+  <view class="img-wrap" style="{{'background:url('+courseImage+') no-repeat;background-size:100% auto'}}"></view>
   <view class="pay-footer">
     <navigator url="/pages/lesson/lesson_detail/lesson_detail?id={{courseId}}">
     <view class="free-btn">免费试学</view>

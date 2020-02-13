@@ -412,7 +412,7 @@ Page({
       })
     } else if (param.currentTarget.dataset.from == "current") {
       this.setData({
-        currentItem: currentItem
+        currentItem: changeData
       })
     } else {
       commentsData.splice(index, 1, changeData)
