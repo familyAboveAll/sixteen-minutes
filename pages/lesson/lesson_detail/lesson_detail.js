@@ -16,7 +16,6 @@ Page({
     wifiToastShow: false,
     unWiFiPlay: false,
     lessonVideo: null,
-    commentBoxShow: false,
     commentTop: 0,
     tabHeight: 0,
     isFullScreen: false,
@@ -43,16 +42,21 @@ Page({
     const index = e.currentTarget.dataset.index
     let data = {}
     data.tabIndex = index
-    this.setData(data)
     if (index == 1) {
       wx.pageScrollTo({
         scrollTop: this.data.commentTop,
-        duration: 500
+        duration: 500,
+        success: () => {
+          this.setData(data)
+        }
       })
     } else {
       wx.pageScrollTo({
-        selector: "#videoWrap",
-        duration: 500
+        scrollTop: "0",
+        duration: 500,
+        success: () => {
+          this.setData(data)
+        }
       })
     }
   },
@@ -108,7 +112,8 @@ Page({
     })
     this.setData({
       indexShow: true,
-      detailShow: false
+      detailShow: false,
+      tabIndex: 0
     })
   },
   showList () {
@@ -129,7 +134,8 @@ Page({
     })
     this.setData({
       indexShow: true,
-      listShow: false
+      listShow: false,
+      tabIndex: 0
     })
   },
   closeAllReply () {
@@ -141,7 +147,7 @@ Page({
       allReplyShow: false,
       currentItem: null,
       indexShow: true,
-      commentBoxShow: false
+      tabIndex: 0
     })
   },
   handleAgree () {
@@ -275,12 +281,13 @@ Page({
     })
     // 获取留言距离顶部的距离
     const query = wx.createSelectorQuery()
-    if (!this.data.allReplyShow) return
     query.select('#commentTarget').boundingClientRect()
     query.select('#tabWrap').boundingClientRect()
+    query.select('#videoWrap').boundingClientRect()
     query.exec(function(res){
+      console.log(res[2].height, res[1].height)
       self.setData({
-        commentTop: res[0].top + res[1].height * 1.8,
+        commentTop: res[2].height + res[1].height * 3,
         tabHeight: res[1].height
       })
     })
@@ -566,7 +573,7 @@ Page({
     query.select('#commentTarget').boundingClientRect()
     query.exec(function(res){
       if (!res[0]) return
-      if (res[0].top <= self.data.tabHeight) {
+      if (res[0].top <= self.data.commentTop) {
         return self.setData({
           commentBoxShow: true,
           tabIndex: 1

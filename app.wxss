@@ -29,8 +29,9 @@ image {
   color: #9999A7;
 }
 .common-title {
-  font-size: 32rpx;
+  font-size: 36rpx;
   color: #151515;
+  font-weight: bold;
 }
 .common-btn {
   width: 680rpx!important;

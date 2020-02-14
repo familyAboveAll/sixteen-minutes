@@ -7,7 +7,9 @@
 .video-wrap {
   width: 100vw;
   height: 420rpx;
-  position: relative;
+  position: fixed;
+  top: 0;
+  z-index: 10000;
 }
 .video-wrap video {
   width: 100%;
@@ -44,6 +46,7 @@
   width: 220rpx!important;
 }
 .tab-wrap {
+  width: 100%;
   height: 80rpx;
   border-bottom: 2rpx solid #F2F2F2;
   display: flex;
@@ -52,6 +55,8 @@
   padding: 0 255rpx 0;
   z-index: 10;
   background: #fff;
+  position: fixed;
+  top: 420rpx;
 }
 .tab-wrap .relative {
   height: 100%;
@@ -84,11 +89,14 @@
   margin-left: -10rpx;
   bottom: 16rpx;
 }
+.lesson-index {
+  padding-top: 500rpx;
+}
 .lesson-index .fixed {
   position: fixed;
   left: 0;
   width: 100%;
-  top: 0;
+  top: 420rpx;
 }
 .lesson-info .lesson-title {
   display: flex;
@@ -324,6 +332,9 @@
 /* lesson-profile end */
 
 /* lesson-list start */
+.lesson-title, .lesson-list, .lesson-profile {
+  padding-top: 420rpx;
+}
 .lesson-list .title {
   height: 84rpx;
   line-height: 84rpx;
@@ -591,4 +602,8 @@
 .check-all {
   font-size: 24rpx;
   color: #028AFF;
+}
+.lesson-index .lesson-title .title {
+  font-size: 36rpx;
+  font-weight: bold;
 }

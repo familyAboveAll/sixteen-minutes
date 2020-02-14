@@ -65,13 +65,6 @@
       <view class="p">{{sectionDesc}}</view>
     </view>
     <view id="commentTarget">
-      <view wx:if="{{commentBoxShow}}" class="fixed tab-wrap">
-        <view class="{{tabIndex==0?'selected relative':'relative'}}" data-index='0' bindtap="handleChangeTab">视频</view>
-        <view data-index='1' bindtap="handleChangeTab">
-          <view class="{{tabIndex==1?'selected relative':'relative'}}">留言</view>
-          <view class="span"></view>
-        </view>
-      </view>
       <view class="title">
         <view class="common-title">本讲精选留言<view class="span"></view></view>
         <view class="write-btn" bindtap="handleTapWrite">我想说</view>
