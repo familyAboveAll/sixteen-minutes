@@ -63,8 +63,10 @@
   position: relative;
 }
 .tab-wrap>view {
-  color: #9C9CA9;
   padding-top: 10rpx;
+}
+.tab-wrap .relative {
+  color: #9C9CA9;
 }
 .tab-wrap > view:last-child {
   display: flex;
@@ -154,6 +156,7 @@
   margin-right: 20rpx;
   position: relative;
   display: inline-block;
+  overflow: hidden;
 }
 .lesson-card .item .div {
   color: #3B3B3B;
@@ -332,7 +335,7 @@
 /* lesson-profile end */
 
 /* lesson-list start */
-.lesson-title, .lesson-list, .lesson-profile {
+.lesson-title, .lesson-list, .lesson-profile, .all-reply {
   padding-top: 420rpx;
 }
 .lesson-list .title {

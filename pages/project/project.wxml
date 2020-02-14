@@ -1,5 +1,8 @@
 <view class="project-wrap">
-  <view class="img-wrap" style="{{'background:url('+courseImage+') no-repeat;background-size:100% auto'}}"></view>
+<!--  <view class="img-wrap"  wx:if="{{img_one}}" style="{{'background:url('+courseImage+') no-repeat;background-size:100% 100%'}}"></view>-->
+<!-- <view class="img-wrap" wx:if="{{img_tow}}" style="{{'background:url('+courseImage_two+') no-repeat;background-size:100% 100%'}}"></view>-->
+  <view wx:if="{{img_one}}"><image src="{{courseImage}}" class='wedding_img' mode="widthFix" /></view>
+  <view wx:if="{{img_tow}}"><image src="{{courseImage}}" class='wedding_img' mode="widthFix" /></view>
   <view class="pay-footer">
     <navigator url="/pages/lesson/lesson_detail/lesson_detail?id={{courseId}}">
     <view class="free-btn">免费试学</view>

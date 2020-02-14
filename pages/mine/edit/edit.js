@@ -35,7 +35,6 @@ Page({
     var url = app.globalData.sixBaseUrl + "api/user/updateUser";
     var uid = wx.getStorageSync('user_id')
     var urlUser = app.globalData.sixBaseUrl + "api/user/getUserInfo/uid/"+uid;
-
     let that = this
     wx.request({
       url: url,
@@ -50,6 +49,11 @@ Page({
       },
       method: 'GET',
       success(rs) {
+        console.log(2222211111111)
+
+        console.log(rs.data)
+        console.log(2222211111111)
+
         wx.request({
           url: urlUser,
           data: {

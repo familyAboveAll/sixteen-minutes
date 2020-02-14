@@ -85,7 +85,6 @@ Page({
       },
       method: 'GET',
       success(res) {
-        console.log(res)
         if (res.data.code == 200) {
           self.setData({
             allReplys: res.data.data.replyList
@@ -134,8 +133,7 @@ Page({
     })
     this.setData({
       indexShow: true,
-      listShow: false,
-      tabIndex: 0
+      listShow: false
     })
   },
   closeAllReply () {
@@ -171,7 +169,10 @@ Page({
     let courseId = e.currentTarget.dataset.cid
     let sectionId = e.currentTarget.dataset.sid
     let userRs = wx.getStorageSync('userInfoCache')
+    console.log(userRs)
+
     let uid = userRs.userInfo.id
+    console.log(uid)
     if (this.data.allReplyShow) {
       return this.handleReply(uid)
     }
@@ -227,7 +228,6 @@ Page({
             icon: 'success',
             duration: 2000
           })
-          console.log(that.data.currentItem)
           that.getReplys(that.data.currentItem.id)
           that.setData({
             writeShow: false
@@ -238,15 +238,12 @@ Page({
   },
   bindinputs(e) {
     let content = e.detail.value
-    console.log(content)
-
     this.setData({
       content:content
     })
   },
   onLoad(options) {
     let cid = options.id;
-    console.log(cid)
     this.getCourseDetail(cid);
     //----mini
 
@@ -301,7 +298,6 @@ Page({
     this.setData({
       isFullScreen: index * 1
     }, () => {
-      console.log(this.data.isFullScreen)
     })
   },
   handleTapWrite () {
@@ -342,7 +338,6 @@ Page({
     this.setData({
       writeShow: false,
       replyItem: {},
-      currentItem: {}
     })
   },
   handleFocus () {
@@ -351,6 +346,7 @@ Page({
     })
   },
   handleBlur () {
+    console
     this.setData({
       isFocus: false
     })
@@ -358,8 +354,14 @@ Page({
   handleChangeVieo (e) { // 切换视频 playVideoId是视频的id
     let that = this;
     var requestUrl = app.globalData.sixBaseUrl + "api/course/play";
-    let userRs = wx.getStorageSync('userInfoCache')
-    let uid = userRs.userInfo.id
+    let uid = wx.getStorageSync('user_id')
+    if (uid > 0) {
+      let mini = 1
+    } else {
+      wx.switchTab({
+        url: '/pages/mine/index/index',
+      })
+    }
     const index = e.currentTarget.dataset.index
     let desc = e.currentTarget.dataset.desc
     let courseName = e.currentTarget.dataset.cname
@@ -396,7 +398,6 @@ Page({
               duration: 2000
             })
           } else {
-            console.log(2222222222222)
             that.setData({
               sectionId:sectionId,
               videoUrl:url,
@@ -503,7 +504,6 @@ Page({
    * 更新用户个人信息
    */
   updateUser (userInfoWx,uid) {
-    console.log(userInfoWx)
     let that = this;
     var url = app.globalData.sixBaseUrl + "api/user/upUser";
     var urlUser = app.globalData.sixBaseUrl + "api/user/getUserInfo/uid/"+uid;
@@ -527,7 +527,6 @@ Page({
             method: 'GET',
             success(rs) {
               if (rs.data.code === 200) {
-                console.log(rs.data);
                 wx.setStorageSync('userInfoCache', rs.data.data)
               }
             }
@@ -601,10 +600,8 @@ Page({
       data: {},
       method: 'GET',
       success(res) {
-        console.log(res.data.data);
         if (res.data.code === 200) {
           wx.setStorageSync('courseDetail', res.data.data.rsCourse)
-          console.log(res.data.data.rsSection[0].children[0].id);
           let sectionId = res.data.data.rsSection[0].children[0].id
             that.getCommentList(sectionId) //默认评论列表
             that.setData({
@@ -633,6 +630,7 @@ Page({
       data: {},
       method: 'GET',
       success(res) {
+        console.log(res.data)
         if (res.data.code === 200) {
           that.setData({
             commentsData: res.data.data.list,

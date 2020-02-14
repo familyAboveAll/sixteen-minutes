@@ -10,13 +10,15 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     toastShow: true,
-    courseList: [],
+    courseList: '',
     baseUrl: '',
     baseImgUrl: '',
     page: 1,
     totalCourse: [],
     receive:'注册去领取',
-    isEnd: false
+    isEnd: false,
+    switchList:'',
+    isSwitch:false
   },
   //事件处理函数
   bindViewTap: function () {
@@ -74,20 +76,29 @@ Page({
       data: {},
       method: 'GET',
       success(res) {
+        console.log(res.data.data.switchInfo.length)
         if (res.data.code === 200) {
+          that.setData({
+            courseList: res.data.data.courseInfo,
+            switchList: res.data.data.switchInfo
+          })
           wx.hideLoading();
-          if (res.data.data.length == 0) {
-            that.data.isEnd = true;
+          if (res.data.data.courseInfo.length == 0) {
+            that.setData({
+              isEnd: true
+            })
             wx.showToast({
               title: '没有数据了',
             })
-            return;
+          }
+          if (res.data.data.switchInfo.length > 0) {
+            that.setData({
+              isSwitch: true
+            })
           }
           // that.data.totalCourse = that.data.totalCourse.concat(res.data.data);
-          that.data.totalCourse = res.data.data;
-          that.setData({
-            courseList: that.data.totalCourse
-          })
+          // that.data.totalCourse = res.data.data.course;
+          // that.data.switchList = res.data.data.switchInfo;
         }
       }
     })

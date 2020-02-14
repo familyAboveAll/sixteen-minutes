@@ -3,7 +3,7 @@
 }
 .img-wrap {
   width: 100%;
-  min-height: 100vh;
+  min-height: 675vh;
 }
 .pay-footer {
   width: 100%;

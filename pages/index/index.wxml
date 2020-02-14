@@ -3,6 +3,11 @@
     <view>零基础也可</view>
     <view>以轻松学习</view>
   </view>
+  <view class="banner" wx:if="{{isSwitch}}">
+    <swiper wx:if="{{isSwitch}}" autoplay='true' circular indicator-dots indicator-color="blue" indicator-active-color="red" current="0">
+      <swiper-item wx:for="{{switchList}}" wx:key="index"><image src="{{item.image}}"></image></swiper-item>
+    </swiper>
+  </view>
   <view bindtap="redirectTo" data-uid="{{item.user_id}}" data-id="{{item.id}}" data-status="{{item.order_status}}"   wx:for="{{courseList}}" wx:key="index">
       <view class="banner">
         <image src="{{item.course_image}}"></image>

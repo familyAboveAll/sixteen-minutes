@@ -37,9 +37,9 @@
         <image src='/static/images/index/banner1.png'></image>
       </view>
       <view class="lesson-info">
-        <view class="lesson-title">Hadoop大数据实战</view>
-        <view class="lesson-des">带你开启智能时代大门</view>
-        <view class="lesson-index">第10讲</view>
+        <view class="lesson-title">{{item.courseName}}</view>
+        <view class="lesson-des">{{item.sectionName}}</view>
+        <view class="lesson-index">{{item.section}}</view>
       </view>
     </view>
   </view>
