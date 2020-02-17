@@ -16,7 +16,7 @@ Page({
     page: 1,
     totalCourse: [],
     receive:'注册去领取',
-    isEnd: false,
+    isEnd: true,
     switchList:'',
     isSwitch:false
   },
@@ -71,11 +71,13 @@ Page({
     }
     console.log(uid)
     var url = app.globalData.sixBaseUrl + "api/course/index/page/" + this.data.page+"/uid/"+uid;
+    console.log(url)
     wx.request({
       url: url,
       data: {},
       method: 'GET',
       success(res) {
+        console.log(res.data.data)
         console.log(res.data.data.switchInfo.length)
         if (res.data.code === 200) {
           that.setData({
@@ -116,9 +118,12 @@ Page({
         title: '没有数据了',
       })
       return;
-    }
-    this.data.page += 1;
+    } else {
+      this.data.page += 1;
+      console.log(111111222)
 
+    }
+    console.log(this.data.page)
     this.getIndexCourseList();
     console.log('加载更多');
   },

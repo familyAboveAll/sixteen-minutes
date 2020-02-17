@@ -36,8 +36,8 @@ Page({
     currentItem: {},
     currentItemIndex: 0,
     allReplys: [],
-    replyItem: {},
     animationData: {}
+    replyItem: {}
   },
   handleChangeTab(e) {
     const index = e.currentTarget.dataset.index
@@ -623,6 +623,9 @@ Page({
       data: {},
       method: 'GET',
       success(res) {
+        console.log(res.data.data.rsSection[0].children)
+        console.log('------------')
+
         if (res.data.code === 200) {
           wx.setStorageSync('courseDetail', res.data.data.rsCourse)
           let sectionId = res.data.data.rsSection[0].children[0].id

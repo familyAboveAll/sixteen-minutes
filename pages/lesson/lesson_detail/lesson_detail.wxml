@@ -118,15 +118,22 @@
     </view>
     <view class="more-detail">
       <view class="common-title">课程概要</view>
-      <view class="p">{{courseDetail.rsCourse.course_desc}}</view>
+      <rich-text nodes="{{courseDetail.rsCourse.course_desc}}"></rich-text>
+
       <view class="common-title">讲师简介</view>
-      <view class="p">{{courseDetail.rsCourse.teacher_desc}}</view>
+      <view class="p">
+        {{courseDetail.rsCourse.teacher_desc}}
+      </view>
       <view class="common-title">你能学到什么？</view>
-      <view class="p">{{courseDetail.rsCourse.course_harvest}}</view>
+      <view class="p">
+        <rich-text nodes="{{courseDetail.rsCourse.course_harvest}}"></rich-text>
+      </view>
       <view class="common-title">课程目录</view>
-      <view> <image src="{{courseDetail.rsCourse.course_catalog}}" style="width:750rpx;height:5970rpx"></image></view>
+      <view class="p"> <image src="{{courseDetail.rsCourse.course_catalog}}"></image></view>
       <view class="common-title">购买须知</view>
-      <view class="p">{{courseDetail.rsCourse.buy_known}}</view>
+      <view class="p">
+        <rich-text nodes="{{courseDetail.rsCourse.buy_known}}"></rich-text>
+      </view>
     </view>
   </view>
   <view class="lesson-list" animation="{{animationData}}" wx:if="{{listShow}}">

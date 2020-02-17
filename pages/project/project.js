@@ -123,6 +123,7 @@ Page({
    */
   buyDetail() {
     let userRs = wx.getStorageSync('userInfoCache')
+    console.log('-----'+userRs.length)
     if (userRs && userRs.length !== 0) {
       wx.navigateTo({
         url: '/pages/mine/index/index',
