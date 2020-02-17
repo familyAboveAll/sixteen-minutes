@@ -88,7 +88,7 @@
       <view class="pay-btn" bindtap="handlePay" data-cid="{{courseId}}">优惠购买 ¥{{price_two}} <view class="span">¥{{price_one}}</view></view>
     </view>
   </view>
-  <view class="lesson-profile" wx:if="{{detailShow}}" >
+  <view class="lesson-profile" animation="{{animationData}}" wx:if="{{detailShow}}">
     <view class="lesson-info">
       <view class="top">
         <view class="common-title">课程简介</view>
@@ -124,12 +124,12 @@
       <view class="common-title">你能学到什么？</view>
       <view class="p">{{courseDetail.rsCourse.course_harvest}}</view>
       <view class="common-title">课程目录</view>
-      <view class="p"> <image src="{{courseDetail.rsCourse.course_catalog}}"></image></view>
+      <view> <image src="{{courseDetail.rsCourse.course_catalog}}" style="width:750rpx;height:5970rpx"></image></view>
       <view class="common-title">购买须知</view>
       <view class="p">{{courseDetail.rsCourse.buy_known}}</view>
     </view>
   </view>
-  <view class="lesson-list" wx:if="{{listShow}}">
+  <view class="lesson-list" animation="{{animationData}}" wx:if="{{listShow}}">
     <view class="lesson-info">
       <view class="top">
         <view class="common-title">课程目录</view>
@@ -162,7 +162,7 @@
       </view>
     </view>
   </view>
-  <view class="all-reply" wx:if="{{allReplyShow}}">
+  <view class="all-reply" animation="{{animationData}}" wx:if="{{allReplyShow}}">
     <view class="top">
       <view class="common-title">留言详情</view>
       <view class="close" bindtap="closeAllReply">

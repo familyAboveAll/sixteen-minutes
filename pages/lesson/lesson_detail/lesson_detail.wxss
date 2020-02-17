@@ -157,6 +157,7 @@
   position: relative;
   display: inline-block;
   overflow: hidden;
+  vertical-align: top;
 }
 .lesson-card .item .div {
   color: #3B3B3B;
@@ -185,12 +186,18 @@
   width: 218rpx;
   padding-left: 17rpx;
   font-size: 26rpx;
-  white-space: normal;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  white-space: normal !important;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 .lesson-video .play-icon image {
   position: absolute;
   left: 23rpx;
-  bottom: 10rpx;
+  bottom: 5rpx;
   width: 20rpx;
   height: 20rpx;
 }
@@ -320,23 +327,21 @@
   color: #3B3B3B;
   font-size: 26rpx;
   margin-top: 6rpx;
-}
-.more-detail {
-  padding: 0 36rpx;
-}
+}  
 .more-detail .p {
   color: #3B3B3B;
   font-size: 26rpx;
   line-height: 42rpx;
+  padding: 0 36rpx;
 }
 .more-detail .common-title {
-  padding: 48rpx 0 12rpx;
+  padding: 48rpx 26rpx 12rpx;
 }
 /* lesson-profile end */
 
 /* lesson-list start */
-.lesson-title, .lesson-list, .lesson-profile, .all-reply {
-  padding-top: 420rpx;
+.lesson-profile, .lesson-list, .all-reply {
+  transform: translateY(1000rpx);
 }
 .lesson-list .title {
   height: 84rpx;

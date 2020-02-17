@@ -36,7 +36,8 @@ Page({
     currentItem: {},
     currentItemIndex: 0,
     allReplys: [],
-    replyItem: {}
+    replyItem: {},
+    animationData: {}
   },
   handleChangeTab(e) {
     const index = e.currentTarget.dataset.index
@@ -74,6 +75,8 @@ Page({
       detailShow: false,
       currentItem: currentItem,
       currentItemIndex: index
+    }, () => {
+      this.createAnimate()
     })
   },
   getReplys (id) {
@@ -102,9 +105,12 @@ Page({
       indexShow: false,
       detailShow: true,
       allReplyShow: false
+    }, () => {
+      this.createAnimate()
     })
   },
   closeDetail () {
+    this.animation.translateY(10000).step()
     wx.pageScrollTo({
       scrollTop: 0,
       duration: 100
@@ -112,7 +118,8 @@ Page({
     this.setData({
       indexShow: true,
       detailShow: false,
-      tabIndex: 0
+      tabIndex: 0,
+      animationData: this.animation.export()
     })
   },
   showList () {
@@ -124,19 +131,24 @@ Page({
       indexShow: false,
       listShow: true,
       allReplyShow: false
+    }, () => {
+      this.createAnimate()
     })
   },
   closeList () {
+    this.animation.translateY(10000).step()
     wx.pageScrollTo({
       scrollTop: 0,
       duration: 100
     })
     this.setData({
       indexShow: true,
-      listShow: false
+      listShow: false,
+      animationData: this.animation.export()
     })
   },
   closeAllReply () {
+    this.animation.translateY(10000).step()
     wx.pageScrollTo({
       scrollTop: 0,
       duration: 100
@@ -145,8 +157,19 @@ Page({
       allReplyShow: false,
       currentItem: null,
       indexShow: true,
-      tabIndex: 0
+      tabIndex: 0,
+      animationData: this.animation.export()
     })
+  },
+  createAnimate () {
+    let self = this
+    const query = wx.createSelectorQuery()
+    query.select('#videoWrap').boundingClientRect()
+    query.exec(function(res){
+      console.log(res)
+      self.animation.translateY(res[0].height).step()
+      self.setData({animationData: self.animation.export()})
+    }, 10)
   },
   handleAgree () {
     this.setData({
@@ -639,4 +662,10 @@ Page({
       }
     })
   },
+  onReady () {
+    this.animation = wx.createAnimation({
+      duration: 700,
+      timingFunction: 'ease',
+    })
+  }
 })
