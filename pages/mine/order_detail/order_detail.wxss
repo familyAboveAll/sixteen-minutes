@@ -126,3 +126,17 @@ view {
   text-align: center;
   color: #282828;
 }
+.write-btn {
+  float:right;
+  width: 160rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  background: #FF6F3A;
+  border-radius: 40rpx;
+  font-size: 24rpx;
+  color: #FFFFFF;
+  text-align: center;
+  margin: 0!important;
+  padding: 0!important;
+  min-height: auto;
+}

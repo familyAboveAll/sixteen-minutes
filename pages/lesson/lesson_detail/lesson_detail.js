@@ -38,7 +38,8 @@ Page({
     allReplys: [],
     replyItem: {},
     videoShow: true,
-    scrollLeft: 0
+    scrollLeft: 0,
+    speeds:''
   },
   handleChangeTab(e) {
     const index = e.currentTarget.dataset.index
@@ -245,8 +246,8 @@ Page({
     })
   },
   onLoad(options) {
-    let cid = options.id;
-    this.getCourseDetail(cid);
+    let cid = options.id
+    this.getCourseDetail(cid)
     //----mini
 
     let self = this
@@ -299,7 +300,9 @@ Page({
     const index = e.currentTarget.dataset.index
     this.setData({
       isFullScreen: index * 1,
-      videoShow: !(index * 1)
+      videoShow: !(index * 1),
+      isFullScreen: index * 1
+    }, () => {
     })
   },
   handleTapWrite () {
@@ -374,10 +377,15 @@ Page({
     let sectionName = e.currentTarget.dataset.name
     let sectionId = e.currentTarget.dataset.sid
     let courseImage = e.currentTarget.dataset.img
-    
+    wx.setNavigationBarTitle({
+      title: courseName
+    })
     //留言
     this.getCommentList(sectionId)
     if (uid > 0) {
+      that.setData({
+        sectionId:sectionId
+      })
       //视频播放记录
       wx.request({
         url: requestUrl,
@@ -419,6 +427,7 @@ Page({
       })
     }
   },
+
   handleLikeDetail() {
     this.data.currentItem.islike = true
   },
@@ -610,14 +619,15 @@ Page({
       data: {},
       method: 'GET',
       success(res) {
-        console.log(res.data.data.rsSection[0].children)
-        console.log('------------')
-
         if (res.data.code === 200) {
           wx.setStorageSync('courseDetail', res.data.data.rsCourse)
+          wx.setNavigationBarTitle({
+            title: res.data.data.rsSection[0].children[0].section_name
+          })
           let sectionId = res.data.data.rsSection[0].children[0].id
-            that.getCommentList(sectionId) //默认评论列表
-            that.setData({
+          that.getCommentList(sectionId) //默认评论列表
+          console.log(res.data.data)
+          that.setData({
               sectionId:sectionId,
               courseDetail: res.data.data,
               sectionNumber: res.data.data.sectionNumber,
@@ -628,6 +638,26 @@ Page({
               price_one: res.data.data.rsCourse.course_price,
               price_two: res.data.data.rsCourse.course_favorable_Price
           })
+          //视频播放记录
+          var requestUrl = app.globalData.sixBaseUrl + "api/course/play";
+          var uid = wx.getStorageSync('user_id')
+          if (uid > 0) {
+            wx.request({
+              url: requestUrl,
+              data: {
+                uid:uid,
+                courseName:res.data.data.rsCourse.course_name,
+                url:res.data.data.rsSection[0].children[0].video_url,
+                courseId:res.data.data.rsCourse.id,
+                sectionNumber:1,
+                sectionName:res.data.data.rsSection[0].children[0].section_name,
+                sectionId:sectionId,
+                courseImage:res.data.data.rsCourse.course_image
+              },
+              method: 'GET'
+            })
+          }
+          that.videoSpeeds() //播放进度
         }
       }
     })
@@ -651,5 +681,44 @@ Page({
         }
       }
     })
+  },
+  //视频播放进度
+  bindtimeupdate(event) {
+    // console.log(this.data.sectionId)
+    let allLong = event.detail.duration
+    let nowLong = event.detail.currentTime
+    // console.log(nowLong/allLong)
+    let speeds = nowLong/allLong
+    this.setData({
+      speeds:speeds
+    })
+    // console.log('======'+this.data.speeds)
+    // console.log("播放时长"+event.detail.duration)//
+    // console.log("播放到第"+event.detail.currentTime+"秒")//查看正在播放时间，以秒为单位
+  },
+  //定时器查看用户的视频播放学习进度
+  videoSpeeds() {
+    var that = this
+    var uid = wx.getStorageSync('user_id')
+    var url = app.globalData.sixBaseUrl + "/api/course/videoSpeed"
+    if (uid > 0) {
+      var i = setInterval(function () {
+        var speed = that.data.speeds
+        var sid = that.data.sectionId
+        console.log(sid+'====='+speed)
+        wx.request({
+          url: url,
+          data:{
+            uid:uid,
+            sid:sid,
+            speed:speed
+          },
+          method: 'GET',
+          success(res) {
+            console.log(res.data)
+          }
+        })
+      }, 3000)
+    }
   }
 })

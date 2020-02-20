@@ -2,17 +2,15 @@
   <view class="lesson-item">
     <view class="date">今天</view>
     <view class="lesson-wrap">
-      <view class="item" wx:for="{{history}}" wx:key="index">
+      <navigator url="/pages/lesson/lesson_detail/lesson_detail?id={{item.course_id}}" class="item" wx:for="{{history}}" wx:key="index">
         <view class="cover-pic">
           <image src='{{item.course_image}}'></image>
         </view>
         <view class="lesson-info">
           <view class="lesson-title">{{item.course_name}} 第{{item.section_number}}讲 {{item.section_name}}</view>
-<!--          <view class="watched-time"><image src="/static/images/icon/phone.png" />观看至30%</view>-->
-          <view class="watched-time"><image src="/static/images/icon/phone.png" /></view>
-
+          <view class="watched-time"><image src="/static/images/icon/phone.png" />观看至{{item.speed}}%</view>
         </view>
-      </view>
+      </navigator>
     </view>
   </view>
 

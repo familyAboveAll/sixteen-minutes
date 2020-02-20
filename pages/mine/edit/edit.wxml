@@ -14,13 +14,13 @@
     <view class="input-item">
       <view class="label">性别：</view>
       <view class="input-wrap">
-        <input type="text" value="{{userInfos.sex==2?'女':(userInfos.sex==1?'男':'未知')}}" bindinput='changeInput' data-prop="sex"/>
+       <input type="text"  disabled="disabled" value="{{sex}}" bindtap='click' data-prop="sex"/>
       </view>
     </view>
     <view class="input-item">
-      <view class="label">出生年份：</view>
+      <view class="label">生日：</view>
       <view class="input-wrap">
-        <input type="text" value="{{userInfos.birthday}}" bindinput='changeInput' data-prop='birthday'/>
+        <input type="text" value="{{birthday}}" disabled="disabled" bindinput='changeInput' bindtap='bindfocus' data-prop='birthday'/>
       </view>
     </view>
   </view>
@@ -44,4 +44,6 @@
       </view>
     </view>
   </view>
+  <timePicker pickerShow="{{isPickerShow}}" id="picker" wx:if="{{isPickerRender}}" bind:hidePicker="pickerHide" bind:setPickerTime="setPickerTime"
+              config="{{pickerConfig}}"></timePicker>
 </view>

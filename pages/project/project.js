@@ -86,9 +86,12 @@ Page({
       data:{},
       method:'GET',
       success(res) {
-        console.log(res.data)
+        console.log(res.data.data.rsCourse.course_name)
         if(res.data.code === 200) {
           console.log(res.data.data.rsCourse.course_special_two)
+          wx.setNavigationBarTitle({
+            title: res.data.data.rsCourse.course_name
+          })
           wx.setStorageSync('courseDetail', res.data.data.rsCourse)
           if (res.data.data.rsCourse.course_special == null) {
             that.setData({
@@ -122,13 +125,15 @@ Page({
    *
    */
   buyDetail() {
-    let userRs = wx.getStorageSync('userInfoCache')
-    console.log('-----'+userRs.length)
-    if (userRs && userRs.length !== 0) {
+    let uid = wx.getStorageSync('user_id')
+    if (uid > 0) {
       wx.navigateTo({
+        url: '/pages/lesson/pay_account/pay_account'
+      })
+    } else {
+      wx.switchTab({
         url: '/pages/mine/index/index',
       })
     }
-
   }
 })

@@ -34,12 +34,12 @@ Page({
     })
   },
   handleExchange () {
-    if (!this.data.exchangeValue) {
+    // if (!this.data.exchangeValue) {
       return wx.showToast({
-        title: '请输入兑换码',
+        title: '请输入正确的优惠券兑换码',
         icon: 'none'
       })
-    }
+    // }
   },
   handleChoose () {
     wx.setStorageSync('useCoupon', !this.data.useCoupon)

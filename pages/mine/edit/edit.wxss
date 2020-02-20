@@ -37,3 +37,7 @@
 .common-btn {
   margin-top: 106rpx;
 }
+.radio-group text {
+  color: #9999A7;
+  font-size: 32rpx;
+}

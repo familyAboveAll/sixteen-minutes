@@ -37,6 +37,13 @@ Page({
    * 刷新首页
    */
   onShow:function(){
+    let page = wx.getStorageSync('page')
+    if (page < 1) {
+      wx.setStorageSync('page', 1)
+    } else {
+      wx.setStorageSync('page', page+1)
+    }
+
     let uid = wx.getStorageSync('user_id')
     if (uid > 0) {
       this.setData({
@@ -65,12 +72,17 @@ Page({
   getIndexCourseList() {
     let that = this;
     let userRs = wx.getStorageSync('userInfoCache')
+    let pg = wx.getStorageSync('page')
+    console.log('ppppp'+pg)
+
     var uid = 0;
     if (userRs) {
       var uid = userRs.userInfo.id
     }
     console.log(uid)
-    var url = app.globalData.sixBaseUrl + "api/course/index/page/" + this.data.page+"/uid/"+uid;
+    let page = wx.getStorageSync('page')
+
+    var url = app.globalData.sixBaseUrl + "api/course/index/page/" + page +"/uid/"+uid;
     console.log(url)
     wx.request({
       url: url,
@@ -81,17 +93,26 @@ Page({
         console.log(res.data.data.switchInfo.length)
         if (res.data.code === 200) {
           that.setData({
-            courseList: res.data.data.courseInfo,
             switchList: res.data.data.switchInfo
           })
           wx.hideLoading();
           if (res.data.data.courseInfo.length == 0) {
-            that.setData({
-              isEnd: true
-            })
-            wx.showToast({
-              title: '没有数据了',
-            })
+            // wx.showToast({
+            //   title: '没有数据了',
+            // })
+            let page = wx.getStorageSync('page')
+            wx.setStorageSync('page', page-1)
+          } else {
+            console.log('===____'+that.data.courseList.length)
+            if (that.data.courseList.length == 0) {
+              that.setData({
+                courseList: res.data.data.courseInfo
+              })
+            } else {
+              that.setData({
+                courseList: that.data.courseList.concat(res.data.data.courseInfo)
+              })
+            }
           }
           if (res.data.data.switchInfo.length > 0) {
             that.setData({
@@ -113,17 +134,12 @@ Page({
       title: '加载中',
       mask: true			//此时遮罩层起作用
     })
-    if (this.data.isEnd == true) {
-      wx.showToast({
-        title: '没有数据了',
-      })
-      return;
-    } else {
-      this.data.page += 1;
-      console.log(111111222)
-
-    }
-    console.log(this.data.page)
+    // var pages = this.data.page + 1;
+    // this.setData({
+    //   page:pages
+    // })
+    let page = wx.getStorageSync('page')
+    wx.setStorageSync('page', page+1)
     this.getIndexCourseList();
     console.log('加载更多');
   },

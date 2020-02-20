@@ -53,7 +53,7 @@
     </navigator>
     <view class="lessons-wrap">
       <scroll-view scroll-x="true" style=" white-space: nowrap; display: flex;width: 100%">
-        <view class="lesson" wx:for="{{history}}" wx:key="index">
+        <navigator url="/pages/lesson/lesson_detail/lesson_detail?id={{item.course_id}}" class="lesson" wx:for="{{history}}" wx:key="index">
           <image src='{{item.course_image}}'></image>
           <view class="progress-wrap">
             <view class="tip">已学{{item.speed}}%</view>
@@ -62,7 +62,7 @@
             </view>
           </view>
           <view class="course-name">{{item.course_name}}<text>第{{item.section_number}}讲</text></view>
-        </view>
+        </navigator>
       </scroll-view>
     </view>
   </view>

@@ -2,7 +2,7 @@
   "usingComponents": {
     "comment-item": "/components/comment/index"
   },
-  "navigationBarTitleText": "16分钟",
+  "navigationBarTitleText": "",
   "navigationBarBackgroundColor": "#1E1E1E",
   "navigationBarTextStyle": "white"
 }

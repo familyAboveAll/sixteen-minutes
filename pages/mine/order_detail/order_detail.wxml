@@ -60,6 +60,7 @@
         <view class="span" >支付时间：</view>
         {{orderInfo.pay_time}}
       </view>
+      <view data-id="{{oid}}" class="write-btn"  bindtap="goOrderPay" >去支付</view>
     </view>
   </view>
 </view>

@@ -6,12 +6,17 @@ Page({
    * 页面的初始数据
    */
   data: {
-    orderInfo:''
+    orderInfo:'',
+    oid:''
   },
   onLoad:function(options){
     let cid = options.cid
+    this.setData({
+      oid:cid
+    })
     this.getOrders(cid)
   },
+
   /**
    * 获取用户订单
    */
@@ -25,13 +30,12 @@ Page({
         console.log(res.data.data);
         if (res.data.code === 200) {
           that.setData({
-            orderInfo: res.data.data.orderInfo,
+            orderInfo: res.data.data.orderInfo
           })
         }
       }
     })
   },
-
 
   copyText () {
     wx.setClipboardData({
@@ -45,6 +49,15 @@ Page({
           }
         })
       }
+    })
+  },
+  /**
+   * 如果订单未付款，订单未失效，就取付款订单页面
+   */
+  goOrderPay(e) {
+    let oid = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '/pages/lesson/pay_order_account/pay_order_account?oid='+oid,
     })
   }
 })

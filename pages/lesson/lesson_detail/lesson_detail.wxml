@@ -1,7 +1,7 @@
 <view class="lesson-detail">
   <view class="video-wrap" id="videoWrap" wx:if="{{videoShow}}">
 <!--    <video id="lessonVideo" src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400"></video>-->
-    <video autoplay="{{false}}" id="lessonVideo" src="{{videoUrl}}"></video>
+    <video autoplay="{{true}}" id="lessonVideo" src="{{videoUrl}}" bindtimeupdate="bindtimeupdate"></video>
     <view class="un-wifi" wx:if="{{wifiToastShow}}">
       <view class="tip">继续播放将消耗26M流量</view>
       <view class="checkbox-operate" bindtap="handleAgree">
@@ -129,7 +129,9 @@
         <rich-text nodes="{{courseDetail.rsCourse.course_harvest}}"></rich-text>
       </view>
       <view class="common-title">课程目录</view>
-      <view> <image src="{{courseDetail.rsCourse.course_catalog}}" style="width:750rpx;height:5970rpx"></image></view>
+      <view>
+        <view><image src="{{courseDetail.rsCourse.course_catalog}}" class='wedding_img' mode="widthFix" /></view>
+      </view>
       <view class="common-title">购买须知</view>
       <view class="p">
         <rich-text nodes="{{courseDetail.rsCourse.buy_known}}"></rich-text>
