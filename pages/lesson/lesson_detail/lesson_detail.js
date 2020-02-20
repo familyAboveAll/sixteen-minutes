@@ -36,8 +36,9 @@ Page({
     currentItem: {},
     currentItemIndex: 0,
     allReplys: [],
-    animationData: {}
-    replyItem: {}
+    replyItem: {},
+    videoShow: true,
+    scrollLeft: 0
   },
   handleChangeTab(e) {
     const index = e.currentTarget.dataset.index
@@ -75,8 +76,6 @@ Page({
       detailShow: false,
       currentItem: currentItem,
       currentItemIndex: index
-    }, () => {
-      this.createAnimate()
     })
   },
   getReplys (id) {
@@ -105,12 +104,9 @@ Page({
       indexShow: false,
       detailShow: true,
       allReplyShow: false
-    }, () => {
-      this.createAnimate()
     })
   },
   closeDetail () {
-    this.animation.translateY(10000).step()
     wx.pageScrollTo({
       scrollTop: 0,
       duration: 100
@@ -118,8 +114,7 @@ Page({
     this.setData({
       indexShow: true,
       detailShow: false,
-      tabIndex: 0,
-      animationData: this.animation.export()
+      tabIndex: 0
     })
   },
   showList () {
@@ -131,24 +126,19 @@ Page({
       indexShow: false,
       listShow: true,
       allReplyShow: false
-    }, () => {
-      this.createAnimate()
     })
   },
   closeList () {
-    this.animation.translateY(10000).step()
     wx.pageScrollTo({
       scrollTop: 0,
       duration: 100
     })
     this.setData({
       indexShow: true,
-      listShow: false,
-      animationData: this.animation.export()
+      listShow: false
     })
   },
   closeAllReply () {
-    this.animation.translateY(10000).step()
     wx.pageScrollTo({
       scrollTop: 0,
       duration: 100
@@ -157,19 +147,8 @@ Page({
       allReplyShow: false,
       currentItem: null,
       indexShow: true,
-      tabIndex: 0,
-      animationData: this.animation.export()
+      tabIndex: 0
     })
-  },
-  createAnimate () {
-    let self = this
-    const query = wx.createSelectorQuery()
-    query.select('#videoWrap').boundingClientRect()
-    query.exec(function(res){
-      console.log(res)
-      self.animation.translateY(res[0].height).step()
-      self.setData({animationData: self.animation.export()})
-    }, 10)
   },
   handleAgree () {
     this.setData({
@@ -319,8 +298,8 @@ Page({
   handleScreen (e) {
     const index = e.currentTarget.dataset.index
     this.setData({
-      isFullScreen: index * 1
-    }, () => {
+      isFullScreen: index * 1,
+      videoShow: !(index * 1)
     })
   },
   handleTapWrite () {
@@ -386,6 +365,7 @@ Page({
       })
     }
     const index = e.currentTarget.dataset.index
+    const num = e.currentTarget.dataset.num
     let desc = e.currentTarget.dataset.desc
     let courseName = e.currentTarget.dataset.cname
     let url = e.currentTarget.dataset.url
@@ -394,7 +374,7 @@ Page({
     let sectionName = e.currentTarget.dataset.name
     let sectionId = e.currentTarget.dataset.sid
     let courseImage = e.currentTarget.dataset.img
-
+    
     //留言
     this.getCommentList(sectionId)
     if (uid > 0) {
@@ -421,6 +401,13 @@ Page({
               duration: 2000
             })
           } else {
+            const query = wx.createSelectorQuery()
+            query.select('.playing').boundingClientRect()
+            query.exec(function(res){
+              that.setData({
+                scrollLeft: (num * res[0].width) / 2
+              })
+            })
             that.setData({
               sectionId:sectionId,
               videoUrl:url,
@@ -663,12 +650,6 @@ Page({
           })
         }
       }
-    })
-  },
-  onReady () {
-    this.animation = wx.createAnimation({
-      duration: 700,
-      timingFunction: 'ease',
     })
   }
 })

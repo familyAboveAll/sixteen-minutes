@@ -56,11 +56,12 @@
         <view class="lesson" wx:for="{{history}}" wx:key="index">
           <image src='{{item.course_image}}'></image>
           <view class="progress-wrap">
-<!--            <view class="tip">已学30%</view>-->
+            <view class="tip">已学{{item.speed}}%</view>
             <view class="progress">
-              <progress percent="30" stroke-width="2rpx" color="#FF6F3A"></progress>
+              <progress percent="{{item.speed}}" stroke-width="2rpx" color="#FF6F3A"></progress>
             </view>
           </view>
+          <view class="course-name">{{item.course_name}}<text>第{{item.section_number}}讲</text></view>
         </view>
       </scroll-view>
     </view>

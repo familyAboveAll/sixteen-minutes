@@ -24,7 +24,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.10.0",
-	"appid": "wx23c396c3649ba5b5",
+	"appid": "wxe6894b5696b1abb2",
 	"projectname": "sixteen-minutes14",
 	"debugOptions": {
 		"hidedInDevtools": []
@@ -67,14 +67,14 @@
 					"id": 1,
 					"name": "pages/mine/coupon/coupon",
 					"pathName": "pages/mine/coupon/coupon",
-					"query": "from=payAccount",
+					"query": "",
 					"scene": null
 				},
 				{
 					"id": 2,
 					"name": "pages/lesson/lesson_detail/lesson_detail",
 					"pathName": "pages/lesson/lesson_detail/lesson_detail",
-					"query": "id=2",
+					"query": "id=1",
 					"scene": null
 				},
 				{

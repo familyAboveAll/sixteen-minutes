@@ -1,5 +1,5 @@
 <view class="lesson-detail">
-  <view class="video-wrap" id="videoWrap">
+  <view class="video-wrap" id="videoWrap" wx:if="{{videoShow}}">
 <!--    <video id="lessonVideo" src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400"></video>-->
     <video autoplay="{{false}}" id="lessonVideo" src="{{videoUrl}}"></video>
     <view class="un-wifi" wx:if="{{wifiToastShow}}">
@@ -48,8 +48,8 @@
         </view>
       </view>
       <view class="lesson-card">
-        <scroll-view scroll-x="true" style="white-space: nowrap; display: flex;width: 100%">
-          <view wx:for="{{courseDetail.rsSection[0].children}}" wx:key="index" class="{{playVideoId==item.id?'item playing':'item'}}" data-url="{{item.video_url}}" data-desc="{{item.section_desc}}" data-cname="{{courseDetail.rsCourse.course_name}}" data-index="{{item.id}}" data-cid="{{item.cid}}" data-number="{{item.section_number}}" data-name="{{item.section_name}}" data-sid="{{item.id}}" data-img="{{courseDetail.rsCourse.course_image}}"  bindtap="handleChangeVieo">
+        <scroll-view scroll-x="true" scroll-left="{{scrollLeft}}" scroll-with-animation="{{true}}" style="white-space: nowrap; display: flex;width: 150%">
+          <view wx:for="{{courseDetail.rsSection[0].children}}" wx:key="index" id="{{'item' + index}}" class="{{playVideoId==item.id?'item playing':'item'}}" data-url="{{item.video_url}}" data-desc="{{item.section_desc}}" data-cname="{{courseDetail.rsCourse.course_name}}" data-index="{{item.id}}" data-num="{{index}}" data-cid="{{item.cid}}" data-number="{{item.section_number}}" data-name="{{item.section_name}}" data-sid="{{item.id}}" data-img="{{courseDetail.rsCourse.course_image}}"  bindtap="handleChangeVieo">
             <view class="index">第{{index+1}}讲</view>
             <view class="name">{{item.section_name}}</view>
             <view class="play-icon" wx:if="{{playVideoId==item.id}}">
@@ -88,7 +88,7 @@
       <view class="pay-btn" bindtap="handlePay" data-cid="{{courseId}}">优惠购买 ¥{{price_two}} <view class="span">¥{{price_one}}</view></view>
     </view>
   </view>
-  <view class="lesson-profile" animation="{{animationData}}" wx:if="{{detailShow}}">
+  <view class="lesson-profile" wx:if="{{detailShow}}">
     <view class="lesson-info">
       <view class="top">
         <view class="common-title">课程简介</view>
@@ -118,7 +118,7 @@
     </view>
     <view class="more-detail">
       <view class="common-title">课程概要</view>
-      <rich-text nodes="{{courseDetail.rsCourse.course_desc}}"></rich-text>
+      <view class="p"><rich-text nodes="{{courseDetail.rsCourse.course_desc}}"></rich-text></view>
 
       <view class="common-title">讲师简介</view>
       <view class="p">
@@ -129,14 +129,14 @@
         <rich-text nodes="{{courseDetail.rsCourse.course_harvest}}"></rich-text>
       </view>
       <view class="common-title">课程目录</view>
-      <view class="p"> <image src="{{courseDetail.rsCourse.course_catalog}}"></image></view>
+      <view> <image src="{{courseDetail.rsCourse.course_catalog}}" style="width:750rpx;height:5970rpx"></image></view>
       <view class="common-title">购买须知</view>
       <view class="p">
         <rich-text nodes="{{courseDetail.rsCourse.buy_known}}"></rich-text>
       </view>
     </view>
   </view>
-  <view class="lesson-list" animation="{{animationData}}" wx:if="{{listShow}}">
+  <view class="lesson-list" wx:if="{{listShow}}">
     <view class="lesson-info">
       <view class="top">
         <view class="common-title">课程目录</view>
@@ -169,7 +169,7 @@
       </view>
     </view>
   </view>
-  <view class="all-reply" animation="{{animationData}}" wx:if="{{allReplyShow}}">
+  <view class="all-reply" wx:if="{{allReplyShow}}">
     <view class="top">
       <view class="common-title">留言详情</view>
       <view class="close" bindtap="closeAllReply">
@@ -258,7 +258,7 @@
           <image src="/static/images/icon/shouqi@2x.png" wx:else data-index='0' bindtap="handleScreen"/>
         </view>
       </view>
-      <textarea placeholder="由小编筛选后的优质留言将会公开显示" placeholder-style="font-size: 28rpx;color: #9C9CA9;" focus="true" fixed="true" cursor-spacing="120rpx" bindblur="handleBlur" bindfocus="handleFocus" bindinput="bindinputs"></textarea>
+      <textarea placeholder="{{allReplyShow?'':'由小编筛选后的优质留言将会公开显示'}}" placeholder-style="font-size: 28rpx;color: #9C9CA9;" focus="true" fixed="true" cursor-spacing="120rpx" bindblur="handleBlur" bindfocus="handleFocus" bindinput="bindinputs"></textarea>
       <view class="{{isFocus?'btn focus':'btn'}}" bindtap="handlePublish" data-cid="{{courseId}}" data-sid="{{sectionId}}">发布</view>
     </view>
   </view>

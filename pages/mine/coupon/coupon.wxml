@@ -24,6 +24,7 @@
         <image src="/static/images/icon/xuanze_r@2x.png" data-index='{{index}}' bindtap="handleCouponChoose" wx:if="{{item.select}}"/>
         <image src="/static/images/icon/xuanze_h@2x.png" data-index='{{index}}' bindtap="handleCouponChoose" wx:else/>
       </view>
+      <view class="to-use" wx:else>去使用</view>
     </view>
   </view>
   <view class="tip" wx:if="{{!unUseShow&&!isPayAccount}}">失效的优惠券已被隐藏，<view class="check" bindtap="showUnUse">点击查看</view></view>

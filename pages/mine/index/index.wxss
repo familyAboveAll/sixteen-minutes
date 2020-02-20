@@ -170,3 +170,10 @@
   top: -28rpx;
   position: relative;
 }
+.course-name {
+  font-size: 24rpx;
+  color: #343434;
+}
+.course-name text {
+  padding-left: 10rpx;
+}

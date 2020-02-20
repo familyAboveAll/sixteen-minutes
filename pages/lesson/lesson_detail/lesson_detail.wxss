@@ -288,6 +288,18 @@
   height: 28rpx;
 }
 /* lesson-profile start */
+.lesson-profile {
+  padding-top: 647rpx;
+}
+.lesson-profile .lesson-info {
+  position: fixed;
+  top: 420rpx;
+  width: 100%;
+  background: #fff;
+  margin-bottom: 16rpx;
+  border-bottom: 20rpx solid #F2F2F2;
+  padding-bottom: 16rpx;
+}
 .top {
   height: 80rpx;
   display: flex;
@@ -297,9 +309,7 @@
   border-bottom: 2rpx solid #F2F2F2;
 }
 .teacher-wrap {
-  border-top: 20rpx solid #F5F5F5;
   border-bottom: 20rpx solid #F5F5F5;
-  margin-top: 16rpx;
   padding: 0 30rpx 60rpx;
 }
 .teacher-wrap .common-title {
@@ -340,8 +350,8 @@
 /* lesson-profile end */
 
 /* lesson-list start */
-.lesson-profile, .lesson-list, .all-reply {
-  transform: translateY(1000rpx);
+.lesson-list, .all-reply {
+  padding-top: 420rpx;
 }
 .lesson-list .title {
   height: 84rpx;
@@ -614,4 +624,7 @@
 .lesson-index .lesson-title .title {
   font-size: 36rpx;
   font-weight: bold;
+}
+rich-text {
+  padding: 0 26rpx;
 }
