@@ -38,7 +38,7 @@
 .price-detail {
   width: 229rpx;
   padding-left: 30rpx;
-  padding-top: 22rpx;
+  padding-top: 34rpx;
 }
 .price-detail .price {
   display: flex;
@@ -47,14 +47,16 @@
   color: #F1503A;
 }
 .price-detail .coupon-price {
-  font-size: 96rpx;
+  font-size: 64rpx;
   color: #F1503A;
   width: 108rpx;
   text-align: center;
 }
+/*newmini*/
 .price-detail .limits {
   font-size: 24rpx;
   color: #9999A7;
+  margin-left: 24rpx;
 }
 .use-detail {
   flex: 1;
@@ -64,6 +66,7 @@
 .use-detail .des {
   font-size: 36rpx;
   color: #151515;
+  font-weight: bold;
 }
 .use-detail .time-limt {
   font-size: 24rpx;

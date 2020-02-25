@@ -9,7 +9,7 @@
     未付款
   </view>
   <view class="lesson-card card">
-    <navigator url="/pages/lesson/lesson_detail/lesson_detail?id={{orderInfo.course_id}}" class="lesson-info">
+    <view data-cid="{{orderInfo.course_id}}" data-status="{{orderInfo.order_status}}" bindtap="goCourse"  class="lesson-info">
       <view class="cover-pic">
         <image src='{{orderInfo.course_image}}'></image>
       </view>
@@ -23,7 +23,7 @@
 <!--        </view>-->
 <!--        <view class="bottom">34讲</view>-->
       </view>
-    </navigator>
+    </view>
     <view class="ul">
       <view class="li">
         <view class="span">商品总价</view>
@@ -60,7 +60,7 @@
         <view class="span" >支付时间：</view>
         {{orderInfo.pay_time}}
       </view>
-      <view data-id="{{oid}}" class="write-btn"  bindtap="goOrderPay" >去支付</view>
+      <view data-id="{{oid}}" class="write-btn"  bindtap="goOrderPay" wx:if="{{status == 0}}">去支付</view>
     </view>
   </view>
 </view>

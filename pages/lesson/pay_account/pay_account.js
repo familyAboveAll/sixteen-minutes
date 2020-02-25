@@ -7,7 +7,9 @@ Page({
     selectCoupon:'',
     coupShow:false,
     couponId:'',
-    couponMoney:''
+    couponMoney:'',
+    is_discount:false,  //说明课程在优惠区间--newmini
+    price:''
   },
 
   onLoad: function (options) {
@@ -18,23 +20,22 @@ Page({
       courseInfo: detail
     })
     this.couponOld()
-    // wx.request({
-    //   url:url,
-    //   data:{
-    //     cid:cid
-    //   },
-    //   success:function (e) {
-    //     that.setData({
-    //       courseInfo:e.data.data.rsCourse,
-    //     })
-    //   }
-    // })
   },
   onShow() {
     let couponIds = wx.getStorageSync('couponId')
     let couponMoneys = wx.getStorageSync('couponMoney')
-    let priceEnd = this.data.courseInfo.course_favorable_Price - couponMoneys
-    console.log(couponIds+'ssss'+priceEnd)
+    if (this.data.courseInfo.is_discount == 1) {
+      var priceEnd = this.data.courseInfo.course_favorable_Price - couponMoneys
+      //原价格，主要判断是否有优惠后的价格
+      this.setData({
+        price:this.data.courseInfo.course_favorable_Price
+      })
+    } else {
+      var priceEnd = this.data.courseInfo.course_price - couponMoneys
+      this.setData({
+        price:this.data.courseInfo.course_price
+      })
+    }
 
     if (couponIds > 0) {
       this.setData({
@@ -124,7 +125,11 @@ Page({
     let that = this
     let url = app.globalData.sixBaseUrl+"api/user/couponOld"
     let detail = wx.getStorageSync('courseDetail')
-    let price = detail.course_favorable_Price
+    if (detail.is_discount == 1) {
+      var price = detail.course_favorable_Price
+    } else {
+      var price = detail.course_price
+    }
     let cid = detail.id
     let uid = wx.getStorageSync('user_id')
     wx.request({
@@ -159,8 +164,6 @@ Page({
       }
     }
     )
-
-
   }
 
 })

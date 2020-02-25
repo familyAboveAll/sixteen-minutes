@@ -63,7 +63,7 @@
     </view>
   </view>
   <view class="exchange" wx:if="{{!isPayAccount}}">
-    <view class="exchange-btn" bindtap="showToast">兑换卡卷</view>
+    <view class="exchange-btn" bindtap="showToast">兑换卡券</view>
   </view>
   <view class="exchange-toast-wrap" wx:if="{{toastShow}}">
     <view class="exchange-toast">

@@ -8,7 +8,7 @@
       <swiper-item wx:for="{{switchList}}" wx:key="index"><image src="{{item.image}}"></image></swiper-item>
     </swiper>
   </view>
-  <view bindtap="redirectTo" data-uid="{{item.user_id}}" data-id="{{item.id}}" data-status="{{item.order_status}}"   wx:for="{{courseList}}" wx:key="index">
+  <view bindtap="redirectTo"  data-id="{{item.id}}"    wx:for="{{courseList}}" wx:key="index">
       <view class="banner">
         <image src="{{item.course_image}}"></image>
         <view class="bg"><image src="/static/images/index/bg.jpg"></image></view>

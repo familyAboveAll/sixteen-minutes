@@ -87,7 +87,7 @@ Page({
         console.log(rs.data)
         if (code != 200) {
           wx.showToast({
-            title: '数据不合法',
+            title: rs.data.msg,
             icon: 'fail',
             duration: 2000
           })
@@ -96,6 +96,9 @@ Page({
             title: '提交成功',
             icon: 'success',
             duration: 2000
+          })
+          wx.switchTab({
+            url: '/pages/mine/index/index',
           })
         }
       }

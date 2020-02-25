@@ -14,8 +14,9 @@
           <view>公众号：16分钟</view>
           <view>联系电话：1800000000</view>
         </view>
+
         <view class="code">
-          <image src="/static/images/erweima@2x.png"/>
+          <image src="https://sixmins.oss-cn-beijing.aliyuncs.com/uplaod/imageSelf/gh_b879d8b7a060_430.jpg" show-menu-by-longpress="https://sixmins.oss-cn-beijing.aliyuncs.com/uplaod/imageSelf/gh_b879d8b7a060_430.jpg"/>
         </view>
       </view>
     </view>

@@ -33,7 +33,7 @@
         </view>
       </view>
       <view class="lesson-tip">
-        <view class="span">共{{courseDetail.rsCourse.course_section_num}}讲 · 更新至第{{sectionNumber}}讲</view>
+        <view class="span">共{{courseDetail.sectionNumAll}}讲 · 更新至第{{sectionNumber}}讲</view>
         <view class="span"><image src='/static/images/icon/user.png'></image>{{courseDetail.rsCourse.study_num}}</view>
       </view>
     </view>
@@ -48,8 +48,8 @@
         </view>
       </view>
       <view class="lesson-card">
-        <scroll-view scroll-x="true" scroll-left="{{scrollLeft}}" scroll-with-animation="{{true}}" style="white-space: nowrap; display: flex;width: 150%">
-          <view wx:for="{{courseDetail.rsSection[0].children}}" wx:key="index" id="{{'item' + index}}" class="{{playVideoId==item.id?'item playing':'item'}}" data-url="{{item.video_url}}" data-desc="{{item.section_desc}}" data-cname="{{courseDetail.rsCourse.course_name}}" data-index="{{item.id}}" data-num="{{index}}" data-cid="{{item.cid}}" data-number="{{item.section_number}}" data-name="{{item.section_name}}" data-sid="{{item.id}}" data-img="{{courseDetail.rsCourse.course_image}}"  bindtap="handleChangeVieo">
+        <scroll-view scroll-x="true"scroll-into-view="{{scrollIntoView}}" scroll-with-animation="{{true}}" style="white-space: nowrap; display: flex;">
+          <view wx:for="{{courseDetail.rsSectionAllEnd}}" wx:key="index" id="{{'item' + item.id}}" class="{{playVideoId==item.id?'item playing':'item'}}" data-id="{{item.id}}" data-url="{{item.video_url}}" data-desc="{{item.section_desc}}" data-cname="{{courseDetail.rsCourse.course_name}}" data-index="{{item.id}}" data-num="{{index}}" data-cid="{{item.cid}}" data-number="{{item.section_number}}" data-name="{{item.section_name}}" data-sid="{{item.id}}" data-img="{{courseDetail.rsCourse.course_image}}"  bindtap="handleChangeVieo">
             <view class="index">第{{index+1}}讲</view>
             <view class="name">{{item.section_name}}</view>
             <view class="play-icon" wx:if="{{playVideoId==item.id}}">
@@ -78,13 +78,19 @@
       </view>
       <comment-item prop-comments="{{commentsData}}" bind:handleLike="handleLike" bind:showComment="showComment" bind:showAllReply="showAllReply"></comment-item>
     </view>
-    <view class="pay-footer">
-      <view class="custom-service">
-        <view class="img-wrap">
-          <image src='/static/images/icon/kefu@2x.png'></image>
-        </view>
-        <view class='p'>联系客服</view>
-      </view>
+    <view class="pay-footer" wx:if="{{!isBuy}}">
+<!--      <view class="custom-service" bindtap="customer">-->
+<!--        <view class="img-wrap">-->
+<!--          <image src='/static/images/icon/kefu@2x.png'></image>-->
+<!--        </view>-->
+<!--        <view class='p'>联系客服</view>-->
+<!--      </view>-->
+            <view class="custom-service">
+              <button class='btn1' open-type='contact' size="mini">
+                        <image class="btnImg" src='/static/images/kefu@2x.png'></image>
+              </button>
+            </view>
+
       <view class="pay-btn" bindtap="handlePay" data-cid="{{courseId}}">优惠购买 ¥{{price_two}} <view class="span">¥{{price_one}}</view></view>
     </view>
   </view>
@@ -100,7 +106,7 @@
         <view class="title">{{courseDetail.rsCourse.course_name}}</view>
       </view>
       <view class="lesson-tip">
-        <view class="span">共{{courseDetail.rsCourse.course_section_num}}讲 ·  更新至第{{sectionNumber}}讲</view>
+        <view class="span">共{{courseDetail.sectionNumAll}}讲 ·  更新至第{{sectionNumber}}讲</view>
         <view class="span"><image src='/static/images/icon/user.png'></image>{{courseDetail.rsCourse.study_num}}</view>
       </view>
     </view>
@@ -118,7 +124,7 @@
     </view>
     <view class="more-detail">
       <view class="common-title">课程概要</view>
-      <view class="p"><rich-text nodes="{{courseDetail.rsCourse.course_desc}}"></rich-text></view>
+      <view class="p textview"><rich-text  nodes="{{courseDetail.rsCourse.course_desc}}"></rich-text></view>
 
       <view class="common-title">讲师简介</view>
       <view class="p">
@@ -155,7 +161,7 @@
           </view>
         </view>
         <view class="{{item.showVideo?'video-item-wrap video-animate':'video-item-wrap'}}" style="height:{{(item.children.length*120)+'rpx'}}">
-            <view wx:for="{{item.children}}" wx:for-item='childrenItem' wx:key="id" class="{{playVideoId==childrenItem.id?'video-item current':'video-item'}}" data-url="{{childrenItem.video_url}}" data-desc="{{childrenItem.section_desc}}" data-cname="{{courseDetail.rsCourse.course_name}}"  data-index="{{childrenItem.id}}" data-cid="{{childrenItem.cid}}" data-number="{{childrenItem.section_number}}" data-name="{{childrenItem.section_name}}" data-sid="{{childrenItem.id}}" data-img="{{courseDetail.rsCourse.course_image}}" bindtap="handleChangeVieo">
+            <view wx:for="{{item.children}}" wx:for-item='childrenItem' wx:key="id" class="{{playVideoId==childrenItem.id?'video-item current':'video-item'}}" data-id="{{childrenItem.id}}" data-url="{{childrenItem.video_url}}" data-desc="{{childrenItem.section_desc}}" data-cname="{{courseDetail.rsCourse.course_name}}"  data-index="{{childrenItem.id}}" data-cid="{{childrenItem.cid}}" data-number="{{childrenItem.section_number}}" data-name="{{childrenItem.section_name}}" data-sid="{{childrenItem.id}}" data-img="{{courseDetail.rsCourse.course_image}}" bindtap="handleChangeVieo">
 
             <view class="left">
               <view class="play-icon"><image src="/static/images/icon/shipin@2x.png"/></view>
@@ -164,7 +170,7 @@
             <view class="right">
               <view class="playing" wx:if="{{playVideoId==childrenItem.id}}"><image src="/static/images/icon/bofangzhong@2x.png" />正在播放</view>
               <view class="free" wx:elif='{{childrenItem.is_try_see==1}}'>免费</view>
-              <view class="lock" wx:else><image src="/static/images/icon/suoding@2x.png" /></view>
+              <view class="lock" wx:elif="{{!isBuy}}"><image src="/static/images/icon/suoding@2x.png" /></view>
             </view>
           </view>
         </view>

@@ -1,0 +1,27 @@
+.btn1{
+  width: 200rpx;
+  height: 200rpx;
+  margin-top: 20rpx;
+  background-color: white;
+  color: goldenrod;
+  border-radius: 0rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.btnImg {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.btn1::after {
+  border: 0;
+}
+.customKf {
+  font-size: 24rpx;
+  font-weight: 400;
+  color: #8C8C8C;
+}

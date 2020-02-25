@@ -12,7 +12,8 @@ Page({
     price_one:'',
     price_two:'',
     img_one: false,
-    img_two: false
+    img_two: false,
+    is_discount:false  //说明课程在优惠区间--newmini
   },
 
   /**
@@ -80,18 +81,24 @@ Page({
     this.setData({
       courseId: cid
     })
-
+    console.log(url)
     wx.request({
       url: url,
       data:{},
       method:'GET',
       success(res) {
-        console.log(res.data.data.rsCourse.course_name)
+        console.log(res.data.data)
         if(res.data.code === 200) {
-          console.log(res.data.data.rsCourse.course_special_two)
+          console.log(res.data.data.rsCourse)
           wx.setNavigationBarTitle({
             title: res.data.data.rsCourse.course_name
           })
+          //说明课程在优惠区间--newmini
+          if (res.data.data.rsCourse.is_discount == 1) {
+            that.setData({
+              is_discount:true
+            })
+          }
           wx.setStorageSync('courseDetail', res.data.data.rsCourse)
           if (res.data.data.rsCourse.course_special == null) {
             that.setData({
@@ -108,7 +115,7 @@ Page({
             })
           } else {
             that.setData({
-              img_tow: false
+              img_tow: true
             })
           }
           that.setData({
@@ -131,8 +138,26 @@ Page({
         url: '/pages/lesson/pay_account/pay_account'
       })
     } else {
-      wx.switchTab({
-        url: '/pages/mine/index/index',
+      let courseId = this.data.courseId
+      wx.navigateTo({
+        url: '/pages/login/index?type=2&cid='+courseId
+      })
+    }
+  },
+  /**
+   * 免费试学
+   */
+  freeStudy(){
+    let uid = wx.getStorageSync('user_id')
+    if (uid > 0) {
+      let courseId = this.data.courseId
+      wx.navigateTo({
+        url: '/pages/lesson/lesson_detail/lesson_detail?id='+courseId
+      })
+    } else {
+      let courseId = this.data.courseId
+      wx.navigateTo({
+        url: '/pages/login/index?type=2&cid='+courseId
       })
     }
   }

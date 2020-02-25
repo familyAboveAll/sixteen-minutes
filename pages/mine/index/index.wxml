@@ -5,7 +5,7 @@
   <view class="user-card">
     <view class="card-top">
       <view class="unlogin-title" wx:if="{{!userInfo}}">
-        <navigator url="/pages/login/index" hover-class="none">登录/注册 ></navigator>
+        <navigator url="/pages/login/index?type=3" hover-class="none">登录/注册 ></navigator>
       </view>
       <view class="logined" wx:else>
         <view class="title">{{userInfo.userInfo.user_name}}</view>
@@ -14,7 +14,7 @@
       <view class="avatar" bindtap="handleEdit">
         <image src="/static/images/icon/touxiang_moren@2x.png" wx:if="{{!userInfo}}"/>
         <image src="{{userInfo.userInfo.avatar}}" wx:else/>
-        <image class="edit" src="/static/images/icon/bianji@2x.png" wx:if="{{userInfo}}"></image>
+        <image class="edit" src="/static/images/icon/bianji@2x.png"></image>
       </view>
     </view>
     <view class="card-bottom">
@@ -38,7 +38,7 @@
           <image src='/static/images/mine/youhuiquan@2x.png'></image>
         </view>
         <view class="num" wx:if="{{userInfo}}"> {{couponNum}}</view>
-        <view class="p">优惠卷</view>
+        <view class="p">优惠券</view>
       </view>
     </view>
   </view>
@@ -75,10 +75,13 @@
         </view>
       </view>
     </navigator>
-    <view class="item">
-      <p>客服中心</p>
-      <view class="right-arrow">
-        <image src='/static/images/icon/right-arrow.png'></image>
+    <view>
+      <view class="item">
+        <p>客服中心</p>
+        <button class="btnContact" open-type="contact" bindcontact="handleContact"></button>
+        <view class="right-arrow">
+          <image src='/static/images/icon/right-arrow.png'></image>
+        </view>
       </view>
     </view>
     <navigator url="/pages/mine/setting/setting">

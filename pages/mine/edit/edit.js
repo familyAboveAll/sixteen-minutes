@@ -16,7 +16,8 @@ Page({
       column: "day",
       dateLimit: false
     },
-    hidden:true
+    hidden:true,
+    avatar:''
   },
   onLoad () {
     let self = this
@@ -39,7 +40,8 @@ Page({
         birthday:uinfo.birthday,
         email:uinfo.email,
         school:uinfo.school,
-        occupation:uinfo.occupation
+        occupation:uinfo.occupation,
+        avatar:uinfo.avatar
       });
     } else {
       console.log('未登录')
@@ -137,28 +139,110 @@ Page({
     this.setData({
       hidden:false
     }),
-        wx.showActionSheet({
-          itemList: ["女","男","秘密"],
-          success(res){
-            let indexs = res.tapIndex
-            if (indexs == 0) {
-              that.setData({
-                sex:'女',
-                sexNum:0
-              })
-            } else if (indexs == 1){
-              that.setData({
-                sex:'男',
-                sexNum:1
-              })
-            } else if (indexs == 2) {
-              that.setData({
-                sex:'秘密',
-                sexNum:2
-              })
-            }
-          },
+    wx.showActionSheet({
+      itemList: ["女","男","秘密"],
+      success(res){
+        let indexs = res.tapIndex
+        if (indexs == 0) {
+          that.setData({
+            sex:'女',
+            sexNum:0
+          })
+        } else if (indexs == 1){
+          that.setData({
+            sex:'男',
+            sexNum:1
+          })
+        } else if (indexs == 2) {
+          that.setData({
+            sex:'秘密',
+            sexNum:2
+          })
+        }
+      },
+    })
+  },
+
+  /**
+   * 修改头像
+   */
+  clickAvatar(){
+    let that = this
+    var uid = wx.getStorageSync('user_id')
+    wx.showActionSheet({
+      itemList: ['拍照', '从相册选择'],
+      success(res){
+        wx.chooseImage({
+          count: 1,
+          sizeType: ['original', 'compressed'],
+          sourceType: res.tapIndex === 0 ? ['camera'] : ['album'],
+          success (res) {
+            // tempFilePath可以作为img标签的src属性显示图片
+            var tempFilePaths = res.tempFilePaths[0]
+            var url = app.globalData.sixBaseUrl + "api/user/uploads/uid/"+uid;
+            wx.showToast({
+              icon: "loading",
+              title: "正在上传"
+            }),
+            wx.uploadFile({
+              url: url, //接口
+              filePath: tempFilePaths,
+              name: 'file',
+              formData: {
+                'user': 'test'
+              },
+              success: function (res) {
+                var rsOb = JSON.parse(res.data)
+                var img = rsOb.data.img
+                //do something
+                console.log(rsOb.code);
+                if (rsOb.code == 200) {
+                  that.setData({
+                    avatar:img
+                  })
+                  that.getUser(uid)
+                }
+              },
+              fail: function (error) {
+                console.log(error);
+              },
+              complete: function () {
+                wx.hideToast();  //隐藏Toast
+              }
+            })
+          }
         })
-  }
+      }
+    })
+  },
+
+  /**
+   * 上传成功了头像，获取用户个人信息，主要是更新头像，更新缓存
+   */
+  getUser (uid) {
+    var urlUser = app.globalData.sixBaseUrl + "api/user/getUserInfo/uid/"+uid;
+    wx.request({
+      url: urlUser,
+      method: 'GET',
+      success(rs) {
+        if (rs.data.code === 200) {
+          wx.setStorageSync('userInfoCache', rs.data.data)
+        }
+      }
+    })
+  },
+
+
+
 
   })
+//
+// success: (res) => {
+//   wx.chooseImage({
+//         count: 1,
+//         sizeType: ['original','compressed'],
+//         sourceType: res.tapIndex === 0 ? ['camera'] : ['album'],
+//         success: (res) => {
+//         }
+//       }
+//   )}}

@@ -44,4 +44,5 @@ textarea {
 }
 .common-btn {
   margin-top: 106rpx;
+  line-height: 60rpx;
 }

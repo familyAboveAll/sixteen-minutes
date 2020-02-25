@@ -52,9 +52,11 @@ Page({
       this.setData({
         userInfo: null
       });
-
-      console.log('未登录')
-      // 登录
+      wx.showToast({
+        title: '请登录',
+        icon: 'fail',
+        duration: 2000
+      })      // 登录
     }
   },
 

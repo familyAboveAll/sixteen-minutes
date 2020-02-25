@@ -1,8 +1,9 @@
 <view class="orders-wrap">
-  <view class="order-item" wx:for="{{orderList}}" wx:key="index" data-cid="{{item.id}}" bindtap="handleLink">
+  <view class="order-item" wx:for="{{orderList}}" wx:key="index" data-cid="{{item.id}}" data-status="{{item.order_status}}" bindtap="handleLink">
     <view class="order-top">
       <p>{{item.addtime}}</p>
-      <p wx:if="{{item.order_status == '1'}}">交易成功</p>
+      <p wx:if="{{item.order_status == 1}}">交易成功</p>
+      <p class="fail" wx:elif="{{item.order_status == 2}}">交易关闭</p>
       <p class="fail" wx:else>未付款</p>
     </view>
     <view class="order-info">

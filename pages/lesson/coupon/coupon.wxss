@@ -47,7 +47,7 @@
   color: #F1503A;
 }
 .price-detail .coupon-price {
-  font-size: 96rpx;
+  font-size: 64rpx;
   color: #F1503A;
   width: 108rpx;
   text-align: center;
@@ -64,6 +64,7 @@
 .use-detail .des {
   font-size: 36rpx;
   color: #151515;
+  font-weight: bold;
 }
 .use-detail .time-limt {
   font-size: 24rpx;

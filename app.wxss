@@ -112,9 +112,6 @@ image {
   height: 50vh;
   flex: none;
 }
-.fullScreen .btn {
-  bottom: 300rpx;
-}
 .comment-item {
   margin-bottom: 43rpx;
   padding-bottom: 34rpx;

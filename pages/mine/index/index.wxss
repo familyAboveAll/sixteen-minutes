@@ -177,3 +177,6 @@
 .course-name text {
   padding-left: 10rpx;
 }
+.btnContact {
+  background-color:#FFFFFF;
+}

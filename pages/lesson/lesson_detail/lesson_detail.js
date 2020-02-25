@@ -39,7 +39,9 @@ Page({
     replyItem: {},
     videoShow: true,
     scrollLeft: 0,
-    speeds:''
+    speeds:'',
+    scrollIntoView: '',
+    isBuy:false
   },
   handleChangeTab(e) {
     const index = e.currentTarget.dataset.index
@@ -80,7 +82,8 @@ Page({
     })
   },
   getReplys (id) {
-    let url = app.globalData.sixBaseUrl + "/api/comment/replyList/msgId/" + id
+    let uid = wx.getStorageSync('user_id')
+    let url = app.globalData.sixBaseUrl + "/api/comment/replyList/msgId/" + id + "/uid/" + uid
     let self = this
     wx.request({
       url: url,
@@ -247,6 +250,13 @@ Page({
   },
   onLoad(options) {
     let cid = options.id
+    let isBuy = options.isBuy
+    if (isBuy == 1) {
+      this.setData({
+        isBuy:true
+      })
+    }
+
     this.getCourseDetail(cid)
     //----mini
 
@@ -268,6 +278,7 @@ Page({
             lessonVideo.play()
             data.wifiToastShow = false
           } else {
+            lessonVideo.pause()
             data.wifiToastShow = true
           }
           self.setData({
@@ -368,6 +379,7 @@ Page({
       })
     }
     const index = e.currentTarget.dataset.index
+    const id = e.currentTarget.dataset.id
     const num = e.currentTarget.dataset.num
     let desc = e.currentTarget.dataset.desc
     let courseName = e.currentTarget.dataset.cname
@@ -380,12 +392,14 @@ Page({
     wx.setNavigationBarTitle({
       title: courseName
     })
+    console.log(sectionId)
     //留言
     this.getCommentList(sectionId)
     if (uid > 0) {
-      that.setData({
-        sectionId:sectionId
-      })
+      // that.setData({
+      //   sectionId:sectionId,
+      //   playVideoId:sectionId
+      // })
       //视频播放记录
       wx.request({
         url: requestUrl,
@@ -401,7 +415,6 @@ Page({
         },
         method: 'GET',
         success(rs) {
-          console.log(rs.data)
           if (rs.data.code === 300) {
             wx.showToast({
               title: '请购买',
@@ -409,18 +422,12 @@ Page({
               duration: 2000
             })
           } else {
-            const query = wx.createSelectorQuery()
-            query.select('.playing').boundingClientRect()
-            query.exec(function(res){
-              that.setData({
-                scrollLeft: (num * res[0].width) / 2
-              })
-            })
             that.setData({
               sectionId:sectionId,
               videoUrl:url,
               playVideoId: index,
-              sectionDesc: desc
+              sectionDesc: desc,
+              scrollIntoView: 'item' + id
             })
           }
         }
@@ -463,32 +470,14 @@ Page({
         commentsData: commentsData
       })
     }
+    // newmini
     var url = app.globalData.sixBaseUrl + "api/comment/likeMsg/uid/" + uid + "/MsgId/" + changeData.id;
+    console.log(url)
     wx.request({
       url: url,
       method: 'GET',
-      success(res) {
-        if (res.data.code === 200) {
-          wx.request({
-            url: url,
-            method: 'POST',
-            success(rs) {
-              if (rs.data.code === 200) {
-                wx.showToast({
-                  title: '点赞成功',
-                  icon: 'success',
-                  duration: 2000
-                })
-              } else {
-                wx.showToast({
-                  title: '点赞失败',
-                  icon: 'fail',
-                  duration: 2000
-                })
-              }
-            }
-          })
-        }
+      success(rs) {
+        console.log(rs.data)
       }
     })
   },
@@ -610,7 +599,9 @@ Page({
    */
   getCourseDetail(cid) {
     let that = this;
-    var url = app.globalData.sixBaseUrl + "api/course/detail/cid/" + cid;
+    let uid = wx.getStorageSync('user_id')
+    var url = app.globalData.sixBaseUrl + "api/course/detail/cid/" + cid+"/uid/"+uid;
+    console.log(url)
     this.setData({
       courseId:cid
     })
@@ -619,12 +610,20 @@ Page({
       data: {},
       method: 'GET',
       success(res) {
+        console.log(res.data)
         if (res.data.code === 200) {
           wx.setStorageSync('courseDetail', res.data.data.rsCourse)
           wx.setNavigationBarTitle({
-            title: res.data.data.rsSection[0].children[0].section_name
+            title: res.data.data.rsCourse.course_name
           })
           let sectionId = res.data.data.rsSection[0].children[0].id
+          if (res.data.data.rsSection[0].children[0].is_try_see == 1) { //可以免费试看
+            var videoUrl = res.data.data.rsSection[0].children[0].video_url
+            var playVideoId = res.data.data.rsSection[0].children[0].id
+          } else {
+            var videoUrl = ''
+            var playVideoId = 0
+          }
           that.getCommentList(sectionId) //默认评论列表
           console.log(res.data.data)
           that.setData({
@@ -632,8 +631,8 @@ Page({
               courseDetail: res.data.data,
               sectionNumber: res.data.data.sectionNumber,
               lessonData: res.data.data.rsSection,
-              videoUrl: res.data.data.rsSection[0].children[0].video_url,
-              playVideoId: res.data.data.rsSection[0].children[0].id,
+              videoUrl: videoUrl,
+              playVideoId: playVideoId,
               sectionDesc: res.data.data.rsSection[0].children[0].section_desc,
               price_one: res.data.data.rsCourse.course_price,
               price_two: res.data.data.rsCourse.course_favorable_Price
@@ -641,7 +640,7 @@ Page({
           //视频播放记录
           var requestUrl = app.globalData.sixBaseUrl + "api/course/play";
           var uid = wx.getStorageSync('user_id')
-          if (uid > 0) {
+          if (uid > 0 && playVideoId > 0) {
             wx.request({
               url: requestUrl,
               data: {
@@ -654,7 +653,10 @@ Page({
                 sectionId:sectionId,
                 courseImage:res.data.data.rsCourse.course_image
               },
-              method: 'GET'
+              method: 'GET',
+              success(res) {
+                console.log(res.data)
+              }
             })
           }
           that.videoSpeeds() //播放进度
@@ -667,7 +669,8 @@ Page({
    */
   getCommentList(sid) {
     let that = this;
-    var url = app.globalData.sixBaseUrl + "/api/comment/commentList/sid/" + sid;
+    let uid = wx.getStorageSync('user_id')
+    var url = app.globalData.sixBaseUrl + "/api/comment/commentList/sid/" + sid + "/uid/"+uid;
     wx.request({
       url: url,
       data: {},
@@ -701,24 +704,32 @@ Page({
     var that = this
     var uid = wx.getStorageSync('user_id')
     var url = app.globalData.sixBaseUrl + "/api/course/videoSpeed"
+    var playVideoId = this.data.playVideoId
     if (uid > 0) {
       var i = setInterval(function () {
         var speed = that.data.speeds
         var sid = that.data.sectionId
         console.log(sid+'====='+speed)
-        wx.request({
-          url: url,
-          data:{
-            uid:uid,
-            sid:sid,
-            speed:speed
-          },
-          method: 'GET',
-          success(res) {
-            console.log(res.data)
-          }
-        })
+        if (playVideoId > 0) {
+          wx.request({
+            url: url,
+            data:{
+              uid:uid,
+              sid:sid,
+              speed:speed
+            },
+            method: 'GET',
+            success(res) {
+              //console.log(res.data)
+            }
+          })
+        }
       }, 3000)
     }
+  },
+  customer() {
+    wx.navigateTo({
+      url: '/pages/mine/customer/customer'
+    })
   }
 })

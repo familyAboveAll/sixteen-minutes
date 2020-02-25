@@ -43,3 +43,13 @@
   text-decoration: line-through;
   font-size: 24rpx;
 }
+/*newmini*/
+.img_one{
+  font-size: 0;
+}
+.img_tow{
+  font-size: 0;
+}
+.wedding_img {
+  display: flex;
+}

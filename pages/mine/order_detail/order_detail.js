@@ -7,12 +7,16 @@ Page({
    */
   data: {
     orderInfo:'',
-    oid:''
+    oid:'',
+    status:''
   },
   onLoad:function(options){
     let cid = options.cid
+    let status = options.statu
+    console.log(cid+'---'+status)
     this.setData({
-      oid:cid
+      oid:cid,
+      status:status
     })
     this.getOrders(cid)
   },
@@ -51,6 +55,17 @@ Page({
       }
     })
   },
+  goCourse(e) {
+    let cid = e.currentTarget.dataset.cid
+    let status = e.currentTarget.dataset.status
+    if (status == 1) {
+      wx.navigateTo({
+        url: '/pages/lesson/lesson_detail/lesson_detail?id='+cid+'&isBuy=1',  //newmini
+      })
+    }
+  },
+
+
   /**
    * 如果订单未付款，订单未失效，就取付款订单页面
    */

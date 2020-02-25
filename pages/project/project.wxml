@@ -1,14 +1,16 @@
 <view class="project-wrap">
 <!--  <view class="img-wrap"  wx:if="{{img_one}}" style="{{'background:url('+courseImage+') no-repeat;background-size:100% 100%'}}"></view>-->
 <!-- <view class="img-wrap" wx:if="{{img_tow}}" style="{{'background:url('+courseImage_two+') no-repeat;background-size:100% 100%'}}"></view>-->
-  <view wx:if="{{img_one}}"><image src="{{courseImage}}" class='wedding_img' mode="widthFix" /></view>
-  <view wx:if="{{img_tow}}"><image src="{{courseImage}}" class='wedding_img' mode="widthFix" /></view>
+  <view wx:if="{{img_one}}" class="img_one"><image src="{{courseImage}}" class='wedding_img' mode="widthFix" /></view>
+  <view wx:if="{{img_tow}}" class="img_tow"><image src="{{courseImage_two}}" class='wedding_img' mode="widthFix" /></view>
   <view class="pay-footer">
-    <navigator url="/pages/lesson/lesson_detail/lesson_detail?id={{courseId}}">
-    <view class="free-btn">免费试学</view>
-    </navigator>
+    <view>
+    <view class="free-btn" bindtap="freeStudy">免费试学</view>
+    </view>
+<!--    说明课程在优惠区间;newmini-->
     <view bindtap="buyDetail">
-      <view  class="pay-btn">优惠购买 ¥{{price_two}}  <text>¥{{price_one}}</text></view>
+      <view  class="pay-btn" wx:if="{{is_discount}}">优惠购买 ¥{{price_two}}  <text>¥{{price_one}}</text></view>
+      <view  class="pay-btn" wx:else="{{is_discount}}">课程价格 ¥{{price_one}} </view>
     </view>
   </view>
 </view>

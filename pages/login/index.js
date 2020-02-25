@@ -2,6 +2,18 @@
 const app = getApp()
 Page({
   data: {
+    type:'',
+    cid:''
+  },
+  onLoad(option) {
+    let type = option.type
+    let cid = option.cid
+    console.log(type)
+    console.log(cid+'--------')
+    this.setData({
+      type:type,
+      cid:cid
+    })
   },
   getPhoneNumber(res) {
     console.log(res);
@@ -33,14 +45,29 @@ Page({
             if (token && token.length !== 0) {
               wx.setStorageSync('userInfoCache', res.data.data)
               wx.setStorageSync('user_id', res.data.data.userInfo.id)
-              wx.switchTab({
-                url: '/pages/mine/index/index',
-                success: function (e) {
-                  var page = getCurrentPages().pop();
-                  if (page == undefined || page == null) return;
-                  page.onLoad();
-                }
-              })
+              let type = that.data.type
+              if (type == 1) {
+                wx.switchTab({
+                  url: '/pages/index/index',
+                })
+              } else if (type == 2) {
+                // let cid = that.data.cid
+                // wx.navigateTo({
+                //   url: '/pages/project/project?id='+cid
+                // })
+                wx.switchTab({
+                  url: '/pages/index/index',
+                })
+              } else if (type == 3) {
+                wx.switchTab({
+                  url: '/pages/mine/index/index',
+                  success: function (e) {
+                    var page = getCurrentPages().pop();
+                    if (page == undefined || page == null) return;
+                    page.onLoad();
+                  }
+                })
+              }
             }
           }
         });

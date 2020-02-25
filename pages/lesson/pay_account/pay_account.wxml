@@ -5,7 +5,7 @@
       </view>
       <view class="right">
         <view class="name">{{courseInfo.course_name}}</view>
-        <view class="price">¥{{courseInfo.course_favorable_Price}}</view>
+        <view class="price">¥{{price}}</view>
       </view>
     </view>
     <view class="pay-option yhj" data-option="yhj" data-cpid="{{selectCoupon.id}}" bindtap="handleSelect" wx:if="{{coupShow}}">

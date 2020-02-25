@@ -332,6 +332,7 @@
 .teacher-info .name {
   color: #3B3B3B;
   font-size: 32rpx;
+  font-weight: bold;
 }
 .teacher-info .position {
   color: #3B3B3B;
@@ -340,8 +341,8 @@
 }  
 .more-detail .p {
   color: #3B3B3B;
-  font-size: 26rpx;
-  line-height: 42rpx;
+  font-size: 28rpx;
+  line-height: 48rpx;
   padding: 0 36rpx;
 }
 .more-detail .common-title {
@@ -626,5 +627,34 @@
   font-weight: bold;
 }
 rich-text {
-  padding: 0 26rpx;
+  white-space: pre-warp;
+  word-break:break-all;
+}
+.btn1{
+  /*width: 200rpx;*/
+  /*height: 200rpx;*/
+  margin: 0 auto;
+  margin-top: 20rpx;
+  background-color: #FFFFFF;
+  color: goldenrod;
+  border-radius: 0rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.btnImg {
+  width: 81rpx;
+  height: 73rpx;
+}
+
+.btn1::after {
+  border: 0;
+}
+.customKf {
+  font-size: 24rpx;
+  font-weight: 400;
+  color: #8C8C8C;
 }

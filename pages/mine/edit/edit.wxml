@@ -1,7 +1,7 @@
 <view class="mine-edit">
-  <view class="avatar-wrap">
-    <view class="avatar">
-      <image src="{{userInfos.avatar}}"></image>
+  <view class="avatar-wrap" bindtap="clickAvatar">
+    <view class="avatar" >
+      <image src="{{avatar}}"></image>
     </view>
   </view>
   <view class="input-card">
