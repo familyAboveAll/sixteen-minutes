@@ -10,7 +10,7 @@
           <view class="time">{{item.time}}</view>
         </view>
       </view>
-      <view class="reply-btn" wx:if="{{isMine}}" data-index="{{index}}" bindtap="handleReply">回复</view>
+      <view class="reply-btn" wx:if="{{isMine}}" data-cid="{{item.course_id}}" data-mid="{{item.id}}" data-index="{{index}}" bindtap="handleReply">回复</view>
     </view>
     <view class="comment-center">
       <view class="{{(item.showComment||isAllReply)&&item.comment.length>60?'p show-all':'p'}}">{{item.comment}}</view>

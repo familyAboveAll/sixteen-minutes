@@ -6,7 +6,8 @@ Page({
     userInfo: null,
     history:'',
     orderNUm:'',
-    couponNum:''
+    couponNum:'',
+    msgNum:''
   },
   handleLink (e) {
     const path = e.currentTarget.dataset.path
@@ -40,8 +41,9 @@ Page({
    */
   onShow:function(){
     let userRs = wx.getStorageSync('userInfoCache')
+    let uid = wx.getStorageSync('user_id')
     console.log(userRs)
-    if (userRs && userRs.length !== 0) {
+    if (uid > 0) {
       let uid = userRs.userInfo.id
       console.log('已经登录2')
       this.getUserInfos(uid)
@@ -72,11 +74,12 @@ Page({
       success(res) {
         console.log(res.data.data);
         if (res.data.code === 200) {
-          wx.setStorageSync('courseHistory', res.data.data.historyList)
+          // wx.setStorageSync('courseHistory', res.data.data.historyList)
           that.setData({
             history: res.data.data.historyList,
             orderNUm: res.data.data.countOrder,
-            couponNum: res.data.data.couponOrder
+            couponNum: res.data.data.couponOrder,
+            msgNum:res.data.data.msgNumber
           })
         }
       }

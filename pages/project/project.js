@@ -129,13 +129,29 @@ Page({
     })
   },
   /**
-   *
+   *mini302
    */
   buyDetail() {
     let uid = wx.getStorageSync('user_id')
+    let cid = this.data.courseId
+    let that = this;
+    var url = app.globalData.sixBaseUrl + "api/order/checkOrderBuy/cid/" + cid+"/uid/"+ uid;
     if (uid > 0) {
-      wx.navigateTo({
-        url: '/pages/lesson/pay_account/pay_account'
+      wx.request({
+        url: url,
+        data:{},
+        method:'GET',
+        success(res) {
+          if (res.data.code == 200) {
+            wx.navigateTo({  //已经存在未付款订单，跳转到订单详情支付
+              url: '/pages/mine/order_detail/order_detail?cid='+res.data.data+'&statu=0'
+            })
+          } else {
+            wx.navigateTo({
+              url: '/pages/lesson/pay_account/pay_account'
+            })
+          }
+        }
       })
     } else {
       let courseId = this.data.courseId

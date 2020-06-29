@@ -45,6 +45,7 @@ Page({
             if (token && token.length !== 0) {
               wx.setStorageSync('userInfoCache', res.data.data)
               wx.setStorageSync('user_id', res.data.data.userInfo.id)
+              wx.setStorageSync('auth_info', res.data.data.userInfo.auth_info)
               let type = that.data.type
               if (type == 1) {
                 wx.switchTab({

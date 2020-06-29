@@ -25,7 +25,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.10.0",
 	"appid": "wx23c396c3649ba5b5",
-	"projectname": "sixteen-minutes22",
+	"projectname": "sixteen-minutes28",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
@@ -79,8 +79,8 @@
 				},
 				{
 					"id": 3,
-					"name": "pages/project/project",
-					"pathName": "pages/project/project",
+					"name": "pages/mine/message/message",
+					"pathName": "pages/mine/message/message",
 					"query": "id=2",
 					"scene": null
 				}

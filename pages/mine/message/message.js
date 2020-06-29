@@ -62,11 +62,15 @@ Page({
       content:content
     })
   },
+  //跳转到对应的章节留言区
   handleReply (e) {
-    let index = e.detail
-    this.setData({
-      writeShow: true,
-      currentItem: this.data.commentsData[index]
+    let info = e.detail
+    let rs = info.split("#")
+    let mid = rs[0]
+    let cid = rs[1]
+    console.log(cid+'---'+mid)
+    wx.navigateTo({
+      url: "/pages/lesson/lesson_detail/lesson_detail?id="+cid+"&type=2&mid="+mid
     })
   },
   changeTab(e) {
@@ -76,6 +80,17 @@ Page({
       commentsData = this.data.sendInfo
     } else {
       commentsData = this.data.replyInfo
+      let uid = wx.getStorageSync('user_id')
+      var url = app.globalData.sixBaseUrl + "/api/comment/msgRead/uid/" + uid
+      console.log(url)
+      let self = this
+      wx.request({
+        url: url,
+        method: 'GET',
+        data: {},
+        success(res) {
+        }
+      })
     }
     this.setData({
       tabIndex: index,
@@ -96,6 +111,7 @@ Page({
     let userRs = wx.getStorageSync('userInfoCache')
     let uid = userRs.userInfo.id
     var url = app.globalData.sixBaseUrl + "/api/comment/myMsg/uid/" + uid
+    console.log(url)
     let self = this
     wx.request({
       url: url,

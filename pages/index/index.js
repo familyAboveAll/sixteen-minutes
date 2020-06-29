@@ -18,7 +18,10 @@ Page({
     receive:'注册去领取',
     isEnd: true,
     switchList:'',
-    isSwitch:false
+    isSwitch:false,
+    statusBarHeight: app.globalData.statusBarHeight,
+    scrolls:false,
+    heightMini:150
   },
   //事件处理函数
   bindViewTap: function () {
@@ -56,6 +59,7 @@ Page({
       //未登录用户id传0
       this.getCoupon(0)
     }
+    console.log(this.data.scrolls)
     this.getIndexCourseListOne();
     this.setData({
       baseUrl: app.globalData.sixBaseUrl,
@@ -158,6 +162,8 @@ Page({
     })
     var pages = this.data.page + 1;
     this.setData({
+      heightMini:50,
+      scrolls:true,
       page:pages
     })
     this.getIndexCourseList();
@@ -216,11 +222,14 @@ Page({
           }
           if (res.data.data.coupon.length == 0) {
             that.setData({
+              scrolls:true,
               toastShow: false
             })
           } else {
             that.setData({
+              scrolls:false,
               toastShow: true,
+              heightMini:150,
               coupon: res.data.data.coupon
             })
           }

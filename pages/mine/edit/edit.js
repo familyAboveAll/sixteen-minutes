@@ -26,10 +26,10 @@ Page({
     console.log(uinfo.sex)
 
     let sex = '秘密'
-    if (uinfo.sex == 0) {
-      sex = '女'
-    } else if (uinfo.sex == 1){
+    if (uinfo.sex == 1) {
       sex = '男'
+    } else if (uinfo.sex == 2){
+      sex = '女'
     }
     if (userRs.length !== 0) {
       console.log('已经登录')
@@ -146,7 +146,7 @@ Page({
         if (indexs == 0) {
           that.setData({
             sex:'女',
-            sexNum:0
+            sexNum:2
           })
         } else if (indexs == 1){
           that.setData({
@@ -156,7 +156,7 @@ Page({
         } else if (indexs == 2) {
           that.setData({
             sex:'秘密',
-            sexNum:2
+            sexNum:0
           })
         }
       },

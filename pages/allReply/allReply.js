@@ -26,6 +26,7 @@ Page({
   onLoad (e) {
     let id = e.id
     let url = app.globalData.sixBaseUrl + "/api/comment/replyList/msgId/" + id
+    console.log(url)
     let self = this
     wx.request({
       url: url,

@@ -27,41 +27,6 @@
       <view class="to-use" wx:else>去使用</view>
     </view>
   </view>
-  <view class="tip" wx:if="{{!unUseShow&&!isPayAccount}}">失效的优惠券已被隐藏，<view class="check" bindtap="showUnUse">点击查看</view></view>
-  <view class="un-use" wx:if="{{unUseShow&&!isPayAccount}}">
-    <view class="coupon-item" wx:for="{{couponData.fail}}" wx:key="index">
-      <view class="bg"><image src="/static/images/bg_youhuiquan@2x.png" /></view>
-      <view class="price-detail">
-        <view class="price">
-          <view class='coupon-price'>{{item.coupon_money}}</view>元
-        </view>
-        <view class="limits">满{{item.condition}}元可用</view>
-      </view>
-      <view class="use-detail">
-        <view class="des">{{item.coupon_name}}</view>
-        <view class="time-limt">有效期至：{{item.invalid_time}}</view>
-      </view>
-      <view class="icon">
-        <image src="/static/images/mine/shiyong@2x.png"/>
-      </view>
-    </view>
-    <view class="coupon-item" wx:for="{{couponData.expire}}" wx:key="index">
-      <view class="bg"><image src="/static/images/bg_youhuiquan@2x.png" /></view>
-      <view class="price-detail">
-        <view class="price">
-          <view class='coupon-price'>{{item.coupon_money}}</view>元
-        </view>
-        <view class="limits">满{{item.condition}}元可用</view>
-      </view>
-      <view class="use-detail">
-        <view class="des">{{item.coupon_name}}</view>
-        <view class="time-limt">有效期至：{{item.invalid_time}}</view>
-      </view>
-      <view class="icon">
-        <image src="/static/images/mine/guoqi@2x.png"/>
-      </view>
-    </view>
-  </view>
   <view class="exchange" wx:if="{{!isPayAccount}}">
     <view class="exchange-btn" bindtap="showToast">兑换卡券</view>
   </view>

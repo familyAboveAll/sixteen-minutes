@@ -2,6 +2,7 @@
   <view class="avatar-wrap" bindtap="clickAvatar">
     <view class="avatar" >
       <image src="{{avatar}}"></image>
+      <image src="/static/images/zhaopian@2x.png" class="zhaopian"></image>
     </view>
   </view>
   <view class="input-card">

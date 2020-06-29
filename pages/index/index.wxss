@@ -2,7 +2,7 @@
   padding-left: 44rpx;
   background: #F7F7FB;
   min-height: 100vh;
-  padding-top: 150rpx;
+  /*padding-top: 150rpx;*/
 }
 .title {
   font-size: 60rpx;
@@ -10,7 +10,7 @@
   letter-spacing: 0;
   font-weight:bold;
   line-height: 80rpx;
-  margin: 8px 0 32rpx;
+  margin: 30rpx 0 32rpx;
   padding-left: 36rpx;
 }
 navigator {
@@ -70,7 +70,7 @@ navigator {
   margin-left: -222rpx;
   position: absolute;
 }
-.index-toast .close {
+.index-toast .closeCoupon {
   width: 60rpx;
   height: 60rpx;
   position: absolute;
@@ -94,6 +94,7 @@ navigator {
   text-align: center;
   font-size: 28rpx;
   color: #151515;
+  font-weight: bold;
 }
 .coupon .right {
   flex: 1;
@@ -135,4 +136,25 @@ navigator {
   color: #EB502C;
   position: absolute;
   text-align: center;
+}
+
+
+.custom{
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 45px;
+  background: #F7F7FB;
+  z-index: 999;
+}
+.custom text{
+  color: #fff;
+  font-size: 34rpx;
+  font-weight: 500;
+  max-width: 280rpx;
+}
+.empty_custom{
+  height: 45px;
+  width: 100%;
 }

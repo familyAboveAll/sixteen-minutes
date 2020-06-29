@@ -7,6 +7,6 @@
 }
 .content {
   font-size: 26rpx;
-  text-indent: 2em;
+  text-indent: 0em;
   line-height: 40rpx;
 }

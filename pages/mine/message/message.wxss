@@ -1,4 +1,10 @@
+.mine-message {
+  width: 100vw;
+  overflow-x: hidden;
+  padding-top: 86rpx;
+}
 .tab-wrap {
+  width: 100%;
   height: 86rpx;
   border-bottom: 16rpx solid #F3F3F3;
   display: flex;
@@ -6,6 +12,11 @@
   font-size: 33rpx;
   color: #9C9CA9;
   padding-left: 48rpx;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background: #fff;
 }
 .tab-wrap view {
   margin-right: 80rpx;

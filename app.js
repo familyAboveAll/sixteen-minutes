@@ -5,7 +5,8 @@ App({
     token: '',
     userInfo: null,
     sixBaseUrl: "http://mini798.com:8080/",
-    sixBaseUrlImg: "https://www.16mins.cn/public/images/"
+    sixBaseUrlImg: "https://www.16mins.cn/public/images/",
+    statusBarHeight:wx.getSystemInfoSync()['statusBarHeight']
   },
   onLaunch: function () {
     // 展示本地存储能力

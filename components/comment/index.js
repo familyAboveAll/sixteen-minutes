@@ -18,7 +18,10 @@ Component({
     },
     handleReply (e) {
       let index = e.currentTarget.dataset.index
-      this.triggerEvent('handleReply', index)
+      let mid = e.currentTarget.dataset.mid
+      let cid = e.currentTarget.dataset.cid
+      let rs = mid+'#'+cid
+      this.triggerEvent('handleReply', rs)
     },
     showAllReply (e) {
       let index = e.currentTarget.dataset.index

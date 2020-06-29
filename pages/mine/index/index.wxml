@@ -30,7 +30,7 @@
       <view class="img-wrap">
           <image src='/static/images/mine/imessege@2x.png'></image>
         </view>
-        <view class="num" wx:if="{{userInfo}}"></view>
+        <view class="num" wx:if="{{userInfo}}">{{msgNum}}</view>
         <view class="p">消息</view>
       </view>
       <view class="li" data-path='coupon' bindtap="handleLink">
@@ -53,7 +53,7 @@
     </navigator>
     <view class="lessons-wrap">
       <scroll-view scroll-x="true" style=" white-space: nowrap; display: flex;width: 100%">
-        <navigator url="/pages/lesson/lesson_detail/lesson_detail?id={{item.course_id}}" class="lesson" wx:for="{{history}}" wx:key="index">
+        <navigator url="/pages/lesson/lesson_detail/lesson_detail?id={{item.course_id}}&type=1&isBuy={{item.isBuy}}&sid={{item.id}}&hid={{item.id}}" class="lesson" wx:for="{{history}}" wx:key="index">
           <image src='{{item.course_image}}'></image>
           <view class="progress-wrap">
             <view class="tip">已学{{item.speed}}%</view>
@@ -75,7 +75,7 @@
         </view>
       </view>
     </navigator>
-    <view>
+    <navigator>
       <view class="item">
         <p>客服中心</p>
         <button class="btnContact" open-type="contact" bindcontact="handleContact"></button>
@@ -83,7 +83,7 @@
           <image src='/static/images/icon/right-arrow.png'></image>
         </view>
       </view>
-    </view>
+    </navigator>
     <navigator url="/pages/mine/setting/setting">
       <view class="item" style="border:none">
         <p>设置</p>

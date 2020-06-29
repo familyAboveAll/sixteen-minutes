@@ -26,6 +26,7 @@ Page({
     let couponMoneys = wx.getStorageSync('couponMoney')
     if (this.data.courseInfo.is_discount == 1) {
       var priceEnd = this.data.courseInfo.course_favorable_Price - couponMoneys
+      console.log()
       //原价格，主要判断是否有优惠后的价格
       this.setData({
         price:this.data.courseInfo.course_favorable_Price
@@ -82,19 +83,22 @@ Page({
                     'paySign': rs.data.data.paySign,
                     'success': function (res) {
                       wx.navigateTo({
-                        url:'/pages/mine/orders/orders'
+                        url: '/pages/lesson/lesson_detail/lesson_detail?id='+cid+'&isBuy=1&road=1'
                       })
                     },
                     'fail': function (res) {
-                      console.log(res);
+                      console.log(1);
+                      // wx.navigateTo({  //支付取消
+                      //   url: '/pages/mine/order_detail/order_detail?cid='+rs.data.data.oid+'&statu=0'
+                      // })
                     },
                     'complete': function (res) {
-                      console.log(res);
+                      console.log(2);
                     }
                   })
             } else if (codes === 302){ //移步到订单中心
-              wx.navigateTo({
-                url:'/pages/mine/orders/orders'
+              wx.navigateTo({  //已经存在未付款订单，跳转到订单详情支付
+                url: '/pages/mine/order_detail/order_detail?cid='+rs.data.data.oid+'&statu=0'
               })
             } else {
               wx.showToast({

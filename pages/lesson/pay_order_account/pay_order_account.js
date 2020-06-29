@@ -50,6 +50,7 @@ Page({
             success(rs) {
               console.log(rs.data)
               let codes = rs.data.code
+              var cid = rs.data.data.cid
               if (codes === 200) {
                 wx.requestPayment(
                     {
@@ -60,11 +61,14 @@ Page({
                       'paySign': rs.data.data.paySign,
                       'success': function (res) {
                         wx.navigateTo({
-                          url:'/pages/mine/orders/orders'
+                          url: '/pages/lesson/lesson_detail/lesson_detail?id='+cid+'&isBuy=1&road=1'
                         })
                       },
                       'fail': function (res) {
                         console.log(res);
+                        // wx.navigateTo({  //支付取消
+                        //   url: '/pages/mine/order_detail/order_detail?cid='+rs.data.data.oid+'&statu=0'
+                        // })
                       },
                       'complete': function (res) {
                         console.log(res);

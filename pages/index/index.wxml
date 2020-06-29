@@ -1,4 +1,8 @@
-<view class="index-wrap">
+  <view wx:if="{{scrolls}}" class="custom flex_center" style="padding-top:{{statusBarHeight}}px">
+    <!--  <text>demo</text>-->
+  </view>
+  <view wx:if="{{scrolls}}" class="empty_custom" style="padding-top:{{statusBarHeight}}px"></view>
+  <view class="index-wrap" style="padding-top:{{heightMini}}rpx">
   <view class="title">
     <view>零基础也可</view>
     <view>以轻松学习</view>
@@ -29,7 +33,7 @@
           <image src="/static/images/index/icon_bg@2x.png" />
           <view class="text">{{receive}}</view>
         </view>
-      <view class="close" bindtap='handleCloseToast'><image src="/static/images/icon/close_yhj.png" /></view>
+      <view class="closeCoupon" bindtap='handleCloseToast'><image src="/static/images/icon/close_yhj.png" /></view>
     </view>
   </view>
 </view>

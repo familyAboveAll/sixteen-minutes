@@ -9,7 +9,11 @@ image {
 .span {
   display: inline;
 }
-.close {
+.closeCoupon {
+  width: 36rpx;
+  height: 36rpx;
+}
+.close image {
   width: 24rpx;
   height: 24rpx;
 }
@@ -50,7 +54,7 @@ image {
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 50;
+  z-index: 10000;
 }
 .comment-textarea-wrap .bg {
   background: rgba(0, 0, 0, .4);

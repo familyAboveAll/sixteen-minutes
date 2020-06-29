@@ -165,6 +165,7 @@
   height: 109rpx;
   line-height: 109rpx;
   border-bottom: 2rpx solid #EDEDED;
+  position: relative;
 }
 .right-arrow {
   top: -28rpx;
@@ -178,5 +179,11 @@
   padding-left: 10rpx;
 }
 .btnContact {
+  width: 608rpx!important;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
   background-color:#FFFFFF;
+  opacity: 0;
 }

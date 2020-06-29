@@ -1,7 +1,7 @@
 <view class="lesson-detail">
-  <view class="video-wrap" id="videoWrap" wx:if="{{videoShow}}">
+  <view class="video-wrap" id="videoWrap">
 <!--    <video id="lessonVideo" src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400"></video>-->
-    <video autoplay="{{true}}" id="lessonVideo" src="{{videoUrl}}" bindtimeupdate="bindtimeupdate"></video>
+    <video autoplay="{{playAuto}}" initial-time="{{nowLong}}"	id="lessonVideo" src="{{videoUrl}}" bindtimeupdate="bindtimeupdate"></video>
     <view class="un-wifi" wx:if="{{wifiToastShow}}">
       <view class="tip">继续播放将消耗26M流量</view>
       <view class="checkbox-operate" bindtap="handleAgree">
@@ -48,14 +48,16 @@
         </view>
       </view>
       <view class="lesson-card">
-        <scroll-view scroll-x="true"scroll-into-view="{{scrollIntoView}}" scroll-with-animation="{{true}}" style="white-space: nowrap; display: flex;">
-          <view wx:for="{{courseDetail.rsSectionAllEnd}}" wx:key="index" id="{{'item' + item.id}}" class="{{playVideoId==item.id?'item playing':'item'}}" data-id="{{item.id}}" data-url="{{item.video_url}}" data-desc="{{item.section_desc}}" data-cname="{{courseDetail.rsCourse.course_name}}" data-index="{{item.id}}" data-num="{{index}}" data-cid="{{item.cid}}" data-number="{{item.section_number}}" data-name="{{item.section_name}}" data-sid="{{item.id}}" data-img="{{courseDetail.rsCourse.course_image}}"  bindtap="handleChangeVieo">
-            <view class="index">第{{index+1}}讲</view>
-            <view class="name">{{item.section_name}}</view>
-            <view class="play-icon" wx:if="{{playVideoId==item.id}}">
-              <image src='/static/images/icon/bofangzhong@2x.png'></image>
+        <scroll-view bindscrolltolower="scrollx" scroll-x="true"scroll-into-view="{{scrollIntoView}}" scroll-with-animation="{{true}}" style="white-space: nowrap; display: flex;">
+          <view wx:for="{{sectionList}}" wx:key="index" id="{{'item' + item.id}}" class="{{playVideoId==item.id?'item playing':'item'}}" data-id="{{item.id}}" data-url="{{item.video_url}}" data-desc="{{item.section_desc}}" data-cname="{{courseDetail.rsCourse.course_name}}" data-index="{{item.id}}" data-num="{{index}}" data-cid="{{item.cid}}" data-number="{{item.section_number}}" data-name="{{item.section_name}}" data-sid="{{item.id}}" data-img="{{courseDetail.rsCourse.course_image}}"  bindtap="handleChangeVieo">
+            <view class="index">第{{index+1}}讲
+              <view class="play-icon" wx:if="{{playVideoId==item.id}}">
+                <image src='/static/images/icon/bofangzhong@2x.png'></image>
+              </view>
             </view>
+            <view class="name">{{item.section_name}}</view>
             <view class="free" wx:if="{{item.is_try_see==1}}">免费</view>
+            <view class="lockNew" wx:elif="{{!isBuy}}"><image src="/static/images/icon/suoding@2x.png"></image></view>
           </view>
         </scroll-view>
       </view>
@@ -95,13 +97,13 @@
     </view>
   </view>
   <view class="lesson-profile" wx:if="{{detailShow}}">
-    <view class="lesson-info">
-      <view class="top">
-        <view class="common-title">课程简介</view>
-        <view class="close" bindtap="closeDetail">
-          <image src="/static/images/icon/close.png"/>
-        </view>
+    <view class="top">
+      <view class="common-title">课程简介</view>
+      <view class="close" bindtap="closeDetail">
+        <image src="/static/images/icon/close.png"/>
       </view>
+    </view>
+    <view class="lesson-info">
       <view class="lesson-title">
         <view class="title">{{courseDetail.rsCourse.course_name}}</view>
       </view>
@@ -211,7 +213,7 @@
       </view>
     </view>
     <view class="all-comments" wx:if="{{allReplys.length}}">
-      <view class="top">
+      <view class="tops">
         <view class="common-title">全部留言（{{allReplys.length}}）</view>
       </view>
       <view class="comment-item" wx:for="{{allReplys}}" wx:key="index">
